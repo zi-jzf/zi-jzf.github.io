@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <style>
+        /* ここはCSS（デザイン）を書く場所 */
+        body {
+            background-color: #000; /* 背景を黒に */
+            color: #fff; /* 文字を白に */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        h1 {
+            /* 文字をふわっと出すアニメーション */
+            animation: fadeIn 3s ease;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, World!<br>Interactive Art Portfolio</h1>
+</body>
+</html>
