@@ -1,40 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        /* ここはCSS（デザイン）を書く場所 */
+        /* リセットCSS的な設定 */
         body {
-            background-color: #000; /* 背景を黒に */
-            color: #fff; /* 文字を白に */
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh; /* 画面いっぱいの高さ */
+            overflow: hidden; /* スクロール禁止（トップ画のみの場合） */
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: #fff;
+            background-color: #000;
+        }
+
+        /* --- 背景動画の設定 --- */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* 一番後ろ */
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 画面サイズに合わせてトリミング */
+            
+            /* 【魔法のスパイス】 画質補正 */
+            /* コントラストと彩度を上げて、圧縮の荒さを隠しつつリッチに見せる */
+            /*filter: contrast(1.1) saturate(1.1);*/
+        }
+
+        /* --- 暗くするフィルター（文字を読みやすくする） --- */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* 30%の黒を乗せる */
+            z-index: -1;
+            /* ザラザラしたノイズ画像をCSSで重ねるならここに追加も可能 */
+        }
+
+        /* --- 真ん中のコンテンツ --- */
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
+            text-align: center;
+            padding: 20px;
         }
 
         h1 {
-            /* 文字をふわっと出すアニメーション */
-            animation: fadeIn 3s ease;
+            font-size: clamp(3rem, 8vw, 6rem); /* スマホ?PCで文字サイズ可変 */
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0;
+            line-height: 1.1;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 影で浮き上がらせる */
         }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-top: 20px;
+            font-weight: 400;
+            opacity: 0.9;
+            letter-spacing: 0.05em;
         }
+
+        /* 作品一覧へ飛ぶボタン（仮） */
+        .scroll-btn {
+            margin-top: 50px;
+            padding: 12px 30px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 50px;
+            background: rgba(0,0,0,0.2);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px); /* すりガラス効果 */
+        }
+
+        .scroll-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Hello, World!<br>Interactive Art Portfolio</h1>
+
+    <div class="video-container">
+        <video src="assets/bg_movie.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="content">
+        <h1>Interactive Art<br>Portfolio</h1>
+        <p>Visuals created with TouchDesigner & Unity</p>
+        
+        <a href="#" class="scroll-btn">View Works</a>
+    </div>
+
 </body>
 </html>
