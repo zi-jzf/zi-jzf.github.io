@@ -365,6 +365,54 @@
             margin-right: 8px;
         }
 
+        /* --- 画像拡大機能 (Lightbox) --- */
+
+        /* 拡大したい画像につけるクラス（カーソルを虫眼鏡にする） */
+        .zoomable {
+            cursor: zoom-in;
+            transition: transform 0.2s;
+        }
+        .zoomable:hover {
+            opacity: 0.9;
+        }
+
+        /* 拡大表示時の背景（黒い膜） */
+        #lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9); /* 背景を暗く */
+            z-index: 1000; /* 最前面に */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none; /* 見えてないときはクリック無効 */
+            transition: opacity 0.3s ease;
+        }
+
+        /* 表示モードになったとき */
+        #lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 拡大された画像 */
+        #lightbox-img {
+            max-width: 90%; /* 画面からはみ出さないように */
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transform: scale(0.9); /* 最初は少し小さく */
+            transition: transform 0.3s ease;
+        }
+
+        #lightbox-overlay.active #lightbox-img {
+            transform: scale(1); /* ふわっと定位置へ */
+        }
+
         /* --- 幅が狭まったとき (タブレット〜ノートPC向け) --- */
         /* 1200px以下になったら、横並びをやめて縦積みに切り替える */
         @media (max-width: 1200px) {
@@ -442,6 +490,10 @@
     </style>
 </head>
 
+<div id="lightbox-overlay">
+    <img id="lightbox-img" src="" alt="Zoomed Image">
+</div>
+
 <body>
 
     <header>
@@ -518,7 +570,7 @@
                 </p>
 
                 <div class="image-block">
-                    <img src="../assets/Explain_SinCosCHOP.png" alt="Explain_SinCosCHOP">
+                    <img src="../assets/Explain_SinCosCHOP.png" alt="Explain_SinCosCHOP" class="zoomable">
                     <p class="caption">Sin, Cosを使用した数学的ループの実装概要</p>
                 </div>
                 
@@ -608,6 +660,25 @@
         // ナビゲーション全体からマウスが外れたら消す
         nav.addEventListener('mouseleave', () => {
             indicator.style.opacity = '0';
+        });
+
+        /* --- 画像拡大機能のスクリプト --- */
+        const overlay = document.getElementById('lightbox-overlay');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // "zoomable" クラスがついた画像をすべて探す
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', () => {
+                // クリックされた画像のソースを、拡大用画像にセット
+                lightboxImg.src = img.src;
+                // オーバーレイを表示
+                overlay.classList.add('active');
+            });
+        });
+
+        // 黒い背景をクリックしたら閉じる
+        overlay.addEventListener('click', () => {
+            overlay.classList.remove('active');
         });
 
     </script>
