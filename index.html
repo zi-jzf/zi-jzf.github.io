@@ -299,8 +299,8 @@
         /* グリッドレイアウト */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自動で列数を調整 */
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr); /* 自動で列数を調整 */
+            gap: 30px;
         }
 
         .work-item {
@@ -353,25 +353,69 @@
         }
 
         .work-title {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 400;
             margin: 0 0 5px;
         }
 
+        /*メインタグ(カテゴリ表示・クリック不可)*/
         .work-tags {
-            font-size: 0.85rem;
-            color: #555;
+            font-size: 1rem;
+            color:var(--text-color);
             font-family: var(--font-en);
+            margin-bottom: 5px;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         /* ツール名はハッシュタグ風に */
         .work-tags span {
-            margin-right: 10px;
+            padding: 2px 5px; /* 横幅を少し広げてラベルっぽく */
+            color: #666;
         }
-        
-        /* カーソルを合わせたらタグの色が変わる */
-        .work-item:hover .work-tags span {
-            color: var(--accent-color);
+
+        /* --- サブタグ（技術スタック・クリック不可） --- */
+        .work-sub-tags {
+            font-size: 0.95rem;
+            color: #777;
+            font-family: var(--font-en);
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        /*コンテナの最初と最後に括弧を追加*/
+        .work-sub-tags::before {
+            content: '(';
+            margin-right: 4px; /* 括弧と最初の文字の隙間 */
+            color: #999; /* 括弧の色（少し薄くすると上品） */
+        }
+
+        .work-sub-tags::after {
+            content: ')';
+            margin-left: 4px; /* 最後の文字と括弧の隙間 */
+            color: #999;
+        }
+
+        .work-sub-tags span {
+            display: inline-block;
+        }
+
+        .work-sub-tags span::after {
+            content: '/';
+            margin: 0 5px;
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        .work-sub-tags span:last-child::after {
+            content: none;
+        }
+
+        /* 画面幅が1200px以下（ノートPCなど）なら「2列」にする */
+        @media (max-width: 1400px) {
+            .works-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         /* --- ★ここからスマホ対応（メディアクエリ） --- */
@@ -418,6 +462,10 @@
                 font-size: 1rem;
             }
 
+            .works-grid {
+                grid-template-columns: 1fr; /* 1列 */
+            }
+
             .filter-group {
                 flex-direction: column; /* 縦積みに */
                 align-items: flex-start;
@@ -434,7 +482,7 @@
 <body>
 
     <div class="video-background">
-        <video src="assets/main_bg.mp4" autoplay loop muted playsinline></video>
+        <video src="assets/main_bg.mp4" poster="assets/main_bg_thumb.png" loop muted playsinline></video>
     </div>
 
     <header>
@@ -499,6 +547,18 @@
                 </div>
                 <h3 class="work-title">Portfolio Site Main Visual</h3>
                 <div class="work-tags"><span>#TouchDesigner</span><span>#Generative Art</span></div>
+            </a>
+
+            <a href="works/Constellate.html" class="work-item" data-category="unity interactive-art">
+                <div class="work-thumb">
+                    <img src="assets/constellate_thumb.png" alt="Constellate">
+                </div>
+                    <h3 class="work-title">Constellate</h3>
+                    <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
+                </div>
+                <div class="work-sub-tags">
+                    <span>C#</span><span>VFX Graph</span><span>BodyPix</span>
+                </div>
             </a>
 
             <div class="work-item" data-category="unity">
