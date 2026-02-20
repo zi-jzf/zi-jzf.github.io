@@ -36,6 +36,73 @@
             scroll-behavior: smooth;
         }
 
+        /* --- ロード画面 (アスキーアート) --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            /* ライトテーマに合わせる */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+            color: var(--text-color);
+            /* ダークブルー系 */
+            font-family: monospace;
+            /* AAがきれいに見えるように固定幅フォント */
+            font-size: 2rem;
+            white-space: pre;
+            /* 改行をそのまま表示 */
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* アスキーアートのアニメーション */
+        .loader-aa::after {
+            content: '^_^';
+            display: inline-block;
+            animation: loaderFaceChange 0.5s infinite steps(1);
+            /* ヘッダーより速く切り替え */
+        }
+
+        @keyframes loaderFaceChange {
+            0% {
+                content: '^_^';
+            }
+
+            25% {
+                content: '^o^';
+            }
+
+            50% {
+                content: '^-^';
+            }
+
+            75% {
+                content: '^.^';
+            }
+        }
+
+        /* --- フェードイン（Reveal）アニメーション用のクラス --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            /* 少し下から */
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- ヘッダー (簡易版) --- */
         header {
             position: fixed;
@@ -301,11 +368,10 @@
             margin-top: 5rem;
             margin-bottom: 2.5rem;
             padding-bottom: 1rem;
-            border-bottom: none;
-            /* 波線（ライトテーマ用に少し濃いめの半透明黒） */
-            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='40' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6 Q 10 0 20 6 T 40 6' stroke='rgba(0, 0, 0, 0.2)' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-            background-repeat: repeat-x;
-            background-position: left bottom;
+
+            /* 【変更】波線から、モダンでクリーンな細い直線へ（ライトテーマ用） */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
             letter-spacing: 0.05em;
         }
 
@@ -571,13 +637,14 @@
             }
         }
     </style>
+    <script src="../assets/common/js/loader.js"></script>
 </head>
 
-<div id="lightbox-overlay">
-    <img id="lightbox-img" src="" alt="Zoomed Image">
-</div>
-
 <body>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
 
     <script src="../assets/common/js/header.js"></script>
 
@@ -616,20 +683,20 @@
             </div>
 
             <div class="text-block">
-                <h2>Concept</h2>
+                <h2 class="reveal">Concept</h2>
 
-                <p class="lead-text">
+                <p class="lead-text reveal">
                     ポートフォリオサイトの顔としての「直感的な美しさ」と「自己表現」
                 </p>
-                <p>
+                <p class="reveal">
                     ポートフォリオサイトのトップを飾るメインビジュアルとして、訪れた瞬間に視界をジャックして良い印象を与えることを目的として制作しました。<br>
                     UIデザインにおける機能性を阻害しないよう、具象的なモチーフは避けた流体的な表現を採用。ポートフォリオの顔として、私の好む美的感覚を表現するようなビジュアルアイデンティティとして機能させています。
                 </p>
             </div>
 
             <div class="text-block">
-                <h2>Technical Approach</h2>
-                <p>
+                <h2 class="reveal">Technical Approach</h2>
+                <p class="reveal">
                     基礎の動きとなる2つのNoiseTOPやDisplaceTOPの組み合わせは
                     <a href="https://youtu.be/Fk2acNrdkO8?si=6VeAbv-kvsRNrOms" target="_blank"
                         rel="noopener noreferrer">
@@ -637,32 +704,32 @@
                     </a>を参考にしました。
                     自分自身でもNoiseTOPの数値を調整したり、FeedbackTOP内のループにBlurを追加してより流体的な表現にしたりと、より自分好みの動きに仕上げました。
                 </p>
-                <div class="lead-text">
+                <div class="lead-text reveal">
                     数学的なループ設計
                 </div>
-                <p>
+                <p class="reveal">
                     webサイトの背景として長時間表示されることを考慮し、見る人に「繰り返しの違和感」を与えない完全なシームレスなループを実装しました。<br>
                     10秒間のタイムラインを単なる直線進行として扱わず、Sin/Cosを使用して円環状に推移させることで、始点と終点のパラメーターを数学的に一致させています。<br>
                     さらにNoiseTOPのTranslate Z/Translate 4Dにsin, cosをそれぞれ割り当てることで周期性を感じさせない、複雑な動きを実現しました。
                 </p>
 
-                <div class="image-block">
+                <div class="image-block reveal">
                     <img src="../assets/works/pf_main_visual/Explain_SinCosCHOP.png" alt="Explain_SinCosCHOP"
                         class="zoomable">
                     <p class="caption">Sin, Cosを使用した数学的ループの実装概要</p>
                 </div>
 
                 </p>
-                <div class="lead-text">
+                <div class="lead-text reveal">
                     Post-Processing
                 </div>
-                <p>
+                <p class="reveal">
                     最終的なビジュアルのクオリティを決定づけるポストプロセス工程では、段階的な絵作りを行いました。言葉で説明するよりも下の映像の段階的な変化を見ていただければ分かりやすいと思います。<br>
                     まず、HSV Adjust TOPとLevel
                     TOPを使用し、全体の彩度とコントラストを調整。次にBloomを追加することで、より鮮やかな印象を与えます。最後に色反転したEdgeを重ねることで青と紫以外の色のアクセントを加えて、より引き締まった印象にします。
                 </p>
                 <div class="process-grid">
-                    <div class="process-item">
+                    <div class="process-item reveal">
                         <video src="../assets/works/pf_main_visual/Before-Postprocessing.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
@@ -670,7 +737,7 @@
                             Post-Processingを行う前
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.1s;">
                         <video src="../assets/works/pf_main_visual/After-Saturation Contrast.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
@@ -678,7 +745,7 @@
                             彩度とコントラストを調整
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.2s;">
                         <video src="../assets/works/pf_main_visual/After-Bloom.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
@@ -686,7 +753,7 @@
                             Bloomエフェクトの追加
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.3s;">
                         <video src="../assets/works/pf_main_visual/After-Negateegde.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
@@ -699,18 +766,18 @@
             </div>
 
             <div class="text-block">
-                <h2>Web Implementation & Optimization</h2>
-                <p class="lead-text">
+                <h2 class="reveal">Web Implementation & Optimization</h2>
+                <p class="lead-text reveal">
                     軽量化とビジュアル品質の両立
                 </p>
-                <p>
+                <p class="reveal">
                     この映像は、webサイトの背景としてモバイル回線でも即座に再生される軽さが求められます。一方で、流体表現のような複雑なグラデーションは圧縮時にブロックノイズが発生しやすいという課題がありました。<br>
                     このトレードオフを解消するため、単純なビットレート制限ではなくエンコード効率を重視した最適化を行いました。TouchDeisgnerからApple
                     ProResをマスターデータとして書き出した後、HandBrakeを使用。<br>
                     時間をかけてエンコードすることで映像に合った最適なエンコードを実現。段階的にビットレートを下げ、軽量化とビジュアル品質の両立を行いました。<br>
                     結果として1280×720pxの10秒の映像を<b>9.3MB</b>まで圧縮することに成功。PCモニターなどの大きい画面でも耐えうる解像感を保ちつつ、初回ロードでもストレスがないファイルサイズを実現しました。
                 </p>
-                <div class="image-block">
+                <div class="image-block reveal">
                     <img src="../assets/works/pf_main_visual/Optimized_ForWeb.png" alt="Optimized_ForWeb">
                     <p class="caption">最適化する前後のファイル情報の比較画像</p>
                 </div>
@@ -720,8 +787,6 @@
     </div>
 
     <script>
-
-
         /* --- 画像拡大機能のスクリプト --- */
         const overlay = document.getElementById('lightbox-overlay');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -741,6 +806,24 @@
             overlay.classList.remove('active');
         });
 
+        /* --- スクロールアニメーション (Reveal) のスクリプト --- */
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // 要素上部が画面の下から100px入ったら発火
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // 初回読み込み時にもチェック
+        reveal();
     </script>
 </body>
 

@@ -38,6 +38,72 @@
             /* スムーススクロールを追加 */
         }
 
+        /* --- ロード画面 (アスキーアート) --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            /* ダークテーマに合わせる */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+            color: var(--text-color);
+            font-family: monospace;
+            /* AAがきれいに見えるように固定幅フォント */
+            font-size: 2rem;
+            white-space: pre;
+            /* 改行をそのまま表示 */
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* アスキーアートのアニメーション */
+        .loader-aa::after {
+            content: '^_^';
+            display: inline-block;
+            animation: loaderFaceChange 0.5s infinite steps(1);
+            /* ヘッダーより速く切り替え */
+        }
+
+        @keyframes loaderFaceChange {
+            0% {
+                content: '^_^';
+            }
+
+            25% {
+                content: '^o^';
+            }
+
+            50% {
+                content: '^-^';
+            }
+
+            75% {
+                content: '^.^';
+            }
+        }
+
+        /* --- フェードイン（Reveal）アニメーション用のクラス --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            /* 少し下から */
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- index.html の背景設定を流用・調整 --- */
         .video-background {
             position: fixed;
@@ -73,7 +139,7 @@
             height: 100%;
 
             /* 詳細ページは文字を読むので、index.html(0.3)より少し濃くする */
-            background: #0325469a;
+            background: #032546a8;
 
             pointer-events: none;
         }
@@ -368,11 +434,10 @@
             margin-top: 5rem;
             margin-bottom: 2.5rem;
             padding-bottom: 1rem;
-            border-bottom: none;
-            /* アニメーションなしの波線（元々のborder-bottomの代わり） */
-            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='40' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6 Q 10 0 20 6 T 40 6' stroke='rgba(255, 255, 255, 0.2)' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-            background-repeat: repeat-x;
-            background-position: left bottom;
+
+            /* 【変更】波線から、モダンでクリーンな細い直線へ */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
             letter-spacing: 0.05em;
         }
 
@@ -381,7 +446,7 @@
             font-size: 1.25rem;
             font-weight: 600;
             line-height: 1.6;
-            color: #ffffff;
+            color: #ebf2fd;
             margin-top: 3.5rem;
             margin-bottom: 1.5rem;
             padding-left: 15px;
@@ -406,7 +471,7 @@
             align-items: center;
             font-size: 1.1rem;
             font-weight: 700;
-            color: #ffffff;
+            color: #ebf2fd;
             margin-top: 2.5rem;
             margin-bottom: 1rem;
             letter-spacing: 0.05em;
@@ -667,13 +732,14 @@
             }
         }
     </style>
+    <script src="../assets/common/js/loader.js"></script>
 </head>
 
-<div id="lightbox-overlay">
-    <img id="lightbox-img" src="" alt="Zoomed Image">
-</div>
-
 <body>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
     <script src="../assets/common/js/header.js"></script>
 
     <div class="project-container">
@@ -726,12 +792,12 @@
             <p class="caption" style="margin-bottom: 3rem;">🔊Sound ON</p>
 
             <div class="text-block">
-                <h2>Concept</h2>
+                <h2 class="reveal">Concept</h2>
 
-                <p class="lead-text">
+                <p class="lead-text reveal">
                     身体動作と視聴覚の完全同期による、没入型「星」生成体験
                 </p>
-                <p>
+                <p class="reveal">
                     自身の体を「星を生み出す装置」へと変えるインタラクティブ・インスタレーション。<br>
                     顔の中心から湧き出るエネルギーを、両手を使って集め、凝縮し、解放する。
                     この一連の動作に対し、世界観に合わせた音を同期させることで、視覚情報以上の没入感を設計しました。
@@ -740,33 +806,33 @@
             </div>
 
             <div class="text-block">
-                <h2>Experience Flow</h2>
-                <p class="lead-text">
+                <h2 class="reveal">Experience Flow</h2>
+                <p class="lead-text reveal">
                     体験の流れ
                 </p>
                 <div class="process-grid">
-                    <div class="process-item">
+                    <div class="process-item reveal">
                         <img src="../assets/works/constellate/1-Gather.png" alt="Gathering Energy">
                         <p class="caption">
                             <span class="process-step">01</span>
                             顔の中心からエネルギーが発生
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.1s;">
                         <img src="../assets/works/constellate/2-Charge.png" alt="Charging">
                         <p class="caption">
                             <span class="process-step">02</span>
                             両手の距離に応じて色が変化
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.2s;">
                         <img src="../assets/works/constellate/3-StarBirth.png" alt="Star Birth">
                         <p class="caption">
                             <span class="process-step">03</span>
                             音・衝撃波エフェクトと共に星が誕生
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.3s;">
                         <img src="../assets/works/constellate/4-Connect.png" alt="Connect Stars">
                         <p class="caption">
                             <span class="process-step">04</span>
@@ -777,8 +843,8 @@
             </div>
 
             <div class="text-block">
-                <h2>Technical Approach</h2>
-                <p>
+                <h2 class="reveal">Technical Approach</h2>
+                <p class="reveal">
                     AI(BodyPix)を用いた人物セグメンテーションとリアルタイムVFXを組み合わせたインタラクティブアート。「AIを使って何か面白い表現や体験を作りたい」という好奇心からスタートしました。<br>
                     システムのベースには、高橋啓次郎氏の
                     <a href="https://github.com/keijiro/NNCam2" target="_blank" rel="noopener noreferrer">
@@ -787,56 +853,56 @@
                     既存のAIライブラリを単に利用するだけでなく、その内部構造やVFX連携の仕組みを解析し、自身の表現に合わせて拡張することで、AI推論から描画までの実践的なパイプライン構築を学びながら制作しました。
                 </p>
 
-                <p class="lead-text">
+                <p class="lead-text reveal">
                     手の距離と連携したVFX表現
                 </p>
-                <div class="sub-heading">技術的な実装アプローチ</div>
-                <p>
+                <div class="sub-heading reveal">技術的な実装アプローチ</div>
+                <p class="reveal">
                     AI（BodyPix）から取得した両手のKeypointデータを、VFX Property Binderを介してVFX Graphへリアルタイムに送信しています。
                     VFX内部で両手間の距離を毎フレーム計算し、その距離の数値をもとにRemapを用いてTurbulenceの強度や抵抗値を動的に制御しました。また、極端な手の動きをしてもエフェクトが破綻しないよう、色彩の遷移にはLerpを活用し、滑らかなビジュアルの変化を実現しています。
                 </p>
 
-                <div class="sub-heading">天文学を参考にした表現</div>
-                <p>
+                <div class="sub-heading reveal">天文学を参考にした表現</div>
+                <p class="reveal">
                     インタラクションのデザインには「実際の星の温度と色の関係」をモチーフとして取り入れました。
                     ユーザーが手を広げている時は、エネルギーが拡散していく様子を表現するために、パーティクルを広範囲に散らし、低温を示す「オレンジ・黄」の色彩に。逆に両手を近づけた時は、エネルギーが一点に凝縮していく様子を表現するために、パーティクルが塊となってうねるような動きへ変化し、高温を示す「青・白」へと発光します。
                 </p>
 
-                <div class="video-block">
+                <div class="video-block reveal">
                     <video src="../assets/works/constellate/Hand_Distance_Vfx.mp4" autoplay loop muted playsinline
-                        preload="metadata">
+                        preload="metadata" style="width: 100%; border-radius: 8px;">
                     </video>
                     <p class="caption">手の距離に応じて動き・色が変化する様子</p>
                 </div>
 
-                <p class="lead-text">
+                <p class="lead-text reveal">
                     星雲のような流体的表現の追求
                 </p>
-                <p>
+                <p class="reveal">
                     作品の世界観である「宇宙の神秘性」を強調するため、初期のよくある粒のパーティクル(デフォルト感)から脱却し、星雲やエネルギーを模したリッチな流体表現を目指しました。単なる点の集合体ではなく、エネルギーが1つの塊として有機的にうねるような表現にこだわっています。
                 </p>
 
-                <p>
+                <p class="reveal">
                     リアルタイム描画において計算負荷の高い流体シミュレーションを避けるため、VFX Graphの機能を駆使した2つのアプローチで「疑似的な流体」を構築しました。結果として、開発環境(NVIDIA RTX
                     4060 / Unity Editor上)でも<b>常時60FPS以上</b>の安定した動作を実現しています。
                 </p>
 
-                <div class="sub-heading">マルチテクスチャによる光の表現</div>
-                <p>
+                <div class="sub-heading reveal">マルチテクスチャによる光の表現</div>
+                <p class="reveal">
                     コアとなる粒(Default-Particle)の背後にサイズを大きくしたソフトな円形テクスチャを加算して重ねることで、星から光があふれ出るようなブルーム感を表現しました。
                 </p>
 
-                <div class="sub-heading">GPU Eventによる残像の追加</div>
-                <p>
+                <div class="sub-heading reveal">GPU Eventによる残像の追加</div>
+                <p class="reveal">
                     Trigger Event / GPU
                     Eventを用い、高速で動く親パーティクルの背後に、軌跡としての子パーティクル(残像)を連続発生させるシステムを実装しました。これにより、個々の粒の動きが塊として繋がり、計算負荷を抑えながらも流体的なモーションを実現しています。
                 </p>
 
-                <p>
+                <p class="reveal">
                     特に手を近づけて青白くなった時に違いが分かりやすいと思います。
                 </p>
                 <div class="process-grid">
-                    <div class="process-item">
+                    <div class="process-item reveal">
                         <video src="../assets/works/constellate/Default-Particle.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
@@ -844,7 +910,7 @@
                             ただの粒パーティクル
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.1s;">
                         <video src="../assets/works/constellate/Add_Soft-Particle.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
@@ -852,7 +918,7 @@
                             ＋ソフトな円形テクスチャパーティクル
                         </p>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item reveal" style="transition-delay: 0.2s;">
                         <video src="../assets/works/constellate/Add_Gpu-Event.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
@@ -862,10 +928,10 @@
                     </div>
                 </div>
 
-                <p class="lead-text">
+                <p class="lead-text reveal">
                     没入感を深める視覚と聴覚の完全同期
                 </p>
-                <p>
+                <p class="reveal">
                     体験の没入感を高めるため、映像と音が完全に連動するインタラクションを実装しました。特にエネルギーチャージ音では、手の距離に応じて滑らかにピッチが変化する挙動が必要だったため、既存の音声ファイルではなく数式を基にした音声合成を採用しています。<br>
                     これによりメモリ負荷を抑えつつ、滑らかなピッチ変化を実現しました。生成AIを使用してC#スクリプト(OnAudioFilterRead)を実装し、視覚演出と完全に同期させています。スクリプト制御をAIで効率化することで、自身はVFXのクオリティアップに注力して作品全体の完成度を最大化しています。<br>
                     <br>
@@ -898,6 +964,26 @@
         overlay.addEventListener('click', () => {
             overlay.classList.remove('active');
         });
+
+        /* --- スクロールアニメーション (Reveal) のスクリプト --- */
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // 要素上部が画面の下から100px入ったら発火
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // 初回読み込み時にもチェック
+        reveal();
+
 
     </script>
 </body>

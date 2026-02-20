@@ -562,10 +562,26 @@
                 font-size: 0.85rem;
             }
         }
+
+        /* --- スクロールアニメーション (Reveal) --- */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
+    <script src="assets/common/js/loader.js"></script>
 </head>
 
 <body>
+
+
 
     <div class="video-background">
         <video src="assets/top/main_bg.mp4" poster="assets/top/main_bg_thumb.png" autoplay loop muted
@@ -575,7 +591,7 @@
     <script src="assets/common/js/header.js"></script>
 
     <section class="hero">
-        <div class="hero-text">
+        <div class="hero-text reveal">
             <h1>Intuitive Art, Accessible Magic.</h1>
             <p class="intro-en">
                 Hi, I'm MizukiFujita.<br>
@@ -594,7 +610,7 @@
 
     <section id="works" class="works-section">
 
-        <div class="filter-section">
+        <div class="filter-section reveal">
             <div class="filter-group">
                 <span class="group-label">Category</span>
                 <div class="group-buttons">
@@ -618,7 +634,7 @@
 
         <div class="works-grid">
 
-            <a href="works/PF-MainVisual.html" class="work-item" data-category="td generative-art">
+            <a href="works/PF-MainVisual.html" class="work-item reveal" data-category="td generative-art">
                 <div class="work-thumb">
                     <img src="assets/top/main_bg_thumb.png" alt="Portfolio Site Main Visual">
                 </div>
@@ -626,7 +642,8 @@
                 <div class="work-tags"><span>#TouchDesigner</span><span>#Generative Art</span></div>
             </a>
 
-            <a href="works/Constellate.html" class="work-item" data-category="unity interactive-art">
+            <a href="works/Constellate.html" class="work-item reveal" data-category="unity interactive-art"
+                style="transition-delay: 0.1s;">
                 <div class="work-thumb">
                     <img src="assets/top/constellate_thumb.png" alt="Constellate">
                 </div>
@@ -638,7 +655,7 @@
                 </div>
             </a>
 
-            <div class="work-item" data-category="unity">
+            <div class="work-item reveal" data-category="unity" style="transition-delay: 0.2s;">
                 <div class="work-thumb">
                     <img src="https://placehold.co/600x400/222/FFF?text=Unity+Game" alt="Work 2">
                 </div>
@@ -646,7 +663,7 @@
                 <div class="work-tags"><span>#Unity</span><span>#C#</span></div>
             </div>
 
-            <div class="work-item" data-category="other">
+            <div class="work-item reveal" data-category="other" style="transition-delay: 0.3s;">
                 <div class="work-thumb">
                     <img src="https://placehold.co/600x400/444/FFF?text=Portfolio" alt="Work 3">
                 </div>
@@ -735,6 +752,27 @@
                 }
             }
         });
+
+        /* =========================================
+           5. スクロールアニメーション (Reveal)
+           ========================================= */
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // 要素上部が画面の下から100px入ったら発火
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // 初回読み込み時にもチェック
+        reveal();
 
     </script>
 </body>
