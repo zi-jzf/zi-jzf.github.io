@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Site Main Visual | Works</title>
 
-    <link rel="icon" href="../assets/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="../assets/favicon.png">
-    
+    <link rel="icon" href="../assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/common/favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+        rel="stylesheet">
 
     <style>
         /* --- 共通変数 (index.htmlと同じ) --- */
@@ -30,6 +33,7 @@
             font-family: var(--font-en), var(--font-jp);
             line-height: 1.8;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* --- ヘッダー (簡易版) --- */
@@ -53,7 +57,8 @@
             font-weight: 800;
             font-family: var(--font-en);
             font-size: 1.8rem;
-            color: var(--text-color); /* headerで反転するので白指定でOK */
+            color: var(--text-color);
+            /* headerで反転するので白指定でOK */
             display: flex;
             align-items: center;
             gap: 10px;
@@ -67,11 +72,25 @@
         }
 
         @keyframes faceChange {
-            0%   { content: '^_^'; }
-            20%  { content: '^o^'; }
-            40%  { content: '; _ ;'; }
-            60%  { content: '-_-'; }
-            80%  { content: '^-^'; }
+            0% {
+                content: '^_^';
+            }
+
+            20% {
+                content: '^o^';
+            }
+
+            40% {
+                content: '; _ ;';
+            }
+
+            60% {
+                content: '-_-';
+            }
+
+            80% {
+                content: '^-^';
+            }
         }
 
         /* --- 修正: ナビゲーションのデザイン --- */
@@ -81,86 +100,103 @@
 
             display: flex;
             align-items: center;
-            gap: 5px; /* ボタン同士の間隔 */
+            gap: 5px;
+            /* ボタン同士の間隔 */
 
             /* ★ここにリキッドガラス風の背景をつける */
-            background: rgba(255, 255, 255, 0.15); 
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            
+
             /* 1つの大きな枠線 */
             border: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            
+
             /* カプセル型にする */
-            padding: 6px; /* 内側の余白 */
+            padding: 6px;
+            /* 内側の余白 */
             border-radius: 60px;
-                
+
         }
-        
+
         /*★新機能：動くピンクのインジケーター --- */
         #nav-indicator {
-            position: absolute; /* 親(nav)の中で自由配置 */
-            
+            position: absolute;
+            /* 親(nav)の中で自由配置 */
+
             /* 初期位置（JSで制御するので適当でOKだが、最初は隠しておく） */
-            left: 6px; 
+            left: 6px;
             top: 6px;
-            height: calc(100% - 12px); /* 上下のpadding分を引く */
-            width: 0; /* 最初は幅0で見せない */
-            
-            background-color: var(--accent-color); /* ピンク */
+            height: calc(100% - 12px);
+            /* 上下のpadding分を引く */
+            width: 0;
+            /* 最初は幅0で見せない */
+
+            background-color: var(--accent-color);
+            /* ピンク */
             border-radius: 40px;
-            z-index: 1; /* 文字の下に来るように */
-            
+            z-index: 1;
+            /* 文字の下に来るように */
+
             /* ヌルっと動くアニメーション設定 */
             transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            opacity: 0; /* カーソルが乗るまで見せない */
+            opacity: 0;
+            /* カーソルが乗るまで見せない */
         }
 
         /*リンク文字(ボタン)*/
         nav a {
-        text-decoration: none;
-        font-family: var(--font-en);
-        color: var(--text-color); /* 文字は白 */
+            text-decoration: none;
+            font-family: var(--font-en);
+            color: var(--text-color);
+            /* 文字は白 */
 
-        /* ★フォント調整 */
-        font-weight: 400;   /* Regular（背景が明るいので少し太めに） */
-        font-size: 1.1rem;  /* 少し大きく（元は0.9rem程度でした） */
-        letter-spacing: 0.02em; /* 少し文字間を広げて上品に */
-    
-        /* ボタンのクリック領域 */
-        padding: 10px 28px;
-        border-radius: 40px; /* 内側のボタンも丸く */
+            /* ★フォント調整 */
+            font-weight: 400;
+            /* Regular（背景が明るいので少し太めに） */
+            font-size: 1.1rem;
+            /* 少し大きく（元は0.9rem程度でした） */
+            letter-spacing: 0.02em;
+            /* 少し文字間を広げて上品に */
 
-        position: relative;
-        z-index: 2; /*ピンクの板より上に文字を表示*/
-        
-        background: transparent;
-        transition: color 0.3s;
-        line-height: 1.2;
+            /* ボタンのクリック領域 */
+            padding: 10px 28px;
+            border-radius: 40px;
+            /* 内側のボタンも丸く */
+
+            position: relative;
+            z-index: 2;
+            /*ピンクの板より上に文字を表示*/
+
+            background: transparent;
+            transition: color 0.3s;
+            line-height: 1.2;
         }
 
         /* ホバー時の挙動：背景色をつけて文字を白く */
         nav a:hover {
-            color:#fff;
+            color: #fff;
         }
 
         /* --- メインレイアウト (左固定・右スクロール) --- */
         .project-container {
             display: grid;
             /* 左サイドバー(250px) + 余白 + 右コンテンツ(残り) */
-            grid-template-columns: 400px 1fr; 
+            grid-template-columns: 400px 1fr;
             gap: 100px;
-            
+
             max-width: 1500px;
             margin: 0 auto;
-            padding: 150px 5% 100px; /* ヘッダー分の余白を上に確保 */
+            padding: 150px 5% 100px;
+            /* ヘッダー分の余白を上に確保 */
         }
 
         /* 左サイドバー (固定) */
         .project-sidebar {
-            position: sticky; /* スクロールしてもついてくる */
-            top: 150px;       /* 画面上部から150pxの位置で止まる */
+            position: sticky;
+            /* スクロールしてもついてくる */
+            top: 150px;
+            /* 画面上部から150pxの位置で止まる */
             height: fit-content;
         }
 
@@ -174,7 +210,7 @@
         }
 
         .project-meta {
-            border-top: 1px solid rgba(0,0,0,0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
             padding-top: 20px;
             display: flex;
             flex-direction: column;
@@ -218,7 +254,8 @@
             color: inherit;
         }
 
-        .tag:hover, .tag.active {
+        .tag:hover,
+        .tag.active {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
             color: #fff;
@@ -227,19 +264,20 @@
         /* 右コンテンツ (スクロール) */
         .project-content {
             /* 横幅を制限して読みやすく */
-            max-width: 800px; 
+            max-width: 800px;
         }
 
         /* Vimeo埋め込み用 (レスポンシブ対応) */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 の比率を維持 */
+            padding-bottom: 56.25%;
+            /* 16:9 の比率を維持 */
             height: 0;
             overflow: hidden;
             border-radius: 12px;
             background: #000;
             margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .video-wrapper iframe {
@@ -256,38 +294,55 @@
         }
 
         h2 {
-            font-family: var(--font-en),var(--font-jp);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
+            font-family: var(--font-en), var(--font-jp);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-top: 5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: none;
+            /* 波線（ライトテーマ用に少し濃いめの半透明黒） */
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='40' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6 Q 10 0 20 6 T 40 6' stroke='rgba(0, 0, 0, 0.2)' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-position: left bottom;
+            letter-spacing: 0.05em;
         }
 
         /* --- リード文(要約)のデザイン --- */
-        .lead-text{
-            position: relative; /* 線の基準位置 */
-            padding-left: 25px; /* 左にハイフンが入る分の隙間を空ける */
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            
-            font-size: 1.1rem;
+        .lead-text {
+            font-size: 1.25rem;
             font-weight: 600;
             line-height: 1.6;
             color: var(--text-color);
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+            padding-left: 15px;
+            border-left: 2px solid var(--accent-color);
+            letter-spacing: 0.05em;
             font-family: var(--font-en), var(--font-jp);
         }
 
-        .lead-text::before{
+        /* --- 本文内の小項目 (箇条書きのタイトルなど) --- */
+        .sub-heading {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .sub-heading::before {
             content: '';
-            position: absolute;
-            left: 0;
-            top: 0.7em; /* 文字の高さの真ん中あたりに来るように調整 */
-            
-            width: 15px; /* 線の長さ */
-            height: 2px; /* 線の太さ（1pxだと細すぎるなら2px） */
-            
-            background-color: #333; /* 線の色（文字色に合わせるか、薄くするか） */
-            /* アクセントカラーにしたい場合は var(--accent-color) に変更 */
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin-right: 10px;
+            border-radius: 50%;
         }
 
         p {
@@ -297,22 +352,26 @@
 
         /* --- 本文中のテキストリンクのデザイン --- */
         .project-content p a {
-            color: inherit; /* 通常時は周りの文字と同じ色（紺色）にする */
-            text-decoration: underline; /* 下線を引く */
-            
+            color: inherit;
+            /* 通常時は周りの文字と同じ色（紺色）にする */
+            text-decoration: underline;
+            /* 下線を引く */
+
             /* ↓ここがおしゃれポイント：下線を文字から少し離す */
-            text-underline-offset: 5px; 
+            text-underline-offset: 5px;
             /* 下線を少し薄くする（オプション） */
-            text-decoration-thickness: 1px; 
-            text-decoration-color: #999; 
-            
+            text-decoration-thickness: 1px;
+            text-decoration-color: #999;
+
             transition: all 0.3s ease;
         }
 
         /* ホバー時の動き */
         .project-content p a:hover {
-            color: var(--accent-color); /* 文字がピンクになる */
-            text-decoration-color: var(--accent-color); /* 下線もピンクになる */
+            color: var(--accent-color);
+            /* 文字がピンクになる */
+            text-decoration-color: var(--accent-color);
+            /* 下線もピンクになる */
         }
 
         /* 画像スタイル */
@@ -324,7 +383,7 @@
             width: 100%;
             height: auto;
             border-radius: 8px;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .caption {
@@ -338,8 +397,9 @@
         .process-grid {
             display: grid;
             /* PC: 横2列で均等割り */
-            grid-template-columns: 1fr 1fr; 
-            gap: 30px 20px; /* 上下の隙間30px、左右の隙間20px */
+            grid-template-columns: 1fr 1fr;
+            gap: 30px 20px;
+            /* 上下の隙間30px、左右の隙間20px */
             margin-bottom: 3rem;
         }
 
@@ -352,8 +412,10 @@
             width: 100%;
             height: auto;
             border-radius: 8px;
-            border: 1px solid rgba(0,0,0,0.1); /* 薄い枠線で引き締める */
-            margin-bottom: 8px; /* キャプションとの隙間 */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* 薄い枠線で引き締める */
+            margin-bottom: 8px;
+            /* キャプションとの隙間 */
         }
 
         /* キャプションのアレンジ (既存の.captionを流用しつつ微調整) */
@@ -361,7 +423,8 @@
             font-family: var(--font-en);
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--accent-color); /* ピンク色で "Step 1" と出す */
+            color: var(--accent-color);
+            /* ピンク色で "Step 1" と出す */
             margin-right: 8px;
         }
 
@@ -372,6 +435,7 @@
             cursor: zoom-in;
             transition: transform 0.2s;
         }
+
         .zoomable:hover {
             opacity: 0.9;
         }
@@ -383,13 +447,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9); /* 背景を暗く */
-            z-index: 1000; /* 最前面に */
+            background: rgba(0, 0, 0, 0.9);
+            /* 背景を暗く */
+            z-index: 1000;
+            /* 最前面に */
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            pointer-events: none; /* 見えてないときはクリック無効 */
+            pointer-events: none;
+            /* 見えてないときはクリック無効 */
             transition: opacity 0.3s ease;
         }
 
@@ -401,38 +468,45 @@
 
         /* 拡大された画像 */
         #lightbox-img {
-            max-width: 90%; /* 画面からはみ出さないように */
+            max-width: 90%;
+            /* 画面からはみ出さないように */
             max-height: 90%;
             object-fit: contain;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            transform: scale(0.9); /* 最初は少し小さく */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            /* 最初は少し小さく */
             transition: transform 0.3s ease;
         }
 
         #lightbox-overlay.active #lightbox-img {
-            transform: scale(1); /* ふわっと定位置へ */
+            transform: scale(1);
+            /* ふわっと定位置へ */
         }
 
         /* --- 幅が狭まったとき (タブレット〜ノートPC向け) --- */
         /* 1200px以下になったら、横並びをやめて縦積みに切り替える */
         @media (max-width: 1200px) {
             .project-container {
-                grid-template-columns: 1fr; /* 1列にする */
+                grid-template-columns: 1fr;
+                /* 1列にする */
                 padding-top: 100px;
                 gap: 40px;
                 padding-top: 120px;
-                max-width: 900px; /*全体の最大幅を狭めて、間延びを防ぐ*/
+                max-width: 900px;
+                /*全体の最大幅を狭めて、間延びを防ぐ*/
             }
 
             /*上部：作品概要*/
             .project-sidebar {
-                position: static; /* 固定解除 */
+                position: static;
+                /* 固定解除 */
                 width: 100%;
                 margin-bottom: 20px;
 
-                text-align: left; 
-                display: block; /* フレックスにせず、ブロック要素として左に積む */
-                
+                text-align: left;
+                display: block;
+                /* フレックスにせず、ブロック要素として左に積む */
+
             }
 
             .project-title {
@@ -444,15 +518,19 @@
             /* --- 下部：本文コンテンツ --- */
             .project-content {
                 /* ★ご希望の「中央寄せ」設定 */
-                margin: 0 auto; /* 左右の余白を自動にして中央へ */
+                margin: 0 auto;
+                /* 左右の余白を自動にして中央へ */
                 width: 100%;
-                max-width: 750px; /* 本文が広がりすぎないように制限 */
+                max-width: 750px;
+                /* 本文が広がりすぎないように制限 */
             }
 
             /*スマホ/タブレット向けに複数映像のレイアウト調整*/
-            .process-grid{
-                grid-template-columns: 1fr; /* 1列（縦積み）にする */
-                gap: 20px; /* 縦積みなら間隔を広めに */
+            .process-grid {
+                grid-template-columns: 1fr;
+                /* 1列（縦積み）にする */
+                gap: 20px;
+                /* 縦積みなら間隔を広めに */
             }
 
         }
@@ -462,21 +540,26 @@
             .project-title {
                 font-size: 2rem;
             }
+
             .project-meta {
-                flex-direction: column; /* スマホならメタ情報も縦積みに戻す */
+                flex-direction: column;
+                /* スマホならメタ情報も縦積みに戻す */
             }
 
             /* 4. 日本語・英語の文字サイズ調整 */
-            .intro-en, .intro-jp {
-                font-size: 0.9rem; /* 少し小さくして読みやすく */
+            .intro-en,
+            .intro-jp {
+                font-size: 0.9rem;
+                /* 少し小さくして読みやすく */
                 max-width: 100%;
             }
 
             /* 5. ヘッダー（メニュー）の調整 */
             header {
-                padding: 1rem 5%; /* ヘッダーも少しスリムに */
+                padding: 1rem 5%;
+                /* ヘッダーも少しスリムに */
             }
-            
+
             /* ロゴの顔文字アニメを少し小さく */
             .logo {
                 font-size: 1.4rem;
@@ -496,22 +579,13 @@
 
 <body>
 
-    <header>
-        <a href="../" class="logo">
-            <span class="kao-ani"></span>
-        </a>
-        <nav>
-            <div id="nav-indicator"></div>
-            <a href="../#works">Works</a>
-            <a href="../#about">Info</a>
-        </nav>
-    </header>
+    <script src="../assets/common/js/header.js"></script>
 
     <div class="project-container">
-        
+
         <aside class="project-sidebar">
             <h1 class="project-title">Portfolio Site Main Visual</h1>
-            
+
             <div class="project-meta">
                 <div class="meta-item">
                     <span class="meta-label">Year</span>
@@ -524,7 +598,7 @@
                     <span class="meta-label">Duration</span> <span class="meta-value">1 Day</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Tools & Tech</span> 
+                    <span class="meta-label">Tools & Tech</span>
                     <div class="tags">
                         <a href="../index.html?filter=td" class="tag">#TouchDesigner</a>
                         <a href="../index.html?filter=generative-art" class="tag">#Generative Art</a>
@@ -534,9 +608,10 @@
         </aside>
 
         <article class="project-content">
-            
+
             <div class="video-wrapper">
-                <iframe src="https://player.vimeo.com/video/1160942946?autoplay=1&loop=1&background=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+                <iframe src="https://player.vimeo.com/video/1160942946?autoplay=1&loop=1&background=1" width="640"
+                    height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
                 </iframe>
             </div>
 
@@ -556,56 +631,64 @@
                 <h2>Technical Approach</h2>
                 <p>
                     基礎の動きとなる2つのNoiseTOPやDisplaceTOPの組み合わせは
-                    <a href="https://youtu.be/Fk2acNrdkO8?si=6VeAbv-kvsRNrOms" target="_blank" rel="noopener noreferrer">
+                    <a href="https://youtu.be/Fk2acNrdkO8?si=6VeAbv-kvsRNrOms" target="_blank"
+                        rel="noopener noreferrer">
                         Pao Olea氏のチュートリアル動画
                     </a>を参考にしました。
                     自分自身でもNoiseTOPの数値を調整したり、FeedbackTOP内のループにBlurを追加してより流体的な表現にしたりと、より自分好みの動きに仕上げました。
                 </p>
-                <p class="lead-text">
+                <div class="lead-text">
                     数学的なループ設計
-                </p>
+                </div>
                 <p>
-                    webサイトの背景として長時間表示されることを考慮し、見る人に「繰り返しの違和感」を与えない完全なシームレスなループを実装しました。
-                    10秒間のタイムラインを単なる直線進行として扱わず、Sin/Cosを使用して円環状に推移させることで、始点と終点のパラメーターを数学的に一致させています。
+                    webサイトの背景として長時間表示されることを考慮し、見る人に「繰り返しの違和感」を与えない完全なシームレスなループを実装しました。<br>
+                    10秒間のタイムラインを単なる直線進行として扱わず、Sin/Cosを使用して円環状に推移させることで、始点と終点のパラメーターを数学的に一致させています。<br>
                     さらにNoiseTOPのTranslate Z/Translate 4Dにsin, cosをそれぞれ割り当てることで周期性を感じさせない、複雑な動きを実現しました。
                 </p>
 
                 <div class="image-block">
-                    <img src="../assets/Explain_SinCosCHOP.png" alt="Explain_SinCosCHOP" class="zoomable">
+                    <img src="../assets/works/pf_main_visual/Explain_SinCosCHOP.png" alt="Explain_SinCosCHOP"
+                        class="zoomable">
                     <p class="caption">Sin, Cosを使用した数学的ループの実装概要</p>
                 </div>
-                
-                <p class="lead-text">
-                    Post-Processing
+
                 </p>
+                <div class="lead-text">
+                    Post-Processing
+                </div>
                 <p>
                     最終的なビジュアルのクオリティを決定づけるポストプロセス工程では、段階的な絵作りを行いました。言葉で説明するよりも下の映像の段階的な変化を見ていただければ分かりやすいと思います。<br>
-                    まず、HSV Adjust TOPとLevel TOPを使用し、全体の彩度とコントラストを調整。次にBloomを追加することで、より鮮やかな印象を与えます。最後に色反転したEdgeを重ねることで青と紫以外の色のアクセントを加えて、より引き締まった印象にします。
+                    まず、HSV Adjust TOPとLevel
+                    TOPを使用し、全体の彩度とコントラストを調整。次にBloomを追加することで、より鮮やかな印象を与えます。最後に色反転したEdgeを重ねることで青と紫以外の色のアクセントを加えて、より引き締まった印象にします。
                 </p>
                 <div class="process-grid">
                     <div class="process-item">
-                        <video src="../assets/Before-Postprocessing.mp4" autoplay loop muted playsinline></video>
+                        <video src="../assets/works/pf_main_visual/Before-Postprocessing.mp4" autoplay loop muted
+                            playsinline></video>
                         <p class="caption">
                             <span class="process-step">Step 0</span>
                             Post-Processingを行う前
                         </p>
                     </div>
                     <div class="process-item">
-                        <video src="../assets/After-Saturation Contrast.mp4" autoplay loop muted playsinline></video>
+                        <video src="../assets/works/pf_main_visual/After-Saturation Contrast.mp4" autoplay loop muted
+                            playsinline></video>
                         <p class="caption">
                             <span class="process-step">Step 1</span>
                             彩度とコントラストを調整
                         </p>
                     </div>
                     <div class="process-item">
-                        <video src="../assets/After-Bloom.mp4" autoplay loop muted playsinline></video>
+                        <video src="../assets/works/pf_main_visual/After-Bloom.mp4" autoplay loop muted
+                            playsinline></video>
                         <p class="caption">
                             <span class="process-step">Step 2</span>
                             Bloomエフェクトの追加
                         </p>
                     </div>
                     <div class="process-item">
-                        <video src="../assets/After-Negateegde.mp4" autoplay loop muted playsinline></video>
+                        <video src="../assets/works/pf_main_visual/After-Negateegde.mp4" autoplay loop muted
+                            playsinline></video>
                         <p class="caption">
                             <span class="process-step">Step 3</span>
                             反転色のエッジを追加
@@ -622,12 +705,13 @@
                 </p>
                 <p>
                     この映像は、webサイトの背景としてモバイル回線でも即座に再生される軽さが求められます。一方で、流体表現のような複雑なグラデーションは圧縮時にブロックノイズが発生しやすいという課題がありました。<br>
-                    このトレードオフを解消するため、単純なビットレート制限ではなくエンコード効率を重視した最適化を行いました。TouchDeisgnerからApple ProResをマスターデータとして書き出した後、HandBrakeを使用。
+                    このトレードオフを解消するため、単純なビットレート制限ではなくエンコード効率を重視した最適化を行いました。TouchDeisgnerからApple
+                    ProResをマスターデータとして書き出した後、HandBrakeを使用。<br>
                     時間をかけてエンコードすることで映像に合った最適なエンコードを実現。段階的にビットレートを下げ、軽量化とビジュアル品質の両立を行いました。<br>
                     結果として1280×720pxの10秒の映像を<b>9.3MB</b>まで圧縮することに成功。PCモニターなどの大きい画面でも耐えうる解像感を保ちつつ、初回ロードでもストレスがないファイルサイズを実現しました。
                 </p>
                 <div class="image-block">
-                    <img src="../assets/Optimized_ForWeb.png" alt="Optimized_ForWeb">
+                    <img src="../assets/works/pf_main_visual/Optimized_ForWeb.png" alt="Optimized_ForWeb">
                     <p class="caption">最適化する前後のファイル情報の比較画像</p>
                 </div>
             </div>
@@ -636,32 +720,7 @@
     </div>
 
     <script>
-        /* --- 顔文字アニメーション (CSSで定義済みなら不要ですが念のため確認) --- */
-        /* 顔文字はCSSの .kao-ani::after で動いているのでJSは不要です */
 
-        /* --- ナビゲーションの「動くピンクの背景」 --- */
-        const nav = document.querySelector('nav');
-        const indicator = document.getElementById('nav-indicator');
-        const navLinks = document.querySelectorAll('nav a');
-
-        // ページ読み込み時にインジケーターを初期化（最初は隠す）
-        if(indicator) indicator.style.opacity = '0';
-
-        // 各リンクにマウスが乗った時の動き
-        navLinks.forEach(link => {
-            link.addEventListener('mouseenter', (e) => {
-                const target = e.target;
-                // ピンクの板をターゲットのサイズと位置に合わせる
-                indicator.style.width = `${target.offsetWidth}px`;
-                indicator.style.left = `${target.offsetLeft}px`;
-                indicator.style.opacity = '1';
-            });
-        });
-
-        // ナビゲーション全体からマウスが外れたら消す
-        nav.addEventListener('mouseleave', () => {
-            indicator.style.opacity = '0';
-        });
 
         /* --- 画像拡大機能のスクリプト --- */
         const overlay = document.getElementById('lightbox-overlay');
@@ -684,4 +743,5 @@
 
     </script>
 </body>
+
 </html>

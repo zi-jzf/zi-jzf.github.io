@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mf's Portfolio</title>
 
-    <link rel="icon" href="assets/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/favicon.png">
-    
+    <link rel="icon" href="assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/common/favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+        rel="stylesheet">
 
     <style>
         /* --- 色とフォントの変数を定義 --- */
         :root {
-            --bg-color: #cce0ee;      /* 背景色: 淡いブルー */
-            --accent-color: #fd5d5a;  /* アクセント: サーモンピンク */
-            --text-color: #071641;       /* 文字:  */
+            --bg-color: #cce0ee;
+            /* 背景色: 淡いブルー */
+            --accent-color: #fd5d5a;
+            /* アクセント: サーモンピンク */
+            --text-color: #071641;
+            /* 文字:  */
             --font-en: 'Bricolage Grotesque', sans-serif;
             --font-jp: 'Zen Kaku Gothic New', sans-serif;
         }
@@ -41,7 +47,7 @@
             z-index: -1;
             overflow: hidden;
         }
-        
+
         video {
             width: 100%;
             height: 100%;
@@ -59,8 +65,9 @@
             width: 100%;
             height: 100%;
             /* 黒を20%〜30%乗せる */
-            background: rgba(0, 0, 0, 0.3); 
-            pointer-events: none; /* マウス操作を邪魔しない */
+            background: rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            /* マウス操作を邪魔しない */
         }
 
         /* --- ヘッダー --- */
@@ -93,20 +100,37 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .kao-ani::after {
-            content: '^_^'; /* 初期状態 */
+            content: '^_^';
+            /* 初期状態 */
             display: inline-block;
-            width: 3ch; /* 幅を固定してガタツキ防止 */
-            animation: faceChange 3s infinite steps(1); /* 3秒ごとにパッと切り替え */
+            width: 3ch;
+            /* 幅を固定してガタツキ防止 */
+            animation: faceChange 3s infinite steps(1);
+            /* 3秒ごとにパッと切り替え */
         }
 
         @keyframes faceChange {
-            0%   { content: '^_^'; }
-            20%  { content: '^o^'; }
-            40%  { content: '; _ ;'; }
-            60%  { content: '-_-'; }
-            80%  { content: '^-^'; }
+            0% {
+                content: '^_^';
+            }
+
+            20% {
+                content: '^o^';
+            }
+
+            40% {
+                content: '; _ ;';
+            }
+
+            60% {
+                content: '-_-';
+            }
+
+            80% {
+                content: '^-^';
+            }
         }
 
         /* --- 修正: ナビゲーションのデザイン --- */
@@ -116,67 +140,81 @@
 
             display: flex;
             align-items: center;
-            gap: 5px; /* ボタン同士の間隔 */
+            gap: 5px;
+            /* ボタン同士の間隔 */
 
             /* ★ここにリキッドガラス風の背景をつける */
-            background: rgba(255, 255, 255, 0.15); 
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            
+
             /* 1つの大きな枠線 */
             border: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            
+
             /* カプセル型にする */
-            padding: 6px; /* 内側の余白 */
+            padding: 6px;
+            /* 内側の余白 */
             border-radius: 60px;
-                
+
         }
-        
+
         /*★新機能：動くピンクのインジケーター --- */
         #nav-indicator {
-            position: absolute; /* 親(nav)の中で自由配置 */
-            
+            position: absolute;
+            /* 親(nav)の中で自由配置 */
+
             /* 初期位置（JSで制御するので適当でOKだが、最初は隠しておく） */
-            left: 6px; 
+            left: 6px;
             top: 6px;
-            height: calc(100% - 12px); /* 上下のpadding分を引く */
-            width: 0; /* 最初は幅0で見せない */
-            
-            background-color: var(--accent-color); /* ピンク */
+            height: calc(100% - 12px);
+            /* 上下のpadding分を引く */
+            width: 0;
+            /* 最初は幅0で見せない */
+
+            background-color: var(--accent-color);
+            /* ピンク */
             border-radius: 40px;
-            z-index: 1; /* 文字の下に来るように */
-            
+            z-index: 1;
+            /* 文字の下に来るように */
+
             /* ヌルっと動くアニメーション設定 */
             transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            opacity: 0; /* カーソルが乗るまで見せない */
+            opacity: 0;
+            /* カーソルが乗るまで見せない */
         }
 
         /*リンク文字(ボタン)*/
         nav a {
-        text-decoration: none;
-        font-family: var(--font-en);
-        color: #fff; /* 文字は白 */
+            text-decoration: none;
+            font-family: var(--font-en);
+            color: #fff;
+            /* 文字は白 */
 
-        /* ★フォント調整 */
-        font-weight: 300;   /* Light（細字） */
-        font-size: 1.1rem;  /* 少し大きく（元は0.9rem程度でした） */
-        letter-spacing: 0.02em; /* 少し文字間を広げて上品に */
-    
-        /* ボタンのクリック領域 */
-        padding: 10px 28px;
-        border-radius: 40px; /* 内側のボタンも丸く */
+            /* ★フォント調整 */
+            font-weight: 300;
+            /* Light（細字） */
+            font-size: 1.1rem;
+            /* 少し大きく（元は0.9rem程度でした） */
+            letter-spacing: 0.02em;
+            /* 少し文字間を広げて上品に */
 
-        position: relative;
-        z-index: 2; /*ピンクの板より上に文字を表示*/
-        
-        background: transparent;
-        transition: color 0.3s;
+            /* ボタンのクリック領域 */
+            padding: 10px 28px;
+            border-radius: 40px;
+            /* 内側のボタンも丸く */
+
+            position: relative;
+            z-index: 2;
+            /*ピンクの板より上に文字を表示*/
+
+            background: transparent;
+            transition: color 0.3s;
         }
 
         /* ホバー時の挙動：背景色をつけて文字を白く */
         nav a:hover {
-            color:#fff;
+            color: #fff;
         }
 
         /* --- ヒーローセクション（トップ画面） --- */
@@ -184,13 +222,17 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 10%; /* 左側にスペースを作る */
-            color: #fff /*動画の上なので白文字に*/
+            padding: 0 10%;
+            /* 左側にスペースを作る */
+            color: #fff
+                /*動画の上なので白文字に*/
         }
 
         .hero-text {
-            max-width: 1000px; /*H1が十分に入る広さにする*/
-            width: fit-content; /*中身に合わせて箱のサイズを決める*/
+            max-width: 1000px;
+            /*H1が十分に入る広さにする*/
+            width: fit-content;
+            /*中身に合わせて箱のサイズを決める*/
         }
 
         h1 {
@@ -200,12 +242,15 @@
             /* 英語フォントの特徴を活かす */
             font-weight: 800;
             letter-spacing: -0.03em;
-            white-space: nowrap; /*可能な限り1行で*/
+            white-space: nowrap;
+            /*可能な限り1行で*/
             width: 100%;
         }
-        
-        .intro-en, .intro-jp {
-            max-width: 950px; /* 下のテキストは小さい幅で */
+
+        .intro-en,
+        .intro-jp {
+            max-width: 950px;
+            /* 下のテキストは小さい幅で */
             width: 100%;
         }
 
@@ -223,18 +268,20 @@
             font-weight: 400;
             opacity: 0.8;
             font-family: var(--font-jp);
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 1.5rem;
         }
 
         /* --- Works セクション --- */
         .works-section {
-            background-color: var(--bg-color); /* ここから下は背景色で動画を隠す */
+            background-color: var(--bg-color);
+            /* ここから下は背景色で動画を隠す */
             padding: 100px 5% 100px;
             min-height: 100vh;
             position: relative;
             z-index: 10;
-            border-top-left-radius: 40px; /* ちょっとおしゃれな角丸 */
+            border-top-left-radius: 40px;
+            /* ちょっとおしゃれな角丸 */
             border-top-right-radius: 40px;
         }
 
@@ -249,48 +296,58 @@
         .filter-section {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* 行ごとの間隔 */
+            gap: 20px;
+            /* 行ごとの間隔 */
             margin-bottom: 50px;
         }
 
         .filter-group {
             display: flex;
-            align-items: center; /* ラベルとボタンの高さを合わせる */
-            gap: 40px; /* ラベルとボタン群の間隔 */
+            align-items: center;
+            /* ラベルとボタンの高さを合わせる */
+            gap: 40px;
+            /* ラベルとボタン群の間隔 */
         }
 
         .group-label {
             font-family: var(--font-en);
             font-weight: 600;
             font-size: 1.0rem;
-            color: #817c49; /* 目立たない暗めの金っぽい色 */
-            width: 70px; /* ラベルの幅を固定して、上下のボタン開始位置を揃える */
+            color: #817c49;
+            /* 目立たない暗めの金っぽい色 */
+            width: 70px;
+            /* ラベルの幅を固定して、上下のボタン開始位置を揃える */
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            flex-shrink: 0; /* 幅が潰れないようにする */
+            flex-shrink: 0;
+            /* 幅が潰れないようにする */
         }
 
         .group-buttons {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap; /* 画面が狭くなったら折り返す */
+            flex-wrap: wrap;
+            /* 画面が狭くなったら折り返す */
         }
 
         .filter-btn {
             background: none;
-            border: 1px solid rgba(0,0,0,0.2); /* 枠線を少し薄く上品に */
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            /* 枠線を少し薄く上品に */
             padding: 6px 15px;
             border-radius: 50px;
             cursor: pointer;
             font-family: var(--font-en);
-            font-weight: 400; /* 文字を少し細く */
+            font-weight: 400;
+            /* 文字を少し細く */
             font-size: 1.0rem;
             transition: all 0.3s;
             color: var(--text-color);
         }
 
         /* ホバー & アクティブ */
-        .filter-btn:hover, .filter-btn.active {
+        .filter-btn:hover,
+        .filter-btn.active {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
             color: #fff;
@@ -299,17 +356,21 @@
         /* グリッドレイアウト */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 自動で列数を調整 */
+            grid-template-columns: repeat(3, 1fr);
+            /* 自動で列数を調整 */
             gap: 30px;
         }
 
         .work-item {
             cursor: pointer;
-            text-decoration: none; /* リンクの下線を消す */
-            color: inherit;        /* 文字色を親（bodyの黒）に合わせる */
-            display: block;        /* ブロック要素として扱う */
+            text-decoration: none;
+            /* リンクの下線を消す */
+            color: inherit;
+            /* 文字色を親（bodyの黒）に合わせる */
+            display: block;
+            /* ブロック要素として扱う */
         }
-        
+
         /* フィルターで消える時のアニメーション */
         .work-item.hidden {
             display: none;
@@ -318,7 +379,8 @@
         .work-thumb {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background-color: #fff; /* 画像がない時の仮背景 */
+            background-color: #fff;
+            /* 画像がない時の仮背景 */
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 15px;
@@ -334,22 +396,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--accent-color); /* ピンク色 */
-            opacity: 0; /* 最初は透明 */
-            transition: opacity 0.3s ease; /* ふわっと切り替え */
-            pointer-events: none; /* マウス操作を邪魔しない */
+            background-color: var(--accent-color);
+            /* ピンク色 */
+            opacity: 0;
+            /* 最初は透明 */
+            transition: opacity 0.3s ease;
+            /* ふわっと切り替え */
+            pointer-events: none;
+            /* マウス操作を邪魔しない */
         }
 
         /* 3. ホバーした時に膜を表示する */
         .work-item:hover .work-thumb::after {
-            opacity: 0.4; /* 透明度40%で表示（濃さはここで調整） */
+            opacity: 0.4;
+            /* 透明度40%で表示（濃さはここで調整） */
         }
-        
+
         .work-thumb img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /*画像を変形させずに枠いっぱいに*/
-            object-position: center; /*画像の位置調整*/
+            object-fit: cover;
+            /*画像を変形させずに枠いっぱいに*/
+            object-position: center;
+            /*画像の位置調整*/
         }
 
         .work-title {
@@ -361,7 +430,7 @@
         /*メインタグ(カテゴリ表示・クリック不可)*/
         .work-tags {
             font-size: 1rem;
-            color:var(--text-color);
+            color: var(--text-color);
             font-family: var(--font-en);
             margin-bottom: 5px;
             display: flex;
@@ -370,7 +439,8 @@
 
         /* ツール名はハッシュタグ風に */
         .work-tags span {
-            padding: 2px 5px; /* 横幅を少し広げてラベルっぽく */
+            padding: 2px 5px;
+            /* 横幅を少し広げてラベルっぽく */
             color: #666;
         }
 
@@ -386,13 +456,16 @@
         /*コンテナの最初と最後に括弧を追加*/
         .work-sub-tags::before {
             content: '(';
-            margin-right: 4px; /* 括弧と最初の文字の隙間 */
-            color: #999; /* 括弧の色（少し薄くすると上品） */
+            margin-right: 4px;
+            /* 括弧と最初の文字の隙間 */
+            color: #999;
+            /* 括弧の色（少し薄くすると上品） */
         }
 
         .work-sub-tags::after {
             content: ')';
-            margin-left: 4px; /* 最後の文字と括弧の隙間 */
+            margin-left: 4px;
+            /* 最後の文字と括弧の隙間 */
             color: #999;
         }
 
@@ -417,41 +490,51 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        
+
         /* --- ★ここからスマホ対応（メディアクエリ） --- */
         /* 「画面幅が768px以下（スマホやタブレット）の場合」の設定 */
         @media (max-width: 768px) {
-            
+
             /* 1. 全体の余白を調整 */
             .hero {
-                padding: 0 5%; /* 左右の余白を少し狭く */
-                justify-content: center; /* 真ん中に配置 */
-                text-align: center; /* 文字も中央揃え */
+                padding: 0 5%;
+                /* 左右の余白を少し狭く */
+                justify-content: center;
+                /* 真ん中に配置 */
+                text-align: center;
+                /* 文字も中央揃え */
             }
 
             /* 2. テキストエリアの調整 */
             .hero-text {
-                max-width: 100%; /* スマホなら横幅いっぱい使う */
-                padding: 20px;   /* 内側の余白を少し減らす */
+                max-width: 100%;
+                /* スマホなら横幅いっぱい使う */
+                padding: 20px;
+                /* 内側の余白を少し減らす */
             }
 
             /* 3. 見出しのサイズ調整 */
             h1 {
-                font-size: 2.5rem; /* スマホだと4remはデカすぎるので小さく */
-                white-space: normal; /*スマホでnowrapだとはみ出るので解除*/
+                font-size: 2.5rem;
+                /* スマホだと4remはデカすぎるので小さく */
+                white-space: normal;
+                /*スマホでnowrapだとはみ出るので解除*/
             }
 
             /* 4. 日本語・英語の文字サイズ調整 */
-            .intro-en, .intro-jp {
-                font-size: 0.9rem; /* 少し小さくして読みやすく */
+            .intro-en,
+            .intro-jp {
+                font-size: 0.9rem;
+                /* 少し小さくして読みやすく */
                 max-width: 100%;
             }
-            
+
             /* 5. ヘッダー（メニュー）の調整 */
             header {
-                padding: 1rem 5%; /* ヘッダーも少しスリムに */
+                padding: 1rem 5%;
+                /* ヘッダーも少しスリムに */
             }
-            
+
             /* ロゴの顔文字アニメを少し小さく */
             .logo {
                 font-size: 1.4rem;
@@ -463,39 +546,33 @@
             }
 
             .works-grid {
-                grid-template-columns: 1fr; /* 1列 */
+                grid-template-columns: 1fr;
+                /* 1列 */
             }
 
             .filter-group {
-                flex-direction: column; /* 縦積みに */
+                flex-direction: column;
+                /* 縦積みに */
                 align-items: flex-start;
                 gap: 10px;
             }
+
             .group-label {
                 width: auto;
                 font-size: 0.85rem;
             }
         }
-
     </style>
 </head>
+
 <body>
 
     <div class="video-background">
-        <video src="assets/main_bg.mp4" poster="assets/main_bg_thumb.png" loop muted playsinline></video>
+        <video src="assets/top/main_bg.mp4" poster="assets/top/main_bg_thumb.png" autoplay loop muted
+            playsinline></video>
     </div>
 
-    <header>
-        <a href="#" class="logo">
-            <span class="kao-ani"></span>
-        </a>
-        <nav>
-            <div id="nav-indicator"></div>
-
-            <a href="#works">Works</a>
-            <a href="#about">Info</a>
-        </nav>
-    </header>
+    <script src="assets/common/js/header.js"></script>
 
     <section class="hero">
         <div class="hero-text">
@@ -508,15 +585,15 @@
             </p>
 
             <p class="intro-jp">
-            <b>直感的で、誰もが楽しめる体験を。</b><br>
-            UI/UXデザインの視点を活かし、UnityやTouchDesignerを用いたインタラクティブアートを制作しています。<br>
-            難解な文脈を必要とせず、見た瞬間に「すごい」「面白い」と感じられる、鑑賞者との距離が近い作品作りを目指しています。
+                <b>直感的で、誰もが楽しめる体験を。</b><br>
+                UI/UXデザインの視点を活かし、UnityやTouchDesignerを用いたインタラクティブアートを制作しています。<br>
+                難解な文脈を必要とせず、見た瞬間に「すごい」「面白い」と感じられる、鑑賞者との距離が近い作品作りを目指しています。
             </p>
         </div>
     </section>
 
     <section id="works" class="works-section">
-        
+
         <div class="filter-section">
             <div class="filter-group">
                 <span class="group-label">Category</span>
@@ -540,10 +617,10 @@
         </div>
 
         <div class="works-grid">
-            
+
             <a href="works/PF-MainVisual.html" class="work-item" data-category="td generative-art">
                 <div class="work-thumb">
-                    <img src="assets/mainvisual_thumb.png" alt="Portfolio Site Main Visual">
+                    <img src="assets/top/main_bg_thumb.png" alt="Portfolio Site Main Visual">
                 </div>
                 <h3 class="work-title">Portfolio Site Main Visual</h3>
                 <div class="work-tags"><span>#TouchDesigner</span><span>#Generative Art</span></div>
@@ -551,10 +628,10 @@
 
             <a href="works/Constellate.html" class="work-item" data-category="unity interactive-art">
                 <div class="work-thumb">
-                    <img src="assets/constellate_thumb.png" alt="Constellate">
+                    <img src="assets/top/constellate_thumb.png" alt="Constellate">
                 </div>
-                    <h3 class="work-title">Constellate</h3>
-                    <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
+                <h3 class="work-title">Constellate</h3>
+                <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
                 </div>
                 <div class="work-sub-tags">
                     <span>C#</span><span>VFX Graph</span><span>BodyPix</span>
@@ -569,7 +646,7 @@
                 <div class="work-tags"><span>#Unity</span><span>#C#</span></div>
             </div>
 
-             <div class="work-item" data-category="other">
+            <div class="work-item" data-category="other">
                 <div class="work-thumb">
                     <img src="https://placehold.co/600x400/444/FFF?text=Portfolio" alt="Work 3">
                 </div>
@@ -581,108 +658,85 @@
     </section>
 
     <script>
-    /* =========================================
-       1. Worksのフィルター機能 (既存の機能)
-       ========================================= */
-    const buttons = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.work-item');
+        /* =========================================
+           1. Worksのフィルター機能 (既存の機能)
+           ========================================= */
+        const buttons = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.work-item');
 
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // ボタンの色を切り替え
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // ボタンの色を切り替え
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-            const filterValue = btn.getAttribute('data-filter');
+                const filterValue = btn.getAttribute('data-filter');
 
-            // アイテムの表示・非表示
-            items.forEach(item => {
-                // itemのカテゴリを取得（例: "td generative"）
-                const itemCategories = item.getAttribute('data-category');
-                
-                // "all" または、カテゴリの中に filterValue が含まれていれば表示
-                if (filterValue === 'all' || (itemCategories && itemCategories.includes(filterValue))) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
+                // アイテムの表示・非表示
+                items.forEach(item => {
+                    // itemのカテゴリを取得（例: "td generative"）
+                    const itemCategories = item.getAttribute('data-category');
+
+                    // "all" または、カテゴリの中に filterValue が含まれていれば表示
+                    if (filterValue === 'all' || (itemCategories && itemCategories.includes(filterValue))) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
             });
         });
-    });
 
-    /* =========================================
-       2. ヘッダーの色反転 (白い背景に来たら黒文字化)
-       ========================================= */
-    const header = document.querySelector('header');
-    const worksSection = document.querySelector('.works-section');
+        /* =========================================
+           2. ヘッダーの色反転 (白い背景に来たら黒文字化)
+           ========================================= */
+        const header = document.querySelector('header');
+        const worksSection = document.querySelector('.works-section');
 
-    // 監視の設定
-    if (worksSection) { // エラー防止：worksSectionが存在する場合のみ実行
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Worksセクションに入った -> 黒モードON
-                    header.classList.add('dark-mode');
-                } else {
-                    // Worksセクションから出た -> 黒モードOFF (白文字に戻る)
-                    header.classList.remove('dark-mode');
-                }
+        // 監視の設定
+        if (worksSection) { // エラー防止：worksSectionが存在する場合のみ実行
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Worksセクションに入った -> 黒モードON
+                        header.classList.add('dark-mode');
+                    } else {
+                        // Worksセクションから出た -> 黒モードOFF (白文字に戻る)
+                        header.classList.remove('dark-mode');
+                    }
+                });
+            }, {
+                rootMargin: "-50px 0px 0px 0px" // ヘッダーが少し食い込んだら反応
             });
-        }, {
-            rootMargin: "-50px 0px 0px 0px" // ヘッダーが少し食い込んだら反応
-        });
 
-        observer.observe(worksSection);
-    }
-
-    /* =========================================
-       3. ナビゲーションの「動くピンクの背景」
-       ========================================= */
-    const nav = document.querySelector('nav');
-    const indicator = document.getElementById('nav-indicator');
-    const navLinks = document.querySelectorAll('nav a');
-
-    // 各リンク（Works, Info）にマウスが乗った時の動き
-    navLinks.forEach(link => {
-        link.addEventListener('mouseenter', (e) => {
-            const target = e.target;
-            
-            // ピンクの板をターゲットのサイズと位置に合わせる
-            indicator.style.width = `${target.offsetWidth}px`;
-            indicator.style.left = `${target.offsetLeft}px`;
-            
-            // 不透明にして表示させる
-            indicator.style.opacity = '1';
-        });
-    });
-
-    // ナビゲーション全体からマウスが外れたら消す
-    nav.addEventListener('mouseleave', () => {
-        indicator.style.opacity = '0';
-    });
-
-    /* =========================================
-    4. ★ここが重要！ URLパラメータ受け取り機能
-    ========================================= */
-    window.addEventListener('load', () => {
-        // URLの ?filter=xxx を取得
-        const params = new URLSearchParams(window.location.search);
-        const targetFilter = params.get('filter');
-
-        if (targetFilter) {
-            // 対応するボタンを探す
-            const targetBtn = document.querySelector(`.filter-btn[data-filter="${targetFilter}"]`);
-            
-            // ボタンがあればクリック、無ければ無視（Allのまま）
-            if (targetBtn) {
-                targetBtn.click();
-                
-                // オプション：いきなりWorksセクションまでスクロールさせるなら以下を有効化
-                document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
-            }
+            observer.observe(worksSection);
         }
-    });
+
+
+
+        /* =========================================
+        4. ★ここが重要！ URLパラメータ受け取り機能
+        ========================================= */
+        window.addEventListener('load', () => {
+            // URLの ?filter=xxx を取得
+            const params = new URLSearchParams(window.location.search);
+            const targetFilter = params.get('filter');
+
+            if (targetFilter) {
+                // 対応するボタンを探す
+                const targetBtn = document.querySelector(`.filter-btn[data-filter="${targetFilter}"]`);
+
+                // ボタンがあればクリック、無ければ無視（Allのまま）
+                if (targetBtn) {
+                    targetBtn.click();
+
+                    // オプション：いきなりWorksセクションまでスクロールさせるなら以下を有効化
+                    document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
 
     </script>
 </body>
+
 </html>
