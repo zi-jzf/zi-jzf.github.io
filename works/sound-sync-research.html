@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音楽と映像のリアルタイム同期が視聴者にもたらす影響 | Works</title>
+
+    <link rel="icon" href="../assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/common/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../assets/common/css/common.css">
+    <!-- Works Page Specific CSS -->
+    <link rel="stylesheet" href="../assets/works/css/works.css">
+
+    <!-- Custom Colors for this project -->
+    <style>
+        :root {
+            /* Change these values to set the color theme for this page */
+            --bg-color: #AEC1C8;
+            /* ベースの青みがかったグレー背景 */
+            --accent-color: #072b69;
+            /* アクセントの深いネイビー */
+
+            /* 文字色（背景に合わせて青みを持たせたダークトーン） */
+            --text-color: #1a2a3a;
+            /* メインテキスト: 黒に近いがわずかに青い */
+            --sub-text-color: #3b4e63;
+            /* サブテキスト: メインより少し明るいブルーグレー */
+
+            /* Background settings */
+            --video-overlay-color: rgba(174, 193, 200, 0.5);
+            /* 背景色に合わせたオーバーレイ */
+
+            /* Specific text overrides if needed (optional) */
+            --lead-text-color: var(--text-color);
+            --h2-border-color: rgba(7, 43, 105, 0.2);
+            /* アクセントカラーを薄くしたボーダー */
+            --meta-border-color: rgba(7, 43, 105, 0.15);
+            /* サイドバーの区切り線 */
+            --img-border-color: rgba(7, 43, 105, 0.1);
+            /* 画像のボーダー */
+            --tag-hover-text: #ffffff;
+            /* タグホバー時の文字色（背景が濃いネイビーになるため白抜き） */
+            --scrollbar-thumb-color: rgba(7, 43, 105, 0.3);
+            /* スクロールバーの色 */
+        }
+
+        /* Ensure dark text visibility on hover over transparent nav in light mode */
+        nav a:hover {
+            color: #ffffff;
+        }
+    </style>
+
+    <script src="../assets/common/js/loader.js"></script>
+</head>
+
+<body>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
+
+    <script src="../assets/common/js/header.js"></script>
+
+    <div class="project-container">
+
+        <!-- Left Sidebar (Meta Information) -->
+        <aside class="project-sidebar">
+            <h1 class="project-title">音楽と映像のリアルタイム同期が視聴者にもたらす影響</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Year</span>
+                    <span class="meta-value">2025</span> <!-- Update Year -->
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Context</span> <span class="meta-value">学部卒業研究</span>
+                    <!-- Update Context -->
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span> <span class="meta-value">Half Year</span>
+                    <!-- Update Duration -->
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Category</span>
+                    <div class="tags">
+                        <a href="../index.html?filter=td" class="tag">#TouchDesigner</a> <!-- Adjust tags -->
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tech</span>
+                    <div class="tech-stack">
+                        <span>卒業研究</span> <!-- Adjust tech stack -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Content Area -->
+        <article class="project-content">
+
+            <!-- Research Abstract / Summary -->
+            <div class="research-abstract reveal">
+                <div class="abstract-label">ABSTRACT</div>
+                <div class="abstract-title">感覚的な映像表現を、データと実験で定量的に解き明かす</div>
+                <div class="abstract-body">
+                    <p>音楽と連動してリアルタイムに変化する映像が、人に与える影響を<b>「没入・興奮・疲労・不快」</b>の4つの観点から定量的に評価した論文です。</b></p>
+                    <p>TouchDesignerで制作したシステムを用いた被験者実験を通して、楽曲の特性と映像の同期度合いの相性が視聴体験を大きく左右することを明らかにしました。</p>
+                    <p>
+                        <b>主要な結果</b>
+                    <ul>
+                        <li>アップテンポな楽曲 × 低音域のみ同期<br>
+                            → 視覚的疲労を最小限に抑えつつ、没入感と興奮度を最大化。</li>
+                        <li>落ち着いた楽曲 × 過度な同期<br>
+                            → 盛り上がらず疲労感だけを増大させるリスクを確認。</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">Research Background</h2>
+                <!-- Introduction -->
+                <p class="lead-text reveal">
+                    感覚で作られるオーディオリアクティブに確かな指標を。
+                </p>
+                <p class="reveal">
+                    VJやインタラクティブアートの制作現場において、音楽をリアルタイムに解析してパーティクルなどの映像を動かす手法は王道のアプローチです。
+                    音の波形に合わせて映像が激しく変化する演出は、観客に強烈な没入感と興奮をもたらします。しかし同時に、長時間の激しい視覚変化は眼精疲労や不快感を蓄積させるという大きなリスクも孕んでいます。
+                </p>
+                <p class="reveal">
+                    本研究では、映像と音楽の多様な同期手法が視聴者の感情にどう作用するのかを実験によって数値化しました。感覚的な映像表現の裏側にあるメカニズムを解き明かし、安全で快適な体験を設計するための指針を探ります。
+                </p>
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">System</h2>
+
+                <p class="lead-text reveal">検証要件を満たすリアルタイム生成システムの構築</p>
+                <p class="reveal">
+                    <b>TouchDesigner</b>を使用し、音楽からリアルタイムにパーティクルが動くシステムを構築。具体的には、<b>Audio
+                        Analysis</b>を用いて入力音源を低・中・高音域の周波数帯域に分割し、リアルタイムに数値を計算します。抽出した各帯域の数値を独立した変数として扱い、パーティクル生成のコアとなるNoiseTOPのパラメータに紐づける設計としました。これにより、検証に必要なすべての条件を単一のシステム内で安定して制御できる環境を実現しています。パーティクルシステムに関しては
+                    <a href="https://youtu.be/6bQE0BTvurQ?si=9kzdy1l-ZaCVqTTm" target="_blank"
+                        rel="noopener noreferrer">
+                        elekktronaut氏のチュートリアル動画
+                    </a>を参考にしました。
+                </p>
+                <p class="reveal">
+                    また、映像のベースデザインには、<b>意味を持たないかつ一般的なパーティクル表現</b>を採用しました。これにより、映像の内容自体が引き起こす興奮や没入の誘発を最小限に抑えています。
+                </p>
+
+                <!-- Example Image Block -->
+                <div class="image-block reveal">
+                    <img src="../assets/works/sound-sync-research/audio-reactive-system.png" alt="audio-reactive-system"
+                        class="zoomable">
+                    <p class="caption">オーディオリアクティブ映像システムの仕組み</p>
+                </div>
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">Experiments</h2>
+                <p class="reveal">
+                    構築したシステムを用い、20代の男女を対象に<b>没入・興奮・疲労・不快</b>の4観点から評価する実験を行いました。より詳細なメカニズムを解き明かすため、3つの段階的なアプローチで検証を進めました。
+                </p>
+                <p class="lead-text reveal">
+                    実験1：【課題発見】全音域同期は没入を高めるが疲労も引き起こす
+                </p>
+                <p class="reveal">
+                    オーディオリアクティブ映像の基本であるすべての音に映像が反応する「全音域同期」が、音楽と無関係に動く「非同期」と比べて視聴体験にどのような影響を与えるかをベースラインとして測定しました。アップテンポな曲と落ち着いた曲のそれぞれで比較を行いました。
+                </p>
+
+                <p class="reveal">
+                    その結果、全音域同期は非同期に比べて圧倒的に没入感と興奮度を高める一方で、激しい映像変化が視覚的な負荷となり、疲労や不快感も顕著に上昇するという<b>体験のトレードオフ</b>が明確に現れました。特に落ち着いた曲での全音域同期では、音楽のテンションと視覚刺激のミスマッチが起き、ポジティブな感情は得られないまま疲労だけが蓄積する非常にネガティブな結果となりました。
+                </p>
+
+                <!-- 実験1の動画エリア -->
+                <div class="video-block audio-toggle-block reveal">
+                    <video src="../assets/works/sound-sync-research/ex1-comp.mp4" class="audio-toggle-video" playsinline
+                        loop muted autoplay></video>
+                    <p class="caption">アップテンポな曲での全音域同期/非同期映像</p>
+                    <div class="audio-controls">
+                        <button class="audio-toggle-btn">
+                            <span class="icon">🔇</span> 音声をONにする
+                        </button>
+                    </div>
+                </div>
+
+                <p class="lead-text reveal">
+                    実験2：【解決策の模索】低音域のみの同期が疲労を抑える最適解
+                </p>
+                <p class="reveal">
+                    実験1で浮き彫りになった<b>全音域同期による疲労・不快感という課題</b>を解決するため、特定の周波数(低・中・高)のみを映像に連動させる部分同期の効果を検証しました。
+                </p>
+
+                <p class="reveal">
+                    検証の結果、<b>アップテンポな曲×低音域のみの同期</b>が全音域同期に匹敵する高い没入感・興奮を維持しながらも、疲労と不快感を大幅に抑え込めるベストなバランスであることが実証されました。一方で、落ち着いた曲においては、どの音域を同期させてもポジティブな感情は上がらず、不快感が上回ってしまいました。脳が<b>「何の音に映像が反応しているか」</b>を直感的に理解できるビートこそが、心地よいオーディオリアクティブのカギであることが示唆されました。
+                </p>
+
+                <!-- 実験2の動画エリア -->
+                <div class="video-block audio-toggle-block reveal">
+                    <video src="../assets/works/sound-sync-research/ex2-comp.mp4" class="audio-toggle-video" playsinline
+                        loop muted autoplay></video>
+                    <p class="caption">アップテンポな曲での低/中/高音域同期</p>
+                    <div class="audio-controls">
+                        <button class="audio-toggle-btn">
+                            <span class="icon">🔇</span> 音声をONにする
+                        </button>
+                    </div>
+                </div>
+
+                <p class="lead-text reveal">
+                    追加実験：【原因の深掘り】ネガティブな感情は映像の激しさに依存する
+                </p>
+
+                <p class="reveal">
+                    <b>※本実験はオンラインのアンケート(リンク配布による各自デバイスでの視聴)によるものであり、実験1・2とは実験環境が大きく異なるため、あくまで参考程度の結果となります。</b>
+                </p>
+
+                <p class="reveal">
+                    実験1・2を通して落ち着いた曲の評価が常に低かった原因が、映像デザインの激しさにあるのかを探るため、映像の反応度合い(パラメータの変位量)を1/3に抑え、色も白に近づけた控え目な演出を追加して検証しました。
+                </p>
+
+                <p class="reveal">
+                    結果として、従来の激しい演出から控え目な演出に抑えることで、確かに疲労や不快感は大幅に軽減されました。しかし、同時に没入や興奮といった面白さも低下してしまいました。この追加実験により、演出を抑えれば安全にはなるものの、エンタメとしての没入感も道連れになって下がるという<b>根本的なジレンマ</b>が浮き彫りになりました。
+                </p>
+
+                <!-- 追加実験の動画エリア -->
+                <div class="video-block audio-toggle-block reveal">
+                    <video src="../assets/works/sound-sync-research/ex3-comp.mp4" class="audio-toggle-video" playsinline
+                        loop muted autoplay></video>
+                    <p class="caption">アップテンポな曲での控え目な演出/激しい演出</p>
+                    <div class="audio-controls">
+                        <button class="audio-toggle-btn">
+                            <span class="icon">🔇</span> 音声をONにする
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">Insights</h2>
+                <p class="reveal">
+                    一連の検証を通して、単なるおすすめの同期手法に留まらない、人間の認知や感情に関する興味深い法則が見えてきました。
+                </p>
+
+                <p class="lead-text reveal">
+                    何の音に反応しているかが直感的に分からないと、人は疲労する
+                </p>
+                <p class="reveal">
+                    落ち着いた曲で不快感が高かった原因として、<b>視聴者の認知負荷</b>が挙げられます。ビートが強調されていない曲で無理に同期を行うと、視聴者は「映像が何の音を拾って動いているのか」と結びつけることが出来ず、強い違和感や不快感に繋がります。また、軽い音に対して映像が小刻みに激しく動くといったミスマッチも、強いストレスを与えることがアンケートから示唆されました。
+                </p>
+
+                <p class="lead-text reveal">
+                    ポジティブな感情は音楽が作り、ネガティブな感情は演出の激しさが作る
+                </p>
+                <p class="reveal">
+                    実験の結果から、没入や興奮といった<b>ポジティブな感情は楽曲の特性に強く依存</b>し、一方で疲労や不快といった<b>ネガティブな感情は演出の激しさに直接依存</b>することが分かりました。だからこそ、落ち着いた曲で映像だけを激しくしても盛り上がらず、ただ疲れるだけになってしまいます。映像の演出は、あくまで音楽を引き立てるものとして、音楽の特性に合わせて調整することが重要です。
+                </p>
+
+                <p class="lead-text reveal">
+                    全音域同期はリスキーな劇薬である
+                </p>
+                <p class="reveal">
+                    映像と音楽を全ての音域で同期させるのは、没入感を生む一方で、視覚・聴覚への負荷が激増するトレードオフの性質を持ちます。ついすべてのパラメータを音に連動させたいと考えがちですが、あえて<b>引き算をして部分同期に留める</b>ことが、長時間の体験においてメリットだけを抽出する安全で最適な設計に繋がります。
+                </p>
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">Future Vision</h2>
+                <p class="reveal">
+                    本プロジェクトを通して、オーディオリアクティブ映像が人間の心理と身体に与える影響の輪郭をつかむことが出来ました。しかし、真に「あらゆる人間が心地よく没入できる空間」デザインするためには、まだ探求するべき課題が残されています。
+                </p>
+                <p class="lead-text reveal">
+                    ビジュアル表現の多様化と最適化
+                </p>
+                <p class="reveal">
+                    本実験では、抽象的かつ一般的なパーティクルシステムに限定して効果を測定しました。しかし、色や動き方がアップテンポな曲によりマッチしていたと思われます。今後は、落ち着いた曲に特化した柔らかなビジュアル表現や、さらにアップテンポな曲に向けたエフェクトなど、映像デザインのアプローチを拡張し、<b>それぞれの表現における最適な同期バランス</b>を探求していく必要があります。
+                </p>
+
+                <p class="lead-text reveal">
+                    個人の嗜好と多様性への配慮
+                </p>
+                <p class="reveal">
+                    実験データの中には、平均値だけでなく<b>標準偏差が大きい条件</b>がいくつか存在しました。これは、同じ映像を見ても「心地よい」と感じる人と「不快」と感じる人の個人差が少なからず存在することを示しています。今後は若年層だけでなく、多様な年代や音楽嗜好を持つ人々を対象に検証を広げ、より多くの人が安全に楽しめるユニバーサルな体験設計を目指したいと考えています。
+                </p>
+            </div>
+
+            <div class="text-block">
+                <p class="reveal">
+                    テクノロジーの進化により、私たちは空間全体をリアルタイムに制御し、圧倒的な没入感を生み出せるようになりました。しかし、刺激を増やすだけの「足し算の演出」は、時に鑑賞者を疲弊させてしまいます。<br>
+                    私はこの研究を通して、「あえて引き算をすることで生まれる心地よさ」を学びました。今後の制作活動の設計においては、技術をありったけ詰め込んだ派手なものを作るのではなく、常に「鑑賞者の体と心にどう影響するか」という人間中心の視点を持ち、感動と安全性を両立できるようなエンジニアでありたいと考えています。
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="../assets/common/js/reveal.js"></script>
+    <script src="../assets/works/js/works.js"></script>
+</body>
+
+</html>
