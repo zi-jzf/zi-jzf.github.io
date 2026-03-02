@@ -15,723 +15,42 @@
         href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
         rel="stylesheet">
 
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../assets/common/css/common.css">
+    <!-- Works Page Specific CSS -->
+    <link rel="stylesheet" href="../assets/works/css/works.css">
+
+    <!-- Custom Colors for Constellate -->
     <style>
-        /* --- 共通変数 (index.htmlと同じ) --- */
         :root {
+            /* ダークネイビー系 */
             --bg-color: #032446;
             --accent-color: #e6e652;
+            /* 蛍光イエロー */
             --text-color: #d5e2f0;
             --sub-text-color: #7f8899;
-            --font-en: 'Bricolage Grotesque', sans-serif;
-            --font-jp: 'Zen Kaku Gothic New', sans-serif;
+
+            --video-overlay-color: #032546a8;
+            /* 背景動画用の暗いフィルター */
+
+            /* Override colors for dark mode context */
+            --h2-border-color: rgba(255, 255, 255, 0.2);
+            --meta-border-color: rgba(200, 211, 236, 0.1);
+            --img-border-color: rgba(255, 255, 255, 0.1);
+            --tag-hover-text: #000000;
+            --lead-text-color: #ebf2fd;
+            --scrollbar-thumb-color: rgba(255, 255, 255, 0.2);
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-en), var(--font-jp);
-            line-height: 1.8;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            /* スムーススクロールを追加 */
-        }
-
-        /* --- ロード画面 (アスキーアート) --- */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            /* ダークテーマに合わせる */
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
-            color: var(--text-color);
-            font-family: monospace;
-            /* AAがきれいに見えるように固定幅フォント */
-            font-size: 2rem;
-            white-space: pre;
-            /* 改行をそのまま表示 */
-        }
-
-        #loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        /* アスキーアートのアニメーション */
-        .loader-aa::after {
-            content: '^_^';
-            display: inline-block;
-            animation: loaderFaceChange 0.5s infinite steps(1);
-            /* ヘッダーより速く切り替え */
-        }
-
-        @keyframes loaderFaceChange {
-            0% {
-                content: '^_^';
-            }
-
-            25% {
-                content: '^o^';
-            }
-
-            50% {
-                content: '^-^';
-            }
-
-            75% {
-                content: '^.^';
-            }
-        }
-
-        /* --- フェードイン（Reveal）アニメーション用のクラス --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            /* 少し下から */
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- index.html の背景設定を流用・調整 --- */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background-color: #000;
-            /* 画像読み込み前の黒背景 */
-        }
-
-        /* video ではなく img に対してスタイルを適用 */
-        .video-background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* 画面いっぱいに広げる（比率維持・トリミング） */
-            object-position: center;
-            /* 真ん中を表示 */
-            opacity: 0.9;
-            /* 画像なので薄くしなくてもOK（フィルターで調整するため） */
-        }
-
-        /* 黒いフィルター (index.html と同じ仕組み) */
         .video-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-
-            /* 詳細ページは文字を読むので、index.html(0.3)より少し濃くする */
-            background: #032546a8;
-
-            pointer-events: none;
+            background: var(--video-overlay-color);
         }
 
-        /* --- ヘッダー (簡易版) --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 2rem 5%;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background-color: transparent;
-            /*mix-blend-mode: difference; /* 背景が白でも黒でも見えるように反転 */
-            color: #fff;
-        }
-
-        .logo {
-            text-decoration: none;
-            font-weight: 800;
-            font-family: var(--font-en);
-            font-size: 1.8rem;
-            color: var(--text-color);
-            /* headerで反転するので白指定でOK */
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .kao-ani::after {
-            content: '^_^';
-            display: inline-block;
-            width: 3ch;
-            animation: faceChange 3s infinite steps(1);
-        }
-
-        @keyframes faceChange {
-            0% {
-                content: '^_^';
-            }
-
-            20% {
-                content: '^o^';
-            }
-
-            40% {
-                content: '; _ ;';
-            }
-
-            60% {
-                content: '-_-';
-            }
-
-            80% {
-                content: '^-^';
-            }
-        }
-
-        /* --- 修正: ナビゲーションのデザイン --- */
-        nav {
-            /*子要素（ピンクの板を絶対配置するための基準にする）*/
-            position: relative;
-
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            /* ボタン同士の間隔 */
-
-            /* ★ここにリキッドガラス風の背景をつける */
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-
-            /* 1つの大きな枠線 */
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-            /* カプセル型にする */
-            padding: 6px;
-            /* 内側の余白 */
-            border-radius: 60px;
-
-        }
-
-        /*★新機能：動くピンクのインジケーター --- */
-        #nav-indicator {
-            position: absolute;
-            /* 親(nav)の中で自由配置 */
-
-            /* 初期位置（JSで制御するので適当でOKだが、最初は隠しておく） */
-            left: 6px;
-            top: 6px;
-            height: calc(100% - 12px);
-            /* 上下のpadding分を引く */
-            width: 0;
-            /* 最初は幅0で見せない */
-
-            background-color: var(--accent-color);
-            /* ピンク */
-            border-radius: 40px;
-            z-index: 1;
-            /* 文字の下に来るように */
-
-            /* ヌルっと動くアニメーション設定 */
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            opacity: 0;
-            /* カーソルが乗るまで見せない */
-        }
-
-        /*リンク文字(ボタン)*/
-        nav a {
-            text-decoration: none;
-            font-family: var(--font-en);
-            color: var(--text-color);
-            /* 文字は白 */
-
-            /* ★フォント調整 */
-            font-weight: 400;
-            /* Regular（背景が明るいので少し太めに） */
-            font-size: 1.1rem;
-            /* 少し大きく（元は0.9rem程度でした） */
-            letter-spacing: 0.02em;
-            /* 少し文字間を広げて上品に */
-
-            /* ボタンのクリック領域 */
-            padding: 10px 28px;
-            border-radius: 40px;
-            /* 内側のボタンも丸く */
-
-            position: relative;
-            z-index: 2;
-            /*ピンクの板より上に文字を表示*/
-
-            background: transparent;
-            transition: color 0.3s;
-            line-height: 1.2;
-        }
-
-        /* ホバー時の挙動：背景色をつけて文字を白く */
         nav a:hover {
             color: #000000;
         }
-
-        /* --- メインレイアウト (左固定・右スクロール) --- */
-        .project-container {
-            display: grid;
-            /* 左サイドバー(250px) + 余白 + 右コンテンツ(残り) */
-            grid-template-columns: 400px 1fr;
-            gap: 100px;
-
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 150px 5% 100px;
-            /* ヘッダー分の余白を上に確保 */
-        }
-
-        /* 左サイドバー (固定) */
-        .project-sidebar {
-            position: sticky;
-            /* スクロールしてもついてくる */
-            top: 150px;
-            /* 画面上部から150pxの位置で止まる */
-            height: fit-content;
-        }
-
-        .project-title {
-            font-family: var(--font-en), var(--font-jp);
-            font-weight: 400;
-            font-size: 2.5rem;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-        }
-
-        .project-meta {
-            border-top: 1px solid rgba(200, 211, 236, 0.1);
-            padding-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .meta-label {
-            font-size: 0.85rem;
-            color: var(--sub-text-color);
-            font-family: var(--font-en), var(--font-jp);
-            margin-bottom: 3px;
-        }
-
-        .meta-value {
-            font-weight: 400;
-            font-size: 1rem;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag {
-            background: none;
-            border: 1px solid var(--sub-text-color);
-            padding: 0px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: var(--font-en), var(--font-jp);
-            font-weight: 400;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .tag:hover,
-        .tag.active {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #000000;
-        }
-
-        /* --- クリックできない技術スタック表示用 --- */
-        .tech-stack {
-            font-family: var(--font-en), var(--font-jp);
-            font-size: 0.95rem;
-            color: var(--text-color);
-            /* 本文と同じ色で視認性を確保 */
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* 各単語の間にスラッシュを入れるおしゃれなテクニック */
-        .tech-stack span::after {
-            content: '/';
-            margin: 0 8px;
-            color: var(--sub-text-color);
-            /* スラッシュは薄く */
-            font-weight: 300;
-        }
-
-        /* 最後の要素だけスラッシュを消す */
-        .tech-stack span:last-child::after {
-            content: '';
-            margin: 0;
-        }
-
-        /* 右コンテンツ (スクロール) */
-        .project-content {
-            /* 横幅を制限して読みやすく */
-            max-width: 800px;
-        }
-
-        /* Vimeo埋め込み用 (レスポンシブ対応) */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            /* 16:9 の比率を維持 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #000;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* 本文スタイル */
-        .text-block {
-            margin-bottom: 4rem;
-        }
-
-        h2 {
-            font-family: var(--font-en), var(--font-jp);
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-top: 5rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 1rem;
-
-            /* 【変更】波線から、モダンでクリーンな細い直線へ */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-
-            letter-spacing: 0.05em;
-        }
-
-        /* --- リード文(要約)のデザイン --- */
-        .lead-text {
-            font-size: 1.25rem;
-            font-weight: 600;
-            line-height: 1.6;
-            color: #ebf2fd;
-            margin-top: 3.5rem;
-            margin-bottom: 1.5rem;
-            padding-left: 15px;
-            /* 階層構造の中で大きな意味を持つ固まりとして、黄色い線を添える */
-            border-left: 2px solid var(--accent-color);
-            letter-spacing: 0.05em;
-            font-family: var(--font-en), var(--font-jp);
-        }
-
-        p {
-            font-weight: 400;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            text-align: justify;
-            color: var(--text-color);
-        }
-
-        /* --- 本文内の小項目 (箇条書きのタイトルなど) --- */
-        .sub-heading {
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #ebf2fd;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            letter-spacing: 0.05em;
-        }
-
-        /* 控えめなドットに戻す */
-        .sub-heading::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 4px;
-            background-color: var(--accent-color);
-            margin-right: 10px;
-            border-radius: 50%;
-        }
-
-        /* --- 本文中のテキストリンクのデザイン --- */
-        .project-content p a {
-            color: inherit;
-            /* 通常時は周りの文字と同じ色（紺色）にする */
-            text-decoration: underline;
-            /* 下線を引く */
-
-            /* ↓ここがおしゃれポイント：下線を文字から少し離す */
-            text-underline-offset: 5px;
-            /* 下線を少し薄くする（オプション） */
-            text-decoration-thickness: 1px;
-            text-decoration-color: var(--sub-text-color);
-
-            transition: all 0.3s ease;
-        }
-
-        /* ホバー時の動き */
-        .project-content p a:hover {
-            color: var(--accent-color);
-            /* 文字がピンクになる */
-            text-decoration-color: var(--accent-color);
-            /* 下線もピンクになる */
-        }
-
-        /* 画像スタイル */
-        .image-block {
-            margin: 2rem 0;
-        }
-
-        .image-block img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .caption {
-            font-weight: 400;
-            font-size: 0.9rem;
-            color: var(--sub-text-color);
-            margin-top: 8px;
-            text-align: center;
-            font-family: var(--font-en), var(--font-jp);
-        }
-
-        /* --- 単一動画用のスタイル --- */
-        .video-block {
-            margin: 2rem 0;
-        }
-
-        .video-block video {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            /* 画像と同じ角丸 */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* 画像と同じ枠線 */
-
-            /* 動画の下にできる数ピクセルの隙間を消すためのおまじない */
-            display: block;
-
-            /* お好みで：少し影をつけると画面から浮き出てリッチに見えます */
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        }
-
-        /* --- 4段階プロセス表示用グリッド --- */
-        .process-grid {
-            display: grid;
-            /* PC: 横2列で均等割り */
-            grid-template-columns: 1fr 1fr;
-            gap: 30px 20px;
-            /* 上下の隙間30px、左右の隙間20px */
-            margin-bottom: 3rem;
-        }
-
-        .process-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .process-item video,
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            /* 薄い枠線で引き締める */
-            margin-bottom: 8px;
-            /* キャプションとの隙間 */
-        }
-
-        /* キャプションのアレンジ (既存の.captionを流用しつつ微調整) */
-        .process-step {
-            font-family: var(--font-en);
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--accent-color);
-            /* ピンク色で "Step 1" と出す */
-            margin-right: 8px;
-        }
-
-        /* --- 画像拡大機能 (Lightbox) --- */
-
-        /* 拡大したい画像につけるクラス（カーソルを虫眼鏡にする） */
-        .zoomable {
-            cursor: zoom-in;
-            transition: transform 0.2s;
-        }
-
-        .zoomable:hover {
-            opacity: 0.9;
-        }
-
-        /* 拡大表示時の背景（黒い膜） */
-        #lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            /* 背景を暗く */
-            z-index: 1000;
-            /* 最前面に */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            /* 見えてないときはクリック無効 */
-            transition: opacity 0.3s ease;
-        }
-
-        /* 表示モードになったとき */
-        #lightbox-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* 拡大された画像 */
-        #lightbox-img {
-            max-width: 90%;
-            /* 画面からはみ出さないように */
-            max-height: 90%;
-            object-fit: contain;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            /* 最初は少し小さく */
-            transition: transform 0.3s ease;
-        }
-
-        #lightbox-overlay.active #lightbox-img {
-            transform: scale(1);
-            /* ふわっと定位置へ */
-        }
-
-        /* --- 幅が狭まったとき (タブレット〜ノートPC向け) --- */
-        /* 1200px以下になったら、横並びをやめて縦積みに切り替える */
-        @media (max-width: 1200px) {
-            .project-container {
-                grid-template-columns: 1fr;
-                /* 1列にする */
-                padding-top: 100px;
-                gap: 40px;
-                padding-top: 120px;
-                max-width: 900px;
-                /*全体の最大幅を狭めて、間延びを防ぐ*/
-            }
-
-            /*上部：作品概要*/
-            .project-sidebar {
-                position: static;
-                /* 固定解除 */
-                width: 100%;
-                margin-bottom: 20px;
-
-                text-align: left;
-                display: block;
-                /* フレックスにせず、ブロック要素として左に積む */
-
-            }
-
-            .project-title {
-                font-size: 2rem;
-                margin-bottom: 1.5rem;
-                text-align: left;
-            }
-
-            /* --- 下部：本文コンテンツ --- */
-            .project-content {
-                /* ★ご希望の「中央寄せ」設定 */
-                margin: 0 auto;
-                /* 左右の余白を自動にして中央へ */
-                width: 100%;
-                max-width: 750px;
-                /* 本文が広がりすぎないように制限 */
-            }
-
-            /*スマホ/タブレット向けに複数映像のレイアウト調整*/
-            .process-grid {
-                grid-template-columns: 1fr;
-                /* 1列（縦積み）にする */
-                gap: 20px;
-                /* 縦積みなら間隔を広めに */
-            }
-
-        }
-
-        /* --- さらに狭いスマホ向け (微調整) --- */
-        @media (max-width: 600px) {
-            .project-title {
-                font-size: 2rem;
-            }
-
-            .project-meta {
-                flex-direction: column;
-                /* スマホならメタ情報も縦積みに戻す */
-            }
-
-            /* 4. 日本語・英語の文字サイズ調整 */
-            .intro-en,
-            .intro-jp {
-                font-size: 0.9rem;
-                /* 少し小さくして読みやすく */
-                max-width: 100%;
-            }
-
-            /* 5. ヘッダー（メニュー）の調整 */
-            header {
-                padding: 1rem 5%;
-                /* ヘッダーも少しスリムに */
-            }
-
-            /* ロゴの顔文字アニメを少し小さく */
-            .logo {
-                font-size: 1.4rem;
-            }
-
-            nav a {
-                padding: 8px 20px;
-                font-size: 1rem;
-            }
-        }
     </style>
+
     <script src="../assets/common/js/loader.js"></script>
 </head>
 
@@ -745,7 +64,7 @@
     <div class="project-container">
 
         <div class="video-background">
-            <img src="../assets/works/constellate/BG_Stars.png" alt="Star Background">
+            <img src="../assets/works/constellate/bg-stars.png" alt="Star Background">
         </div>
 
         <aside class="project-sidebar">
@@ -812,28 +131,28 @@
                 </p>
                 <div class="process-grid">
                     <div class="process-item reveal">
-                        <img src="../assets/works/constellate/1-Gather.png" alt="Gathering Energy">
+                        <img src="../assets/works/constellate/1-gather.png" alt="Gathering Energy">
                         <p class="caption">
                             <span class="process-step">01</span>
                             顔の中心からエネルギーが発生
                         </p>
                     </div>
                     <div class="process-item reveal" style="transition-delay: 0.1s;">
-                        <img src="../assets/works/constellate/2-Charge.png" alt="Charging">
+                        <img src="../assets/works/constellate/2-charge.png" alt="Charging">
                         <p class="caption">
                             <span class="process-step">02</span>
                             両手の距離に応じて色が変化
                         </p>
                     </div>
                     <div class="process-item reveal" style="transition-delay: 0.2s;">
-                        <img src="../assets/works/constellate/3-StarBirth.png" alt="Star Birth">
+                        <img src="../assets/works/constellate/3-starbirth.png" alt="Star Birth">
                         <p class="caption">
                             <span class="process-step">03</span>
                             音・衝撃波エフェクトと共に星が誕生
                         </p>
                     </div>
                     <div class="process-item reveal" style="transition-delay: 0.3s;">
-                        <img src="../assets/works/constellate/4-Connect.png" alt="Connect Stars">
+                        <img src="../assets/works/constellate/4-connect.png" alt="Connect Stars">
                         <p class="caption">
                             <span class="process-step">04</span>
                             誕生した星々は順に繋がれ星座を描く
@@ -869,7 +188,7 @@
                 </p>
 
                 <div class="video-block reveal">
-                    <video src="../assets/works/constellate/Hand_Distance_Vfx.mp4" autoplay loop muted playsinline
+                    <video src="../assets/works/constellate/hand-distance-vfx.mp4" autoplay loop muted playsinline
                         preload="metadata" style="width: 100%; border-radius: 8px;">
                     </video>
                     <p class="caption">手の距離に応じて動き・色が変化する様子</p>
@@ -903,7 +222,7 @@
                 </p>
                 <div class="process-grid">
                     <div class="process-item reveal">
-                        <video src="../assets/works/constellate/Default-Particle.mp4" autoplay loop muted
+                        <video src="../assets/works/constellate/default-particle.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
                             <span class="process-step">Step 0</span>
@@ -911,7 +230,7 @@
                         </p>
                     </div>
                     <div class="process-item reveal" style="transition-delay: 0.1s;">
-                        <video src="../assets/works/constellate/Add_Soft-Particle.mp4" autoplay loop muted
+                        <video src="../assets/works/constellate/add-soft-particle.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
                             <span class="process-step">Step 1</span>
@@ -919,7 +238,7 @@
                         </p>
                     </div>
                     <div class="process-item reveal" style="transition-delay: 0.2s;">
-                        <video src="../assets/works/constellate/Add_Gpu-Event.mp4" autoplay loop muted
+                        <video src="../assets/works/constellate/add-gpu-event.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
                             <span class="process-step">Step 2</span>
@@ -942,50 +261,9 @@
         </article>
     </div>
 
-    <script>
-        /* --- 顔文字アニメーション (CSSで定義済みなら不要ですが念のため確認) --- */
-        /* 顔文字はCSSの .kao-ani::after で動いているのでJSは不要です */
-
-        /* --- 画像拡大機能のスクリプト --- */
-        const overlay = document.getElementById('lightbox-overlay');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        // "zoomable" クラスがついた画像をすべて探す
-        document.querySelectorAll('.zoomable').forEach(img => {
-            img.addEventListener('click', () => {
-                // クリックされた画像のソースを、拡大用画像にセット
-                lightboxImg.src = img.src;
-                // オーバーレイを表示
-                overlay.classList.add('active');
-            });
-        });
-
-        // 黒い背景をクリックしたら閉じる
-        overlay.addEventListener('click', () => {
-            overlay.classList.remove('active');
-        });
-
-        /* --- スクロールアニメーション (Reveal) のスクリプト --- */
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // 要素上部が画面の下から100px入ったら発火
-
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-
-        window.addEventListener("scroll", reveal);
-        // 初回読み込み時にもチェック
-        reveal();
-
-
-    </script>
+    <!-- External Scripts -->
+    <script src="../assets/common/js/reveal.js"></script>
+    <script src="../assets/works/js/works.js"></script>
 </body>
 
 </html>

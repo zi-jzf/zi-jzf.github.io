@@ -28,8 +28,13 @@
     </header>
     `;
 
-    // 3. <body>の直前にヘッダーを挿入
-    document.body.insertAdjacentHTML('afterbegin', headerHTML);
+    // 3. スクリプトタグの直前にヘッダーを挿入 (DOMの順序を維持してmix-blend-modeのSafari等でのバグを防ぐため)
+    const scriptTag = document.currentScript;
+    if (scriptTag) {
+        scriptTag.insertAdjacentHTML('beforebegin', headerHTML);
+    } else {
+        document.body.insertAdjacentHTML('afterbegin', headerHTML);
+    }
 
     // 4. 「ピンクのインジケーター」アニメーションの初期化
     const nav = document.querySelector('nav');

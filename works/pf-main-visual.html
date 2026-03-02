@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Site Main Visual | Works</title>
+
+    <link rel="icon" href="../assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/common/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../assets/common/css/common.css">
+    <!-- Works Page Specific CSS -->
+    <link rel="stylesheet" href="../assets/works/css/works.css">
+    <script src="../assets/common/js/loader.js"></script>
+</head>
+
+<body>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
+
+    <script src="../assets/common/js/header.js"></script>
+
+    <div class="project-container">
+
+        <aside class="project-sidebar">
+            <h1 class="project-title">Portfolio Site Main Visual</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Year</span>
+                    <span class="meta-value">2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Context</span> <span class="meta-value">自主制作</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span> <span class="meta-value">1 Day</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools & Tech</span>
+                    <div class="tags">
+                        <a href="../index.html?filter=td" class="tag">#TouchDesigner</a>
+                        <a href="../index.html?filter=generative-art" class="tag">#Generative Art</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="project-content">
+
+            <div class="video-wrapper">
+                <iframe src="https://player.vimeo.com/video/1160942946?autoplay=1&loop=1&background=1" width="640"
+                    height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">Concept</h2>
+
+                <p class="lead-text reveal">
+                    ポートフォリオサイトの顔としての「直感的な美しさ」と「自己表現」
+                </p>
+                <p class="reveal">
+                    ポートフォリオサイトのトップを飾るメインビジュアルとして、訪れた瞬間に視界をジャックして良い印象を与えることを目的として制作しました。<br>
+                    UIデザインにおける機能性を阻害しないよう、具象的なモチーフは避けた流体的な表現を採用。ポートフォリオの顔として、私の好む美的感覚を表現するようなビジュアルアイデンティティとして機能させています。
+                </p>
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">Technical Approach</h2>
+                <p class="reveal">
+                    基礎の動きとなる2つのNoiseTOPやDisplaceTOPの組み合わせは
+                    <a href="https://youtu.be/Fk2acNrdkO8?si=6VeAbv-kvsRNrOms" target="_blank"
+                        rel="noopener noreferrer">
+                        Pao Olea氏のチュートリアル動画
+                    </a>を参考にしました。
+                    自分自身でもNoiseTOPの数値を調整したり、FeedbackTOP内のループにBlurを追加してより流体的な表現にしたりと、より自分好みの動きに仕上げました。
+                </p>
+                <div class="lead-text reveal">
+                    数学的なループ設計
+                </div>
+                <p class="reveal">
+                    webサイトの背景として長時間表示されることを考慮し、見る人に「繰り返しの違和感」を与えない完全なシームレスなループを実装しました。<br>
+                    10秒間のタイムラインを単なる直線進行として扱わず、Sin/Cosを使用して円環状に推移させることで、始点と終点のパラメーターを数学的に一致させています。<br>
+                    さらにNoiseTOPのTranslate Z/Translate 4Dにsin, cosをそれぞれ割り当てることで周期性を感じさせない、複雑な動きを実現しました。
+                </p>
+
+                <div class="image-block reveal">
+                    <img src="../assets/works/pf-main-visual/explain-sincos-chop.png" alt="Explain_SinCosCHOP"
+                        class="zoomable">
+                    <p class="caption">Sin, Cosを使用した数学的ループの実装概要</p>
+                </div>
+
+                </p>
+                <div class="lead-text reveal">
+                    Post-Processing
+                </div>
+                <p class="reveal">
+                    最終的なビジュアルのクオリティを決定づけるポストプロセス工程では、段階的な絵作りを行いました。言葉で説明するよりも下の映像の段階的な変化を見ていただければ分かりやすいと思います。<br>
+                    まず、HSV Adjust TOPとLevel
+                    TOPを使用し、全体の彩度とコントラストを調整。次にBloomを追加することで、より鮮やかな印象を与えます。最後に色反転したEdgeを重ねることで青と紫以外の色のアクセントを加えて、より引き締まった印象にします。
+                </p>
+                <div class="process-grid">
+                    <div class="process-item reveal">
+                        <video src="../assets/works/pf-main-visual/before-postprocessing.mp4" autoplay loop muted
+                            playsinline></video>
+                        <p class="caption">
+                            <span class="process-step">Step 0</span>
+                            Post-Processingを行う前
+                        </p>
+                    </div>
+                    <div class="process-item reveal" style="transition-delay: 0.1s;">
+                        <video src="../assets/works/pf-main-visual/after-saturation-contrast.mp4" autoplay loop muted
+                            playsinline></video>
+                        <p class="caption">
+                            <span class="process-step">Step 1</span>
+                            彩度とコントラストを調整
+                        </p>
+                    </div>
+                    <div class="process-item reveal" style="transition-delay: 0.2s;">
+                        <video src="../assets/works/pf-main-visual/after-bloom.mp4" autoplay loop muted
+                            playsinline></video>
+                        <p class="caption">
+                            <span class="process-step">Step 2</span>
+                            Bloomエフェクトの追加
+                        </p>
+                    </div>
+                    <div class="process-item reveal" style="transition-delay: 0.3s;">
+                        <video src="../assets/works/pf-main-visual/after-negate-egde.mp4" autoplay loop muted
+                            playsinline></video>
+                        <p class="caption">
+                            <span class="process-step">Step 3</span>
+                            反転色のエッジを追加
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-block">
+                <h2 class="reveal">Web Implementation & Optimization</h2>
+                <p class="lead-text reveal">
+                    軽量化とビジュアル品質の両立
+                </p>
+                <p class="reveal">
+                    この映像は、webサイトの背景としてモバイル回線でも即座に再生される軽さが求められます。一方で、流体表現のような複雑なグラデーションは圧縮時にブロックノイズが発生しやすいという課題がありました。<br>
+                    このトレードオフを解消するため、単純なビットレート制限ではなくエンコード効率を重視した最適化を行いました。TouchDeisgnerからApple
+                    ProResをマスターデータとして書き出した後、HandBrakeを使用。<br>
+                    時間をかけてエンコードすることで映像に合った最適なエンコードを実現。段階的にビットレートを下げ、軽量化とビジュアル品質の両立を行いました。<br>
+                    結果として1280×720pxの10秒の映像を<b>9.3MB</b>まで圧縮することに成功。PCモニターなどの大きい画面でも耐えうる解像感を保ちつつ、初回ロードでもストレスがないファイルサイズを実現しました。
+                </p>
+                <div class="image-block reveal">
+                    <img src="../assets/works/pf-main-visual/optimized-for-web.png" alt="Optimized_ForWeb">
+                    <p class="caption">最適化する前後のファイル情報の比較画像</p>
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="../assets/common/js/reveal.js"></script>
+    <script src="../assets/works/js/works.js"></script>
+</body>
+
+</html>

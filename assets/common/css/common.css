@@ -1,0 +1,232 @@
+/* ==========================================================================
+   Common Styles
+   ========================================================================== */
+
+/* --- Default Variables (from index.html and light theme works) --- */
+:root {
+    --bg-color: #cce0ee;
+    --accent-color: #fd5d5a;
+    --text-color: #071641;
+    --font-en: 'Bricolage Grotesque', sans-serif;
+    --font-jp: 'Zen Kaku Gothic New', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-en), var(--font-jp);
+    line-height: 1.8;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --- Common Video / Image Background --- */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.video-background video,
+.video-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.99;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: var(--video-overlay-color, transparent);
+}
+
+/* --- Loader Animation --- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+    color: var(--text-color);
+    font-family: monospace;
+    font-size: 2rem;
+    white-space: pre;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-aa::after {
+    content: '^_^';
+    display: inline-block;
+    animation: loaderFaceChange 0.5s infinite steps(1);
+}
+
+@keyframes loaderFaceChange {
+    0% {
+        content: '^_^';
+    }
+
+    25% {
+        content: '^o^';
+    }
+
+    50% {
+        content: '^-^';
+    }
+
+    75% {
+        content: '^.^';
+    }
+}
+
+/* --- Reveal Animation --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Header & Navigation --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background-color: transparent;
+    color: #fff;
+}
+
+.logo {
+    text-decoration: none;
+    font-weight: 800;
+    font-family: var(--font-en);
+    font-size: 1.8rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kao-ani::after {
+    content: '^_^';
+    display: inline-block;
+    width: 3ch;
+    animation: faceChange 3s infinite steps(1);
+}
+
+@keyframes faceChange {
+    0% {
+        content: '^_^';
+    }
+
+    20% {
+        content: '^o^';
+    }
+
+    40% {
+        content: '; _ ;';
+    }
+
+    60% {
+        content: '-_-';
+    }
+
+    80% {
+        content: '^-^';
+    }
+}
+
+nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 6px;
+    border-radius: 60px;
+}
+
+#nav-indicator {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    height: calc(100% - 12px);
+    width: 0;
+    background-color: var(--accent-color);
+    border-radius: 40px;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity: 0;
+}
+
+nav a {
+    text-decoration: none;
+    font-family: var(--font-en);
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    padding: 10px 28px;
+    border-radius: 40px;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    transition: color 0.3s;
+    line-height: 1.2;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 1rem 5%;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    nav a {
+        padding: 8px 20px;
+        font-size: 1rem;
+    }
+}
