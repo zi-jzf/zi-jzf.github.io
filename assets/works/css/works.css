@@ -5,13 +5,14 @@
 /* --- Project Layout --- */
 .project-container {
     display: grid;
-    /* Expanded sidebar width to 420px for long Japanese titles */
-    grid-template-columns: 420px 1fr;
-    gap: 80px;
+    /* サイドバーは画面の30%を基本としつつ、最低280pxは確保、最大で420pxにする */
+    grid-template-columns: minmax(250px, clamp(30%, 30vw, 420px)) 1fr;
+    /*gapも可変(vw)にして、画面が狭い時は隙間も縮むように*/
+    gap: clamp(40px, 6vw, 80px);
     max-width: 1400px;
     /* Slightly wider overall container */
     margin: 0 auto;
-    padding: 150px 5% 100px;
+    padding: 150px 6% 100px;
 }
 
 .project-sidebar {
@@ -375,32 +376,49 @@ p {
 }
 
 /* --- Responsive Layout for Works --- */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .project-container {
         grid-template-columns: 1fr;
         padding-top: 120px;
         gap: 40px;
-        max-width: 900px;
+        /* サイドバー（メタ情報）と本文の間隔 */
+        max-width: 860px;
+        /* 本文の最大幅(800px) + 左右の余裕 を確保して中央に配置 */
     }
 
     .project-sidebar {
         position: static;
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 0;
         text-align: left;
         display: block;
     }
 
     .project-title {
-        font-size: 2rem;
+        font-size: 1.9rem;
         margin-bottom: 1.5rem;
         text-align: left;
+    }
+
+    /* 雑誌・論文風のメタ情報レイアウト（横並び） */
+    .project-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 40px;
+        row-gap: 20px;
+        border-top: 2px solid var(--text-color);
+        /* 上のラインを少し強調して引き締める */
+        border-bottom: 1px solid var(--meta-border-color, rgba(0, 0, 0, 0.1));
+        padding: 20px 0;
+        margin-bottom: 0;
+        /* 本文との間隔はcontainerのgapに任せる */
     }
 
     .project-content {
         margin: 0 auto;
         width: 100%;
-        max-width: 750px;
+        max-width: 800px;
+        /* 行が長くなりすぎないように最大幅を800pxに制限 */
     }
 
     .process-grid {
@@ -411,25 +429,36 @@ p {
 
 @media (max-width: 600px) {
     .project-title {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        line-height: 1.4;
     }
 
     h2 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         margin-top: 3rem;
         margin-bottom: 1.5rem;
     }
 
+    /* スマホでも情報のヒエラルキーを美しく保つ2カラムグリッド */
     .project-meta {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 15px;
+        padding: 15px 0;
+    }
+
+    /* Category(4番目)やTech(5番目)など横長になる可能性のある項目はフル幅に */
+    .meta-item:nth-child(n+4) {
+        grid-column: 1 / -1;
     }
 
     .research-abstract {
-        padding: 2rem 2rem;
+        padding: 2rem 1.5rem;
+        /* スマホではpaddingを少し狭くしてスペースを確保 */
     }
 
     .abstract-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }
 
