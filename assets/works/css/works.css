@@ -88,7 +88,7 @@
     color: var(--tag-hover-text, #fff);
 }
 
-.tech-stack {
+.keyword-list {
     font-family: var(--font-en), var(--font-jp);
     font-size: 0.95rem;
     color: var(--text-color);
@@ -96,14 +96,14 @@
     font-weight: 400;
 }
 
-.tech-stack span::after {
+.keyword-list span::after {
     content: '/';
     margin: 0 8px;
     color: var(--sub-text-color);
     font-weight: 300;
 }
 
-.tech-stack span:last-child::after {
+.keyword-list span:last-child::after {
     content: '';
     margin: 0;
 }
@@ -131,11 +131,12 @@
     height: 100%;
 }
 
-.video-block {
+.media-block {
     margin: 2rem 0;
 }
 
-.video-block video {
+.media-block video,
+.media-block img {
     width: 100%;
     height: auto;
     border-radius: 8px;
@@ -145,12 +146,19 @@
     object-fit: cover;
 }
 
-.audio-toggle-block video {
+/* media-block 内の img は標準では影なし（以前の image-block 相当）にしたい場合は別途調整が必要だが、
+   基本的には video も img も同じスタイルを共有し、必要に応じて .media-no-shadow で影を消すアプローチに変更 */
+.media-block img {
     box-shadow: none;
+    /* 元の .image-block img と同様の影なしスタイルにする場合 */
+}
+
+.media-no-shadow {
+    box-shadow: none !important;
     /* 映像の下のドロップシャドウをなしにする */
 }
 
-.text-block {
+.content-section {
     margin-bottom: 4rem;
 }
 
@@ -222,16 +230,7 @@ p {
     text-decoration-color: var(--accent-color);
 }
 
-.image-block {
-    margin: 2rem 0;
-}
-
-.image-block img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    border: 1px solid var(--img-border-color, rgba(0, 0, 0, 0.05));
-}
+/* .media-block merged above */
 
 .caption {
     font-size: 0.9rem;
@@ -242,20 +241,20 @@ p {
     font-family: var(--font-en), var(--font-jp);
 }
 
-.process-grid {
+.media-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px 20px;
     margin-bottom: 3rem;
 }
 
-.process-item {
+.media-grid-item {
     display: flex;
     flex-direction: column;
 }
 
-.process-item video,
-.process-item img {
+.media-grid-item video,
+.media-grid-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
@@ -263,7 +262,7 @@ p {
     margin-bottom: 8px;
 }
 
-.process-step {
+.media-grid-label {
     font-family: var(--font-en);
     font-weight: 600;
     font-size: 0.9rem;
@@ -316,7 +315,7 @@ p {
 }
 
 /* --- Research Abstract Styling (Static Gradient Precision) --- */
-.research-abstract {
+.summary-box {
     background: rgba(255, 255, 255, 0.2);
     /* Extremely subtle frosting to distinguish from main bg */
     border-radius: 4px;
@@ -329,7 +328,7 @@ p {
 }
 
 /* Vertical Gradient Precision Line */
-.research-abstract::before {
+.summary-box::before {
     content: '';
     position: absolute;
     top: 0;
@@ -341,7 +340,7 @@ p {
     border-bottom-left-radius: 4px;
 }
 
-.abstract-label {
+.summary-label {
     font-family: var(--font-en);
     font-size: 1.1rem;
     font-weight: 600;
@@ -351,7 +350,7 @@ p {
     text-transform: uppercase;
 }
 
-.abstract-title {
+.summary-title {
     font-family: var(--font-jp);
     font-size: 1.4rem;
     font-weight: 700;
@@ -361,7 +360,7 @@ p {
     letter-spacing: 0.04em;
 }
 
-.abstract-body p {
+.summary-body p {
     font-family: var(--font-jp);
     font-weight: 400;
     font-size: 1.05rem;
@@ -371,7 +370,7 @@ p {
     text-align: justify;
 }
 
-.abstract-body p:last-child {
+.summary-body p:last-child {
     margin-bottom: 0;
 }
 
@@ -421,7 +420,7 @@ p {
         /* 行が長くなりすぎないように最大幅を800pxに制限 */
     }
 
-    .process-grid {
+    .media-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
@@ -452,12 +451,12 @@ p {
         grid-column: 1 / -1;
     }
 
-    .research-abstract {
+    .summary-box {
         padding: 2rem 1.5rem;
         /* スマホではpaddingを少し狭くしてスペースを確保 */
     }
 
-    .abstract-title {
+    .summary-title {
         font-size: 1.2rem;
     }
 }

@@ -47,7 +47,7 @@
                     <span class="meta-label">Duration</span> <span class="meta-value">1 Day</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Tools & Tech</span>
+                    <span class="meta-label">Tags</span>
                     <div class="tags">
                         <a href="../index.html?filter=td" class="tag">#TouchDesigner</a>
                         <a href="../index.html?filter=generative-art" class="tag">#Generative Art</a>
@@ -64,7 +64,7 @@
                 </iframe>
             </div>
 
-            <div class="text-block">
+            <div class="content-section">
                 <h2 class="reveal">Concept</h2>
 
                 <p class="lead-text reveal">
@@ -76,7 +76,7 @@
                 </p>
             </div>
 
-            <div class="text-block">
+            <div class="content-section">
                 <h2 class="reveal">Technical Approach</h2>
                 <p class="reveal">
                     基礎の動きとなる2つのNoiseTOPやDisplaceTOPの組み合わせは
@@ -95,7 +95,7 @@
                     さらにNoiseTOPのTranslate Z/Translate 4Dにsin, cosをそれぞれ割り当てることで周期性を感じさせない、複雑な動きを実現しました。
                 </p>
 
-                <div class="image-block reveal">
+                <div class="media-block reveal">
                     <img src="../assets/works/pf-main-visual/explain-sincos-chop.png" alt="Explain_SinCosCHOP"
                         class="zoomable">
                     <p class="caption">Sin, Cosを使用した数学的ループの実装概要</p>
@@ -110,36 +110,36 @@
                     まず、HSV Adjust TOPとLevel
                     TOPを使用し、全体の彩度とコントラストを調整。次にBloomを追加することで、より鮮やかな印象を与えます。最後に色反転したEdgeを重ねることで青と紫以外の色のアクセントを加えて、より引き締まった印象にします。
                 </p>
-                <div class="process-grid">
-                    <div class="process-item reveal">
+                <div class="media-grid">
+                    <div class="media-grid-item reveal">
                         <video src="../assets/works/pf-main-visual/before-postprocessing.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
-                            <span class="process-step">Step 0</span>
+                            <span class="media-grid-label">Step 0</span>
                             Post-Processingを行う前
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.1s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.1s;">
                         <video src="../assets/works/pf-main-visual/after-saturation-contrast.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
-                            <span class="process-step">Step 1</span>
+                            <span class="media-grid-label">Step 1</span>
                             彩度とコントラストを調整
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.2s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.2s;">
                         <video src="../assets/works/pf-main-visual/after-bloom.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
-                            <span class="process-step">Step 2</span>
+                            <span class="media-grid-label">Step 2</span>
                             Bloomエフェクトの追加
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.3s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.3s;">
                         <video src="../assets/works/pf-main-visual/after-negate-egde.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
-                            <span class="process-step">Step 3</span>
+                            <span class="media-grid-label">Step 3</span>
                             反転色のエッジを追加
                         </p>
                     </div>
@@ -147,7 +147,7 @@
 
             </div>
 
-            <div class="text-block">
+            <div class="content-section">
                 <h2 class="reveal">Web Implementation & Optimization</h2>
                 <p class="lead-text reveal">
                     軽量化とビジュアル品質の両立
@@ -159,7 +159,7 @@
                     時間をかけてエンコードすることで映像に合った最適なエンコードを実現。段階的にビットレートを下げ、軽量化とビジュアル品質の両立を行いました。<br>
                     結果として1280×720pxの10秒の映像を<b>9.3MB</b>まで圧縮することに成功。PCモニターなどの大きい画面でも耐えうる解像感を保ちつつ、初回ロードでもストレスがないファイルサイズを実現しました。
                 </p>
-                <div class="image-block reveal">
+                <div class="media-block reveal">
                     <img src="../assets/works/pf-main-visual/optimized-for-web.png" alt="Optimized_ForWeb">
                     <p class="caption">最適化する前後のファイル情報の比較画像</p>
                 </div>

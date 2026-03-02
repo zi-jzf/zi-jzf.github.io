@@ -82,15 +82,15 @@
                     <span class="meta-label">Duration</span> <span class="meta-value">1 month</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Category</span>
+                    <span class="meta-label">Tags</span>
                     <div class="tags">
                         <a href="../index.html?filter=unity" class="tag">#Unity</a>
                         <a href="../index.html?filter=interactive-art" class="tag">#Interactive Art</a>
                     </div>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Tech</span>
-                    <div class="tech-stack">
+                    <span class="meta-label">Keywords</span>
+                    <div class="keyword-list">
                         <span>C#</span>
                         <span>VFX Graph</span>
                         <span>BodyPix</span>
@@ -110,7 +110,7 @@
             </div>
             <p class="caption" style="margin-bottom: 3rem;">🔊Sound ON</p>
 
-            <div class="text-block">
+            <div class="content-section">
                 <h2 class="reveal">Concept</h2>
 
                 <p class="lead-text reveal">
@@ -124,44 +124,44 @@
                 </p>
             </div>
 
-            <div class="text-block">
+            <div class="content-section">
                 <h2 class="reveal">Experience Flow</h2>
                 <p class="lead-text reveal">
                     体験の流れ
                 </p>
-                <div class="process-grid">
-                    <div class="process-item reveal">
+                <div class="media-grid">
+                    <div class="media-grid-item reveal">
                         <img src="../assets/works/constellate/1-gather.png" alt="Gathering Energy">
                         <p class="caption">
-                            <span class="process-step">01</span>
+                            <span class="media-grid-label">01</span>
                             顔の中心からエネルギーが発生
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.1s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.1s;">
                         <img src="../assets/works/constellate/2-charge.png" alt="Charging">
                         <p class="caption">
-                            <span class="process-step">02</span>
+                            <span class="media-grid-label">02</span>
                             両手の距離に応じて色が変化
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.2s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.2s;">
                         <img src="../assets/works/constellate/3-starbirth.png" alt="Star Birth">
                         <p class="caption">
-                            <span class="process-step">03</span>
+                            <span class="media-grid-label">03</span>
                             音・衝撃波エフェクトと共に星が誕生
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.3s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.3s;">
                         <img src="../assets/works/constellate/4-connect.png" alt="Connect Stars">
                         <p class="caption">
-                            <span class="process-step">04</span>
+                            <span class="media-grid-label">04</span>
                             誕生した星々は順に繋がれ星座を描く
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="text-block">
+            <div class="content-section">
                 <h2 class="reveal">Technical Approach</h2>
                 <p class="reveal">
                     AI(BodyPix)を用いた人物セグメンテーションとリアルタイムVFXを組み合わせたインタラクティブアート。「AIを使って何か面白い表現や体験を作りたい」という好奇心からスタートしました。<br>
@@ -187,7 +187,7 @@
                     ユーザーが手を広げている時は、エネルギーが拡散していく様子を表現するために、パーティクルを広範囲に散らし、低温を示す「オレンジ・黄」の色彩に。逆に両手を近づけた時は、エネルギーが一点に凝縮していく様子を表現するために、パーティクルが塊となってうねるような動きへ変化し、高温を示す「青・白」へと発光します。
                 </p>
 
-                <div class="video-block reveal">
+                <div class="media-block reveal">
                     <video src="../assets/works/constellate/hand-distance-vfx.mp4" autoplay loop muted playsinline
                         preload="metadata" style="width: 100%; border-radius: 8px;">
                     </video>
@@ -220,28 +220,28 @@
                 <p class="reveal">
                     特に手を近づけて青白くなった時に違いが分かりやすいと思います。
                 </p>
-                <div class="process-grid">
-                    <div class="process-item reveal">
+                <div class="media-grid">
+                    <div class="media-grid-item reveal">
                         <video src="../assets/works/constellate/default-particle.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
-                            <span class="process-step">Step 0</span>
+                            <span class="media-grid-label">Step 0</span>
                             ただの粒パーティクル
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.1s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.1s;">
                         <video src="../assets/works/constellate/add-soft-particle.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
-                            <span class="process-step">Step 1</span>
+                            <span class="media-grid-label">Step 1</span>
                             ＋ソフトな円形テクスチャパーティクル
                         </p>
                     </div>
-                    <div class="process-item reveal" style="transition-delay: 0.2s;">
+                    <div class="media-grid-item reveal" style="transition-delay: 0.2s;">
                         <video src="../assets/works/constellate/add-gpu-event.mp4" autoplay loop muted
                             playsinline></video>
                         <p class="caption">
-                            <span class="process-step">Step 2</span>
+                            <span class="media-grid-label">Step 2</span>
                             ＋GPU Eventによる残像
                         </p>
                     </div>
