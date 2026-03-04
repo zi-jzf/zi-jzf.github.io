@@ -119,7 +119,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 2rem 5%;
+    padding: 2.5rem 5%;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -133,7 +133,7 @@ header {
     text-decoration: none;
     font-weight: 800;
     font-family: var(--font-en);
-    font-size: 1.8rem;
+    font-size: 3.0rem;
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -201,9 +201,9 @@ nav a {
     font-family: var(--font-en);
     color: var(--text-color);
     font-weight: 400;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     letter-spacing: 0.02em;
-    padding: 10px 28px;
+    padding: 12px 32px;
     border-radius: 40px;
     position: relative;
     z-index: 2;
@@ -218,15 +218,15 @@ nav a:hover {
 
 @media (max-width: 600px) {
     header {
-        padding: 1rem 5%;
+        padding: 1.2rem 5%;
     }
 
     .logo {
-        font-size: 1.4rem;
+        font-size: 2.0rem;
     }
 
     nav a {
-        padding: 8px 20px;
-        font-size: 1rem;
+        padding: 8px 22px;
+        font-size: 1.1rem;
     }
 }
