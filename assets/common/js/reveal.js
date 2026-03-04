@@ -16,5 +16,6 @@ function reveal() {
 }
 
 window.addEventListener("scroll", reveal);
+
 // 初回読み込み時にもチェック
 window.addEventListener("load", reveal);

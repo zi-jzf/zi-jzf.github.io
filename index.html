@@ -12,13 +12,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;300;400;500;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
         rel="stylesheet">
 
     <!-- Common CSS -->
-    <link rel="stylesheet" href="assets/common/css/common.css?v=6">
+    <link rel="stylesheet" href="assets/common/css/common.css">
     <!-- Top Page Specific CSS -->
-    <link rel="stylesheet" href="assets/top/css/top.css?v=6">
+    <link rel="stylesheet" href="assets/top/css/top.css">
     <script src="assets/common/js/loader.js"></script>
 </head>
 
@@ -31,23 +31,57 @@
             playsinline></video>
     </div>
 
-    <script src="assets/common/js/header.js?v=3"></script>
+    <script src="assets/common/js/header.js"></script>
 
     <section class="hero">
-        <div class="hero-text reveal">
-            <h1>Intuitive Art, Accessible Magic.</h1>
-            <p class="intro-en">
-                Hi, I'm MizukiFujita.<br>
-                I create interactive experiences using <b>Unity</b> and <b>TouchDesigner</b>.<br>
-                My goal is to craft visuals that anyone can enjoy intuitively,<br>
-                bridging the gap between complex technology and pure wonder.
-            </p>
+        <div class="hero-text">
+            <h1 class="hero-title">
+                <span>Intuitive Art,<br>Accessible Magic.</span>
+            </h1>
+            <p class="hero-welcome">Welcome to my portfolio site!</p>
+        </div>
 
-            <p class="intro-jp">
-                <b>直感的で、誰もが楽しめる体験を。</b><br>
-                UI/UXデザインの視点を活かし、UnityやTouchDesignerを用いたインタラクティブアートを制作しています。<br>
-                難解な文脈を必要とせず、見た瞬間に「すごい」「面白い」と感じられる、鑑賞者との距離が近い作品作りを目指しています。
-            </p>
+        <div class="scroll-down">
+            <span>scroll</span>
+        </div>
+    </section>
+
+    <section class="intro-section" id="statement">
+        <!-- 背景画像 (HTML側で指定) -->
+        <div class="intro-bg">
+            <img src="./assets/top/statement-bg.png" alt="Background Noise Gradient" loading="lazy">
+        </div>
+
+        <div class="intro-container reveal">
+
+            <div class="intro-decor-title">
+                <img src="./assets/top/statement-outline.svg" alt="STATEMENT" class="statement-svg">
+            </div>
+
+            <div class="intro-content">
+                <p class="intro-role">Interactive Arts & Design</p>
+
+                <h2 class="intro-philosophy">
+                    誰もが直感的に楽しめる<br class="pc-only">体験をデザインする
+                </h2>
+
+                <p class="intro-description">
+                    複雑なアルゴリズムやシステムを裏側に秘めつつ、表出する体験はあくまで純粋な驚きに満ちていること<br class="pc-only">
+                    技術そのものを誇示するのではなく、それが鑑賞者の感情をどう動かすかを最優先に置き、<br class="pc-only">
+                    テクノロジーと人間の間の距離を縮めるインタラクティブな表現を探求しています。
+                </p>
+
+
+
+                <div class="intro-skills">
+                    <span class="skill-label">Skills & Tools</span>
+                    <span class="skill-list">TouchDesigner <span>|</span> Unity <span>|</span> UI/UX <span>|</span>
+                        Graphic Design</span>
+                </div>
+
+                <!-- 次のアクションへの導線 (Figmaにある"More About Me →"ボタン) -->
+                <a href="./info.html" class="more-about-btn">More About Me <span class="arrow">&rarr;</span></a>
+            </div>
         </div>
     </section>
 
@@ -88,7 +122,7 @@
             <a href="works/constellate.html" class="work-item reveal" data-category="unity interactive-art"
                 style="transition-delay: 0.1s;">
                 <div class="work-thumb">
-                    <img src="assets/top/constellate-thumb.png" alt="Constellate">
+                    <img src="assets/top/constellate-thumb.png" alt="Constellate" loading="lazy">
                 </div>
                 <h3 class="work-title">Constellate</h3>
                 <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
@@ -101,7 +135,7 @@
             <a href="works/sound-sync-research.html" class="work-item reveal" data-category="td audio-reactive"
                 style="transition-delay: 0.2s;">
                 <div class="work-thumb">
-                    <img src="assets/top/sound-sync-research-thumb.png" alt="sound-sync-research">
+                    <img src="assets/top/sound-sync-research-thumb.png" alt="sound-sync-research" loading="lazy">
                 </div>
                 <h3 class="work-title title-jp">音楽と映像のリアルタイム同期が視聴者にもたらす影響</h3>
                 <div class="work-tags"><span>#TouchDesigner</span><span>#Audio Reactive</span>
