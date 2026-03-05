@@ -133,7 +133,7 @@ header {
     text-decoration: none;
     font-weight: 800;
     font-family: var(--font-en);
-    font-size: 3.0rem;
+    font-size: 1.95rem;
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -201,9 +201,9 @@ nav a {
     font-family: var(--font-en);
     color: var(--text-color);
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     letter-spacing: 0.02em;
-    padding: 12px 32px;
+    padding: 10px 28px;
     border-radius: 40px;
     position: relative;
     z-index: 2;
@@ -222,11 +222,11 @@ nav a:hover {
     }
 
     .logo {
-        font-size: 2.0rem;
+        font-size: 1.45rem;
     }
 
     nav a {
-        padding: 8px 22px;
-        font-size: 1.1rem;
+        padding: 8px 20px;
+        font-size: 1.05rem;
     }
 }
