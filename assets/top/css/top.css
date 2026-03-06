@@ -833,6 +833,19 @@ header.dark-mode nav a:hover {
         right: 5%;
     }
 
+    /* スマホ表示時のみ Introセクションの両端に余白を追加 */
+    .intro-container {
+        padding: 0 5vw;
+        box-sizing: border-box;
+    }
+
+    /* スマホ表示時の自己紹介文章の改行を最適化（自動文節改行） */
+    .intro-philosophy,
+    .intro-description {
+        word-break: auto-phrase;
+        /* 辞書ベースの自然な日本語改行 */
+    }
+
     .works-grid {
         grid-template-columns: 1fr;
     }
@@ -847,4 +860,6 @@ header.dark-mode nav a:hover {
         width: auto;
         font-size: 0.85rem;
     }
+
+
 }
