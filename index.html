@@ -32,14 +32,78 @@
     <script src="assets/common/js/header.js"></script>
 
     <section class="hero">
-        <div class="hero-text">
-            <h1 class="hero-title">
-                <span>Intuitive Art,<br>Accessible Magic.</span>
-            </h1>
+        <div class="hero-bottom-left">
+            <div class="hero-title">
+                <!-- SVG Filter for 3D Glass Lighting (Bevel / Specular) -->
+                <svg class="glass-filter-defs" xmlns="http://www.w3.org/2000/svg">
+                    <filter id="glassLighting" x="-10%" y="-10%" width="120%" height="120%">
+                        <!-- Extract the alpha channel (shape) of the SVG -->
+                        <feColorMatrix in="SourceAlpha" type="matrix"
+                            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="alpha" />
+
+                        <!-- Create a blur to simulate thickness/bevel -->
+                        <feGaussianBlur in="alpha" stdDeviation="2.5" result="blur" />
+
+                        <!-- Add specular lighting (shiny reflection) -->
+                        <feSpecularLighting in="blur" surfaceScale="2" specularConstant="1.2" specularExponent="40"
+                            lighting-color="#ffffff" result="specularOut">
+                            <!-- Distant light from top-left -->
+                            <feDistantLight azimuth="135" elevation="45" />
+                        </feSpecularLighting>
+
+                        <!-- Mask the specular light so it only appears ON the white text/stroke -->
+                        <feComposite in="specularOut" in2="alpha" operator="in" result="specularMasked" />
+
+                        <!-- Combine original shape with the new shiny lighting -->
+                        <feComposite in="specularMasked" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="1"
+                            k4="0" />
+                    </filter>
+
+                    <!-- Glass Refraction Filter -->
+                    <filter id="glassRefraction" x="0%" y="0%" width="100%" height="100%">
+                        <!-- Very low frequency noise for static smooth surface imperfections of cast glass -->
+                        <feTurbulence type="fractalNoise" baseFrequency="0.035 0.08" numOctaves="1" seed="4"
+                            result="noise" />
+                        <!-- Stronger displacement for noticeable refraction -->
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30" xChannelSelector="R"
+                            yChannelSelector="G" />
+                    </filter>
+                </svg>
+
+                <div class="svg-glass-row">
+                    <!-- 完璧なフロストガラスを作るために、背景動画を複製してぼかし、文字の形でマスクする -->
+                    <div class="frosted-glass-layer mask-row-1">
+                        <video src="assets/top/main-bg.mp4" autoplay loop muted playsinline
+                            class="blurred-video"></video>
+                        <div class="glass-tint"></div>
+                    </div>
+                    <!-- 外側の線（光の反射効果） -->
+                    <img src="assets/top/intuitive-art-outline.svg" alt="Intuitive Art," class="glass-highlight-stroke">
+                </div>
+
+                <div class="svg-glass-row">
+                    <div class="frosted-glass-layer mask-row-2">
+                        <video src="assets/top/main-bg.mp4" autoplay loop muted playsinline
+                            class="blurred-video"></video>
+                        <div class="glass-tint"></div>
+                    </div>
+                    <!-- 外側の線（光の反射効果） -->
+                    <img src="assets/top/accessible-magic-outline.svg" alt="Accessible Magic."
+                        class="glass-highlight-stroke">
+                </div>
+            </div>
+            <p class="hero-description">
+                Crafting memorable experiences through diverse technologies.<br class="pc-only">
+                Designing interactive art that resonates with audiences.
+            </p>
         </div>
 
-        <div class="scroll-down">
-            <span>scroll</span>
+        <div class="hero-side-text">
+            <span>PORTFOLIO 2026</span>
+        </div>
+
+        <div class="scroll-down-edge">
+            <span>Scroll</span>
         </div>
     </section>
 

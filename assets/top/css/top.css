@@ -73,143 +73,219 @@ header.dark-mode nav a:hover {
 /* --- Hero Section --- */
 .hero {
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5%;
-    /* position: relative; z-index: 1 を削除してスタッキングコンテキストを解除します */
+    position: relative;
+    padding: 0;
+    overflow: hidden;
 }
 
-.hero-text {
-    width: 100%;
-    max-width: 100vw;
+.hero-bottom-left {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 10;
+}
+
+.glass-filter-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
 }
 
 .hero-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* 子要素を中央揃えのベースにする */
     position: relative;
-    font-size: clamp(4rem, 8vw, 10.5rem);
-    line-height: 1.05;
-    /* 行間を狭くする */
-    margin-bottom: 0;
-    font-weight: 800;
-    /* アプローチ1：コントラストと物質感を強調 */
-    letter-spacing: -0.02em;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* 行間 */
     width: 100%;
-    text-shadow: none;
 }
 
-.hero-welcome {
-    font-family: var(--font-en);
-    font-size: clamp(0.75rem, 1.2vw, 1rem);
-    /* 小さく表示 */
-    font-weight: 300;
-    /* 細身にして洗練された印象に */
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.85);
-    /* 真っ白より少し濁らせてタイトルを引き立てる */
-    margin-top: 1.5rem;
-    /* タイトルとの距離を少し縮める */
-    margin-bottom: 0;
-    text-align: center;
-    /* 中心に並べる */
-    display: block;
+/* SVGテキストの行（相対配置の親）*/
+.svg-glass-row {
+    position: relative;
     width: 100%;
-    /* Welcomeテキストの高さを相殺してタイトルを画面の中心に保つための細工 */
-    transform: translateY(-50%);
+    /* 画面全体に対する割合を少し減らし、最大幅も小さくして存在感を調整 */
+    width: clamp(250px, 65vw, 900px);
+    z-index: auto;
+    isolation: isolate;
+    /* Create new layer stack for child overlay, NOT backdrop filter */
 }
 
-@media (min-width: 768px) {
-    .hero-text {
-        transform: translateY(-10%);
-        /* PC（横長）ではScrollの分だけ少し上に持ち上げる */
-    }
-}
-
-.hero-title span {
-    display: inline-block;
-    color: #FFF;
-    white-space: nowrap;
-    /* Magicだけが改行されるのを防ぐ */
-}
-
-/* --- Scroll Down Indicator --- */
-.scroll-down {
+/*
+ * フロストガラス効果: 
+ * backdrop-filterの代替として背景動画のコピーを配置し、ぼかしを適用しています。
+ */
+.frosted-glass-layer {
     position: absolute;
-    bottom: 50px;
-    /* 画面下部から少し浮かせる */
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* 外側の線(z-index: 2)の下に配置 */
+    pointer-events: none;
+    overflow: hidden;
+
+    /* SVGの形に合わせて全体をくり抜く 
+       100% 100%にすることで、外枠の画像が生み出すwidth/heightに完全に追従し、
+       ウィンドウ縮小時の小数点以下のピクセルズレを強制的に防ぎます */
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+/* 動画（背景と同じものを絶対配置して同期させる） */
+.frosted-glass-layer .blurred-video {
+    position: fixed;
+    /* 背景動画と全く同じ位置に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+
+    /* Simulate index of refraction magnification */
+    transform: scale(1.1);
+
+    /* ガラス特有の強いぼかしと明るさ、そして屈折の歪み（表面のゆがみ） */
+    filter: url(#glassRefraction) blur(4px) brightness(1.2) contrast(1.1) saturate(1.2);
+}
+
+/* ガラスの色味（白濁色）を動画の上に乗せる */
+.frosted-glass-layer .glass-tint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.25);
+    /* 曇り具合の調整 */
+}
+
+/* それぞれの行のマスク画像 */
+.mask-row-1 {
+    -webkit-mask-image: url('../intuitive-art-fill.svg');
+    mask-image: url('../intuitive-art-fill.svg');
+}
+
+.mask-row-2 {
+    -webkit-mask-image: url('../accessible-magic-fill.svg');
+    mask-image: url('../accessible-magic-fill.svg');
+}
+
+/* 外側の線（光沢・反射） */
+.glass-highlight-stroke {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    /* SVGフィルターによるガラスのエッジ（ハイライトとドロップシャドウ）の適用 */
+    filter: url('#glassLighting') drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0px 2px 4px rgba(255, 255, 255, 0.4));
+
+    /* 完全な透明ではなく、少し不透明にして反射を焼き付ける */
+    opacity: 0.5;
+
+    /* 映像にハイライトを柔らかく焼き付ける */
+    mix-blend-mode: overlay;
+}
+
+.hero-side-text {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.scroll-down-edge {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    /* 文字と線の間隔を広げる */
     z-index: 10;
-    animation: bounce 2.5s ease-in-out infinite;
-    /* 少しテンポを上げる */
-    pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-    /* 視認性を上げるための軽い影 */
 }
 
-.scroll-down span {
+.scroll-down-edge span {
     font-family: var(--font-en);
-    font-size: 0.65rem;
-    /* スマホでは目立ちすぎないように小さく */
-    font-weight: 200;
-    letter-spacing: 0.3em;
-    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
+    writing-mode: vertical-rl;
+    margin-bottom: 25px;
 }
 
-.scroll-down::after {
+.hero-description {
+    font-family: var(--font-en);
+    font-size: clamp(0.8rem, 1.1vw, 1.1rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1.2;
+    max-width: 900px;
+    position: relative;
+}
+
+.scroll-down-edge::after {
     content: '';
     width: 1px;
-    /* スマホでは細く */
+    height: 80px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.scroll-down-edge::before {
+    content: '';
+    position: absolute;
+    bottom: 45px;
+    width: 1px;
     height: 35px;
-    /* スマホでは短く */
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+    background: #FFF;
+    transform-origin: top center;
+    animation: scrollDropEdge 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+    z-index: 1;
 }
 
-@media (min-width: 768px) {
-    .scroll-down span {
-        font-size: 0.85rem;
-        /* PCでは大きく */
-        font-weight: 600;
-        /* 太くして存在感を出す */
-        letter-spacing: 0.4em;
-        color: rgba(255, 255, 255, 0.95);
+@keyframes scrollDropEdge {
+    0% {
+        transform: translateY(0) scaleY(0);
+        opacity: 0;
     }
 
-    .scroll-down::after {
-        width: 2px;
-        /* PCでは太く */
-        height: 50px;
-        /* PCでは長く */
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), transparent);
+    20% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
     }
-}
 
-@keyframes bounce {
+    70% {
+        opacity: 1;
+        transform: translateY(45px) scaleY(1);
+    }
 
-    0%,
     100% {
-        transform: translate(-50%, 0);
-    }
-
-    50% {
-        transform: translate(-50%, 12px);
-        /* バウンドの幅も広げる */
+        transform: translateY(80px) scaleY(0);
+        opacity: 0;
     }
 }
 
@@ -707,19 +783,54 @@ header.dark-mode nav a:hover {
 }
 
 @media (max-width: 768px) {
-    .hero {
-        padding: 0 5%;
-        justify-content: center;
-        text-align: left;
+
+    .video-background,
+    .hero,
+    .frosted-glass-layer .blurred-video {
+        height: 100svh;
+        /* スマホのUI（アドレスバー等）を正確に考慮した高さ */
     }
 
-    .hero-text {
-        max-width: 100%;
-        padding: 20px;
+    .hero {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-bottom-left {
+        position: static;
+        /* absoluteおよびtransformを解除しコンテナブロック問題を回避 */
+        width: 90%;
+        /* 両端に5%ずつの余白 */
+        padding: 0;
+        align-items: center;
+        /* 子要素を中央揃えに */
+        text-align: center;
     }
 
     .hero-title {
-        font-size: clamp(2rem, 10vw, 3rem);
+        align-items: center;
+        /* svg-glass-rowの中心揃え */
+        gap: 8px;
+        /* スマホでは2行のガラステキストの距離を少し近づける */
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        margin-top: 25px;
+        /* ガラステキストから少し離す */
+        margin-bottom: 20px;
+        /* 余白感の追加 */
+    }
+
+    .hero-side-text {
+        display: none;
+        /* Hide on mobile to avoid clutter */
+    }
+
+    .scroll-down-edge {
+        right: 5%;
     }
 
     .works-grid {
