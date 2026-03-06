@@ -133,14 +133,14 @@ header.dark-mode nav a:hover {
     overflow: hidden;
 
     /* SVGの形に合わせて全体をくり抜く 
-       100% 100%にすることで、外枠の画像が生み出すwidth/heightに完全に追従し、
-       ウィンドウ縮小時の小数点以下のピクセルズレを強制的に防ぎます */
-    -webkit-mask-size: 100% 100%;
+       iPadOS(Safari)等で発生する「小数点ピクセルの丸め誤差による塗り・枠のズレ」を防ぐため、
+       100% 100% (強制ストレッチ) ではなく 100% auto (元の縦横比を維持)にし、左上合わせにします */
+    -webkit-mask-size: 100% auto;
     -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-size: 100% 100%;
+    -webkit-mask-position: top left;
+    mask-size: 100% auto;
     mask-repeat: no-repeat;
-    mask-position: center;
+    mask-position: top left;
 }
 
 /* 動画（背景と同じものを絶対配置して同期させる） */

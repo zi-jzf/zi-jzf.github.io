@@ -80,16 +80,38 @@
         minTimeElapsed = true;
     }
 
+    const checkVideoAndFinish = () => {
+        // 背景動画があれば、それが再生可能になるまで待つ
+        const bgVideo = document.querySelector('video[autoplay]');
+        
+        if (bgVideo && bgVideo.readyState < 3) {
+            // 動画の読み込みがまだ不十分な場合
+            bgVideo.addEventListener('canplaythrough', () => {
+                pageLoaded = true;
+                checkFinish();
+            }, { once: true });
+
+            // ネットワーク環境等でいつまでも動画が読み込めない場合のフォールバック（8秒）
+            setTimeout(() => {
+                pageLoaded = true;
+                checkFinish();
+            }, 8000);
+        } else {
+            // 動画がない、または既に十分読み込まれている場合
+            pageLoaded = true;
+            checkFinish();
+        }
+    };
+
     window.addEventListener('load', () => {
-        pageLoaded = true;
-        checkFinish();
+        checkVideoAndFinish();
     });
 
-    // 何らかの理由でloadが発火しなかった場合のフォールバック（3秒）
+    // 何らかの理由で load が全く発火しなかった場合の大元のフォールバック（10秒）
     setTimeout(() => {
         pageLoaded = true;
         checkFinish();
-    }, 3000);
+    }, 10000);
 
     function checkFinish() {
         if (minTimeElapsed && pageLoaded && !finished) {
