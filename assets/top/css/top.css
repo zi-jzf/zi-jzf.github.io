@@ -133,14 +133,14 @@ header.dark-mode nav a:hover {
     overflow: hidden;
 
     /* SVGの形に合わせて全体をくり抜く 
-       iPadOS(Safari)等で発生する「小数点ピクセルの丸め誤差による塗り・枠のズレ」を防ぐため、
-       100% 100% (強制ストレッチ) ではなく 100% auto (元の縦横比を維持)にし、左上合わせにします */
-    -webkit-mask-size: 100% auto;
+       コンテナにaspect-ratioを指定したことで高さが確定するため、100% 100%に設定して
+       Chrome等の小数ピクセル丸め誤差によるimg（枠）とmask（塗り）のズレを強制的に一致させます */
+    -webkit-mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: top left;
-    mask-size: 100% auto;
+    -webkit-mask-position: center;
+    mask-size: 100% 100%;
     mask-repeat: no-repeat;
-    mask-position: top left;
+    mask-position: center;
 }
 
 /* 動画（背景と同じものを絶対配置して同期させる） */
@@ -185,8 +185,11 @@ header.dark-mode nav a:hover {
 
 /* 外側の線（光沢・反射） */
 .glass-highlight-stroke {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
 
     /* SVGフィルターによるガラスのエッジ（ハイライトとドロップシャドウ）の適用 */
