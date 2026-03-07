@@ -95,8 +95,17 @@
     let pageLoaded = false;
     let finished = false;
 
-    // ★セッションストレージを使って初回訪問かどうかを判定
-    const isFirstVisit = !sessionStorage.getItem('hasSeenLoader');
+    // Performance APIを使用してページがリロードされたかを判定
+    let isReload = false;
+    if (window.performance && window.performance.getEntriesByType) {
+        const navEntries = window.performance.getEntriesByType('navigation');
+        if (navEntries.length > 0 && navEntries[0].type === 'reload') {
+            isReload = true;
+        }
+    }
+
+    // 「ストレージに記録がない(完全な初回訪問)」または「明示的にリロードされた場合」にフルアニメーションを実行する
+    const isFirstVisit = !sessionStorage.getItem('hasSeenLoader') || isReload;
 
     if (isFirstVisit) {
         // 初回訪問時のみ、こだわりのアニメーションを実行
@@ -112,13 +121,13 @@
     } else {
         // 2回目以降はアニメーションの待ち時間をなくし、すぐにロード完了状態にする
         textElement.textContent = '( ^ _ ^ ) v';
-        subTextElement.textContent = 'completed!';
+        subTextElement.textContent = ''; // 2回目以降は文字を表示しない
         minTimeElapsed = true;
     }
 
     // 「loading...」のドットを 1,2,3,1,2,3... でループさせるアニメーション
     let dotCount = 1;
-    let isBlinking = true;
+    let isBlinking = isFirstVisit; // 初回のみ点滅させる
 
     const blinkInterval = setInterval(() => {
         if (!isBlinking) return;
@@ -192,7 +201,7 @@
                 }, 300);
             } else {
                 // 2回目以降：待たせずに、ピースサインから一瞬でフェードアウト
-                subTextElement.textContent = 'completed!';
+                subTextElement.textContent = ''; // completed! を表示しない
                 setTimeout(() => {
                     if (loader) loader.classList.add('hidden');
                     clearInterval(blinkInterval);
