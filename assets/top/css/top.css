@@ -327,12 +327,23 @@ header.dark-mode nav a:hover {
         /* スマホでは2行のガラステキストの距離を少し近づける */
     }
 
+    .svg-glass-row {
+        /* スマホの時は画面幅の85%まで広げ、最低でも300pxを担保する */
+        width: clamp(300px, 85vw, 600px);
+    }
+
     .hero-description {
-        font-size: 0.85rem;
-        margin-top: 25px;
+        /* スマホ用: 最小0.7rem、推奨値(画面幅の3.5%程度)、最大0.85rem */
+        font-size: clamp(0.7rem, 3.5vw, 0.85rem);
+        margin-top: 20px;
         /* ガラステキストから少し離す */
         margin-bottom: 20px;
-        /* 余白感の追加 */
+        padding: 0 5vw;
+        /* 左右に画面幅の5%ずつの余白を追加 */
+        text-align: center;
+        /* 英語だと中央配置にした方がバランスが良くなります */
+        text-wrap: balance;
+        /* 英語の文章を中央寄せで美しく改行するモダン手法 */
     }
 
     .hero-side-text {
