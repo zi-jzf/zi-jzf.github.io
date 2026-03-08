@@ -108,8 +108,76 @@
     margin: 0;
 }
 
+@media (max-width: 1300px) {
+    .project-container {
+        grid-template-columns: 1fr;
+        padding-top: 120px;
+        gap: 40px;
+        /* サイドバー（メタ情報）と本文の間隔 */
+        max-width: 860px;
+        /* 本文の最大幅(800px) + 左右の余裕 を確保して中央に配置 */
+    }
+
+    .project-sidebar {
+        position: static;
+        width: 100%;
+        margin-bottom: 0;
+        text-align: left;
+        display: block;
+    }
+
+    .project-title {
+        font-size: 1.9rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+
+    /* 雑誌・論文風のメタ情報レイアウト（横並び） */
+    .project-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 40px;
+        row-gap: 20px;
+        border-top: 2px solid var(--text-color);
+        /* 上のラインを少し強調して引き締める */
+        border-bottom: 1px solid var(--meta-border-color, rgba(0, 0, 0, 0.1));
+        padding: 20px 0;
+        margin-bottom: 0;
+        /* 本文との間隔はcontainerのgapに任せる */
+    }
+}
+
+@media (max-width: 600px) {
+    .project-title {
+        font-size: 1.6rem;
+        line-height: 1.4;
+    }
+
+    /* スマホでも情報のヒエラルキーを美しく保つ2カラムグリッド */
+    .project-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 15px;
+        padding: 15px 0;
+    }
+
+    /* Category(4番目)やTech(5番目)など横長になる可能性のある項目はフル幅に */
+    .meta-item:nth-child(n+4) {
+        grid-column: 1 / -1;
+    }
+}
+
 .project-content {
     max-width: 800px;
+}
+
+@media (max-width: 1300px) {
+    .project-content {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 800px;
+        /* 行が長くなりすぎないように最大幅を800pxに制限 */
+    }
 }
 
 .video-wrapper {
@@ -172,6 +240,14 @@ h2 {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--h2-border-color, rgba(0, 0, 0, 0.2));
     letter-spacing: 0.05em;
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 1.4rem;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .lead-text {
@@ -268,6 +344,13 @@ p {
     font-size: 0.9rem;
     color: var(--accent-color);
     margin-right: 8px;
+}
+
+@media (max-width: 1300px) {
+    .media-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 /* --- Lightbox --- */
@@ -374,83 +457,7 @@ p {
     margin-bottom: 0;
 }
 
-/* --- Responsive Layout for Works --- */
-@media (max-width: 1300px) {
-    .project-container {
-        grid-template-columns: 1fr;
-        padding-top: 120px;
-        gap: 40px;
-        /* サイドバー（メタ情報）と本文の間隔 */
-        max-width: 860px;
-        /* 本文の最大幅(800px) + 左右の余裕 を確保して中央に配置 */
-    }
-
-    .project-sidebar {
-        position: static;
-        width: 100%;
-        margin-bottom: 0;
-        text-align: left;
-        display: block;
-    }
-
-    .project-title {
-        font-size: 1.9rem;
-        margin-bottom: 1.5rem;
-        text-align: left;
-    }
-
-    /* 雑誌・論文風のメタ情報レイアウト（横並び） */
-    .project-meta {
-        flex-direction: row;
-        flex-wrap: wrap;
-        column-gap: 40px;
-        row-gap: 20px;
-        border-top: 2px solid var(--text-color);
-        /* 上のラインを少し強調して引き締める */
-        border-bottom: 1px solid var(--meta-border-color, rgba(0, 0, 0, 0.1));
-        padding: 20px 0;
-        margin-bottom: 0;
-        /* 本文との間隔はcontainerのgapに任せる */
-    }
-
-    .project-content {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 800px;
-        /* 行が長くなりすぎないように最大幅を800pxに制限 */
-    }
-
-    .media-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
 @media (max-width: 600px) {
-    .project-title {
-        font-size: 1.6rem;
-        line-height: 1.4;
-    }
-
-    h2 {
-        font-size: 1.4rem;
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
-    }
-
-    /* スマホでも情報のヒエラルキーを美しく保つ2カラムグリッド */
-    .project-meta {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px 15px;
-        padding: 15px 0;
-    }
-
-    /* Category(4番目)やTech(5番目)など横長になる可能性のある項目はフル幅に */
-    .meta-item:nth-child(n+4) {
-        grid-column: 1 / -1;
-    }
-
     .summary-box {
         padding: 2rem 1.5rem;
         /* スマホではpaddingを少し狭くしてスペースを確保 */
@@ -460,6 +467,8 @@ p {
         font-size: 1.2rem;
     }
 }
+
+
 
 /* --- Audio Toggle Button Styles --- */
 .audio-controls {

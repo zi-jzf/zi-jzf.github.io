@@ -292,6 +292,59 @@ header.dark-mode nav a:hover {
     }
 }
 
+/* Hero Section Media Queries */
+@media (max-width: 768px) {
+
+    .video-background,
+    .hero,
+    .frosted-glass-layer .blurred-video {
+        height: 100svh;
+        /* スマホのUI（アドレスバー等）を正確に考慮した高さ */
+    }
+
+    .hero {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-bottom-left {
+        position: static;
+        /* absoluteおよびtransformを解除しコンテナブロック問題を回避 */
+        width: 90%;
+        /* 両端に5%ずつの余白 */
+        padding: 0;
+        align-items: center;
+        /* 子要素を中央揃えに */
+        text-align: center;
+    }
+
+    .hero-title {
+        align-items: center;
+        /* svg-glass-rowの中心揃え */
+        gap: 8px;
+        /* スマホでは2行のガラステキストの距離を少し近づける */
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        margin-top: 25px;
+        /* ガラステキストから少し離す */
+        margin-bottom: 20px;
+        /* 余白感の追加 */
+    }
+
+    .hero-side-text {
+        display: none;
+        /* Hide on mobile to avoid clutter */
+    }
+
+    .scroll-down-edge {
+        right: 5%;
+    }
+}
+
 
 /* --- Intro Section --- */
 /* --- Intro (Statement) Section --- */
@@ -579,6 +632,19 @@ header.dark-mode nav a:hover {
         padding: 12px 24px;
         font-size: 0.95rem;
     }
+
+    /* スマホ表示時のみ Introセクションの両端に余白を追加 */
+    .intro-container {
+        padding: 0 5vw;
+        box-sizing: border-box;
+    }
+
+    /* スマホ表示時の自己紹介文章の改行を最適化（自動文節改行） */
+    .intro-philosophy,
+    .intro-description {
+        word-break: auto-phrase;
+        /* 辞書ベースの自然な日本語改行 */
+    }
 }
 
 /* --- Works Section --- */
@@ -778,7 +844,7 @@ header.dark-mode nav a:hover {
     content: none;
 }
 
-/* Top Page Media Queries */
+/* Works Section Media Queries */
 @media (max-width: 1400px) {
     .works-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -786,69 +852,6 @@ header.dark-mode nav a:hover {
 }
 
 @media (max-width: 768px) {
-
-    .video-background,
-    .hero,
-    .frosted-glass-layer .blurred-video {
-        height: 100svh;
-        /* スマホのUI（アドレスバー等）を正確に考慮した高さ */
-    }
-
-    .hero {
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .hero-bottom-left {
-        position: static;
-        /* absoluteおよびtransformを解除しコンテナブロック問題を回避 */
-        width: 90%;
-        /* 両端に5%ずつの余白 */
-        padding: 0;
-        align-items: center;
-        /* 子要素を中央揃えに */
-        text-align: center;
-    }
-
-    .hero-title {
-        align-items: center;
-        /* svg-glass-rowの中心揃え */
-        gap: 8px;
-        /* スマホでは2行のガラステキストの距離を少し近づける */
-    }
-
-    .hero-description {
-        font-size: 0.85rem;
-        margin-top: 25px;
-        /* ガラステキストから少し離す */
-        margin-bottom: 20px;
-        /* 余白感の追加 */
-    }
-
-    .hero-side-text {
-        display: none;
-        /* Hide on mobile to avoid clutter */
-    }
-
-    .scroll-down-edge {
-        right: 5%;
-    }
-
-    /* スマホ表示時のみ Introセクションの両端に余白を追加 */
-    .intro-container {
-        padding: 0 5vw;
-        box-sizing: border-box;
-    }
-
-    /* スマホ表示時の自己紹介文章の改行を最適化（自動文節改行） */
-    .intro-philosophy,
-    .intro-description {
-        word-break: auto-phrase;
-        /* 辞書ベースの自然な日本語改行 */
-    }
-
     .works-grid {
         grid-template-columns: 1fr;
     }
@@ -863,6 +866,4 @@ header.dark-mode nav a:hover {
         width: auto;
         font-size: 0.85rem;
     }
-
-
 }
