@@ -182,6 +182,7 @@
             setTimeout(() => {
                 this.loader.classList.remove('slide-center');
                 this.loader.classList.add('slide-out-left');
+                document.dispatchEvent(new Event('loaderExited'));
                 // 完了後に完全に隠す
                 setTimeout(() => { this.loader.classList.add('hidden'); }, 600);
             }, delay);
@@ -191,6 +192,7 @@
             setTimeout(() => {
                 this.loader.classList.remove('slide-center');
                 this.loader.classList.add('slide-out-up');
+                document.dispatchEvent(new Event('loaderExited'));
                 // 完了後に完全に隠す
                 setTimeout(() => { this.loader.classList.add('hidden'); }, 600);
             }, delay);
@@ -199,6 +201,7 @@
         hideInstantly() {
             this.loader.classList.remove('slide-center', 'slide-in-right', 'slide-out-left', 'slide-out-up');
             this.loader.classList.add('hidden');
+            document.dispatchEvent(new Event('loaderExited'));
         }
     };
 

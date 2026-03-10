@@ -52,7 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/* --- 3. URLパラメータ受け取り機能 --- */
+/* --- 3. Heroアニメーション起動 --- */
+document.addEventListener('loaderExited', () => {
+    document.body.classList.add('hero-animated');
+});
+
+/* --- 4. URLパラメータ受け取り機能 --- */
 window.addEventListener('load', () => {
     const params = new URLSearchParams(window.location.search);
     const targetFilter = params.get('filter');

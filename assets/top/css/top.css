@@ -292,6 +292,141 @@ header.dark-mode nav a:hover {
     }
 }
 
+/* --- Hero Entrance Animation --- */
+.hero-title .svg-glass-row {
+    opacity: 0;
+    margin-left: -120px;
+    /* 最初はもっと大きく左に配置 */
+    filter: blur(15px);
+    will-change: margin-left, opacity, filter;
+    transform: translateZ(0);
+    /* ハードウェアアクセラレーションを有効化するためのハック */
+}
+
+.hero-description {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+    will-change: transform, opacity, filter;
+}
+
+.scroll-down-edge {
+    opacity: 0;
+    transform: translateY(-30px);
+    /* 上から下に浮かび上がる設定に変更 */
+    filter: blur(10px);
+    will-change: transform, opacity, filter;
+}
+
+.hero-side-text {
+    opacity: 0;
+    transform: translateY(calc(-50% - 30px));
+    /* 元のY中心より上から配置 */
+    filter: blur(10px);
+    will-change: transform, opacity, filter;
+}
+
+.hero-animated .hero-title .svg-glass-row {
+    animation: heroFadeLeftBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animated .hero-description {
+    animation: heroFadeUpBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animated .scroll-down-edge {
+    animation: heroFadeDownBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animated .hero-side-text {
+    animation: heroSideTextFadeDownBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroFadeLeftBlur {
+    0% {
+        opacity: 0;
+        margin-left: -120px;
+        /* より左から */
+        filter: blur(15px);
+        transform: translateZ(0);
+        /* ハードウェアアクセラレーションを有効化するためのハック */
+    }
+
+    100% {
+        opacity: 1;
+        margin-left: 0;
+        filter: blur(0);
+        transform: translateZ(0);
+    }
+}
+
+@keyframes heroFadeUpBlur {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes heroFadeDownBlur {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+        /* 上から下に */
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes heroSideTextFadeDownBlur {
+    0% {
+        opacity: 0;
+        transform: translateY(calc(-50% - 40px));
+        /* 上から下に */
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(-50%);
+        filter: blur(0);
+    }
+}
+
+/* Staggering delays - アニメーションが長くなっても絶対時間指定なのでそのまま反映されます */
+.hero-animated .hero-title .svg-glass-row:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hero-animated .hero-title .svg-glass-row:nth-child(3) {
+    animation-delay: 0.6s;
+    /* 間隔を少し開ける */
+}
+
+.hero-animated .hero-description {
+    animation-delay: 1.1s;
+    /* SVGが出た後に少し遅れて */
+}
+
+.hero-animated .hero-side-text {
+    animation-delay: 1.5s;
+}
+
+.hero-animated .scroll-down-edge {
+    animation-delay: 1.9s;
+}
+
 /* Hero Section Media Queries */
 @media (max-width: 768px) {
 
