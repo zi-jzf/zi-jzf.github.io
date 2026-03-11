@@ -137,10 +137,10 @@ header.dark-mode nav a:hover {
        Chrome等の小数ピクセル丸め誤差によるimg（枠）とmask（塗り）のズレを強制的に一致させます */
     -webkit-mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
+    -webkit-mask-position: 0 0;
     mask-size: 100% 100%;
     mask-repeat: no-repeat;
-    mask-position: center;
+    mask-position: 0 0;
 }
 
 /* 動画（背景と同じものを絶対配置して同期させる） */
