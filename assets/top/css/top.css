@@ -297,10 +297,8 @@ header.dark-mode nav a:hover {
     opacity: 0;
     margin-left: -120px;
     /* 最初はもっと大きく左に配置 */
-    filter: blur(15px);
-    will-change: margin-left, opacity, filter;
-    transform: translateZ(0);
-    /* ハードウェアアクセラレーションを有効化するためのハック */
+    will-change: margin-left, opacity;
+    /* 注意: transform や filter(none以外) は position: fixed の子要素を壊すため使用しない */
 }
 
 .hero-description {
@@ -347,16 +345,11 @@ header.dark-mode nav a:hover {
         opacity: 0;
         margin-left: -120px;
         /* より左から */
-        filter: blur(15px);
-        transform: translateZ(0);
-        /* ハードウェアアクセラレーションを有効化するためのハック */
     }
 
     100% {
         opacity: 1;
         margin-left: 0;
-        filter: blur(0);
-        transform: translateZ(0);
     }
 }
 
