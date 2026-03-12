@@ -81,11 +81,18 @@
     color: inherit;
 }
 
-.tag:hover,
 .tag.active {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     color: var(--tag-hover-text, #fff);
+}
+
+@media (hover: hover) {
+    .tag:hover {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: var(--tag-hover-text, #fff);
+    }
 }
 
 .keyword-list {
@@ -301,9 +308,11 @@ p {
     transition: all 0.3s ease;
 }
 
-.project-content p a:hover {
-    color: var(--accent-color);
-    text-decoration-color: var(--accent-color);
+@media (hover: hover) {
+    .project-content p a:hover {
+        color: var(--accent-color);
+        text-decoration-color: var(--accent-color);
+    }
 }
 
 /* .media-block merged above */
@@ -359,8 +368,10 @@ p {
     transition: transform 0.2s;
 }
 
-.zoomable:hover {
-    opacity: 0.9;
+@media (hover: hover) {
+    .zoomable:hover {
+        opacity: 0.9;
+    }
 }
 
 #lightbox-overlay {
@@ -498,9 +509,11 @@ p {
     /* 中央寄せをより確実に */
 }
 
-.audio-toggle-btn:hover {
-    background-color: rgba(7, 43, 105, 0.05);
-    /* アクセントカラーの薄い背景 */
+@media (hover: hover) {
+    .audio-toggle-btn:hover {
+        background-color: rgba(7, 43, 105, 0.05);
+        /* アクセントカラーの薄い背景 */
+    }
 }
 
 .audio-toggle-btn.active {

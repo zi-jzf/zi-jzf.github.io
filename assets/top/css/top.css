@@ -31,8 +31,10 @@ header.dark-mode nav a {
     font-weight: 400;
 }
 
-header.dark-mode nav a:hover {
-    color: #fff !important;
+@media (hover: hover) {
+    header.dark-mode nav a:hover {
+        color: #fff !important;
+    }
 }
 
 /* --- Video Background --- */
@@ -596,13 +598,15 @@ header.dark-mode nav a:hover {
     margin-bottom: 2vh;
 }
 
-.more-about-btn:hover {
-    background-color: #F9CD46;
-    /* 背景を黄色に */
-    border-color: #F9CD46;
-    /* 枠線も黄色に */
-    color: #071641;
-    /* 背景が黄色になるので、文字はネイビーにして読みやすくする */
+@media (hover: hover) {
+    .more-about-btn:hover {
+        background-color: #F9CD46;
+        /* 背景を黄色に */
+        border-color: #F9CD46;
+        /* 枠線も黄色に */
+        color: #071641;
+        /* 背景が黄色になるので、文字はネイビーにして読みやすくする */
+    }
 }
 
 /* 矢印（→）のベーススタイル */
@@ -613,8 +617,10 @@ header.dark-mode nav a:hover {
 }
 
 /* ホバー時に矢印を右に動かす */
-.more-about-btn:hover .arrow {
-    transform: translateX(6px);
+@media (hover: hover) {
+    .more-about-btn:hover .arrow {
+        transform: translateX(6px);
+    }
 }
 
 /* レスポンシブ対応 (スマホ・タブレット向け) */
@@ -880,11 +886,18 @@ header.dark-mode nav a:hover {
     color: var(--text-color);
 }
 
-.filter-btn:hover,
 .filter-btn.active {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     color: #fff;
+}
+
+@media (hover: hover) {
+    .filter-btn:hover {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: #fff;
+    }
 }
 
 /* Works Grid */
@@ -929,8 +942,10 @@ header.dark-mode nav a:hover {
     pointer-events: none;
 }
 
-.work-item:hover .work-thumb::after {
-    opacity: 0.4;
+@media (hover: hover) {
+    .work-item:hover .work-thumb::after {
+        opacity: 0.4;
+    }
 }
 
 .work-thumb img {

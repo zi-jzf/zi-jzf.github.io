@@ -212,8 +212,10 @@ nav a {
     line-height: 1.2;
 }
 
-nav a:hover {
-    color: #fff;
+@media (hover: hover) {
+    nav a:hover {
+        color: #fff;
+    }
 }
 
 @media (max-width: 600px) {
