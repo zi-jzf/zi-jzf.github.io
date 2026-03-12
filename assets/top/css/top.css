@@ -174,13 +174,13 @@ header.dark-mode nav a:hover {
 
 /* それぞれの行のマスク画像 */
 .mask-row-1 {
-    -webkit-mask-image: url('../intuitive-art-fill.svg');
-    mask-image: url('../intuitive-art-fill.svg');
+    -webkit-mask-image: url('../hero/intuitive-art-fill.svg');
+    mask-image: url('../hero/intuitive-art-fill.svg');
 }
 
 .mask-row-2 {
-    -webkit-mask-image: url('../accessible-magic-fill.svg');
-    mask-image: url('../accessible-magic-fill.svg');
+    -webkit-mask-image: url('../hero/accessible-magic-fill.svg');
+    mask-image: url('../hero/accessible-magic-fill.svg');
 }
 
 /* 外側の線（光沢・反射） */
