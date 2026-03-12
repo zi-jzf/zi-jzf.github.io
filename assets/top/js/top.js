@@ -74,3 +74,29 @@ window.addEventListener('load', () => {
         }
     }
 });
+
+/* --- 5. Worksセクションの拡大アニメーション --- */
+document.addEventListener('DOMContentLoaded', () => {
+    const worksSectionNode = document.querySelector('.works-section');
+    if (worksSectionNode) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 画面内に入ったらクラスを付与して広がる
+                    worksSectionNode.classList.add('is-expanded');
+                } else {
+                    // 画面外に出た時、要素が画面の下に消えた場合（上にスクロールして戻った場合）にのみリセット
+                    // boundingClientRect.top が window.innerHeight より大きい場合は画面下にいる
+                    if (entry.boundingClientRect.top >= window.innerHeight - 100) {
+                        worksSectionNode.classList.remove('is-expanded');
+                    }
+                }
+            });
+        }, {
+            // 要素が画面に少し（10%）見えたタイミングで発火
+            threshold: 0.1
+        });
+
+        observer.observe(worksSectionNode);
+    }
+});

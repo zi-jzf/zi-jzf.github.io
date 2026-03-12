@@ -113,8 +113,6 @@ header.dark-mode nav a:hover {
     /* 画面全体に対する割合を少し減らし、最大幅も小さくして存在感を調整 */
     width: clamp(250px, 65vw, 900px);
     z-index: auto;
-    isolation: isolate;
-    /* Create new layer stack for child overlay, NOT backdrop filter */
 }
 
 /*
@@ -293,131 +291,54 @@ header.dark-mode nav a:hover {
 }
 
 /* --- Hero Entrance Animation --- */
-.hero-title .svg-glass-row {
-    opacity: 0;
-    margin-left: -120px;
-    /* 最初はもっと大きく左に配置 */
-    will-change: margin-left, opacity;
-    /* 注意: transform や filter(none以外) は position: fixed の子要素を壊すため使用しない */
-}
-
-.hero-description {
-    opacity: 0;
-    transform: translateY(30px);
-    filter: blur(10px);
-    will-change: transform, opacity, filter;
-}
-
-.scroll-down-edge {
-    opacity: 0;
-    transform: translateY(-30px);
-    /* 上から下に浮かび上がる設定に変更 */
-    filter: blur(10px);
-    will-change: transform, opacity, filter;
-}
-
+.hero-title .svg-glass-row,
+.hero-description,
+.scroll-down-edge,
 .hero-side-text {
     opacity: 0;
-    transform: translateY(calc(-50% - 30px));
-    /* 元のY中心より上から配置 */
-    filter: blur(10px);
-    will-change: transform, opacity, filter;
+    will-change: opacity;
 }
 
 .hero-animated .hero-title .svg-glass-row {
-    animation: heroFadeLeftBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: heroFadeIn 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-.hero-animated .hero-description {
-    animation: heroFadeUpBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.hero-animated .scroll-down-edge {
-    animation: heroFadeDownBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
+.hero-animated .hero-description,
+.hero-animated .scroll-down-edge,
 .hero-animated .hero-side-text {
-    animation: heroSideTextFadeDownBlur 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: heroFadeIn 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-@keyframes heroFadeLeftBlur {
+@keyframes heroFadeIn {
     0% {
         opacity: 0;
-        margin-left: -120px;
-        /* より左から */
     }
 
     100% {
         opacity: 1;
-        margin-left: 0;
-    }
-}
-
-@keyframes heroFadeUpBlur {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
-        filter: blur(10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-@keyframes heroFadeDownBlur {
-    0% {
-        opacity: 0;
-        transform: translateY(-40px);
-        /* 上から下に */
-        filter: blur(10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-@keyframes heroSideTextFadeDownBlur {
-    0% {
-        opacity: 0;
-        transform: translateY(calc(-50% - 40px));
-        /* 上から下に */
-        filter: blur(10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(-50%);
-        filter: blur(0);
     }
 }
 
 /* Staggering delays - アニメーションが長くなっても絶対時間指定なのでそのまま反映されます */
 .hero-animated .hero-title .svg-glass-row:nth-child(2) {
-    animation-delay: 0.2s;
+    animation-delay: 0.4s;
 }
 
 .hero-animated .hero-title .svg-glass-row:nth-child(3) {
-    animation-delay: 0.6s;
-    /* 間隔を少し開ける */
+    animation-delay: 0.8s;
 }
 
 .hero-animated .hero-description {
-    animation-delay: 1.1s;
-    /* SVGが出た後に少し遅れて */
+    animation-delay: 1.0s;
+    /* 2行目が出た後、少し待ってから */
 }
 
 .hero-animated .hero-side-text {
-    animation-delay: 1.5s;
+    animation-delay: 1.4s;
 }
 
 .hero-animated .scroll-down-edge {
-    animation-delay: 1.9s;
+    animation-delay: 1.8s;
 }
 
 /* Hero Section Media Queries */
@@ -495,7 +416,7 @@ header.dark-mode nav a:hover {
     align-items: center;
     justify-content: center;
     z-index: 10;
-    overflow: hidden;
+    /* overflow: hidden を削除して、40px下へ延長した背景画像が見えるようにする */
 }
 
 /* 背景画像（HTMLから指定されているもの） */
@@ -504,15 +425,20 @@ header.dark-mode nav a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    /* 下の角丸の隙間を埋めるため、本来の100%より40pxだけ長く（下へ）伸ばす */
+    height: calc(100% + 500px);
     z-index: -1;
+    overflow: hidden;
+    /* Hero動画から自然とシームレスに切り替わるように、上部をグラデーションで透過（マスク） */
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 15%);
+    mask-image: linear-gradient(180deg, transparent 0%, black 15%);
 }
 
 .intro-bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* 画面いっぱいに広げる */
+    will-change: transform;
 }
 
 /* 擬似要素で背景グラデーションを合成 */
@@ -522,8 +448,10 @@ header.dark-mode nav a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(7, 22, 65, 0.8) 0%, rgba(61, 20, 54, 0.8) 100%);
+    /* こちらのグラデーションも同じく40px延長して下まで色を届かせる */
+    height: calc(100% + 40px);
+    /* Hero動画が見えるように上部の色も透明から開始してブレンド */
+    background: linear-gradient(180deg, rgba(7, 22, 65, 0) 0%, rgba(7, 22, 65, 0.85) 15%, rgba(61, 20, 54, 0.9) 100%);
     z-index: -1;
     pointer-events: none;
 }
@@ -550,6 +478,7 @@ header.dark-mode nav a:hover {
     width: clamp(200px, 40vw, 600px);
     /* 画面幅に連動して縮むように設定し、被りを防ぐ */
     height: auto;
+    will-change: transform;
 }
 
 .intro-content {
@@ -786,6 +715,88 @@ header.dark-mode nav a:hover {
     }
 }
 
+/* === Intro Section Animations === */
+/* 親要素の一括フェードインを無効化し、子要素の個別アニメーションのトリガーとして使用 */
+.intro-container.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+/* 各子要素の初期状態：下からの移動 ＋ 透明 ＋ ぼかし（フロストガラスのテーマと統一） */
+.intro-role,
+.intro-philosophy,
+.intro-description,
+.intro-skills,
+.more-about-btn {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(10px);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform, filter;
+}
+
+/* 背景文字（STATEMENT）のワイプインアニメーション初期状態 */
+.intro-decor-title {
+    opacity: 1;
+    /* 透明度は最初から1 (スマホ用の0.7調整はメディアクエリで上書き) */
+    clip-path: inset(0 100% 0 0);
+    /* 右側を100%切り取って隠す（左から右へワイプするための準備） */
+    transition: clip-path 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: clip-path;
+}
+
+/* スクロール連動で順番に表示（スタッガー・エフェクト） */
+.intro-container.reveal.active .intro-decor-title {
+    clip-path: inset(0 0 0 0);
+    /* 切り取りを解除して全体を表示（左から右へワイプイン） */
+    transition-delay: 0.1s;
+}
+
+.intro-container.reveal.active .intro-role {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.3s;
+}
+
+.intro-container.reveal.active .intro-philosophy {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.5s;
+}
+
+.intro-container.reveal.active .intro-description {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.65s;
+}
+
+.intro-container.reveal.active .intro-skills {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.8s;
+}
+
+.intro-container.reveal.active .more-about-btn {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.95s;
+}
+
+/* スマホ表示時、背景文字(STATEMENT)の透明度を元々のデザインに合わせて調整 */
+@media (max-width: 768px) {
+    .intro-container.reveal.active .intro-decor-title {
+        opacity: 0.7;
+    }
+}
+
 /* --- Works Section --- */
 .works-section {
     background-color: var(--bg-color);
@@ -795,6 +806,27 @@ header.dark-mode nav a:hover {
     z-index: 10;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
+
+    /* スクロールで左右に広がるアニメーション（初期状態） */
+    clip-path: inset(0 15vw 0 15vw round 80px 80px 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: clip-path;
+}
+
+.works-section.is-expanded {
+    /* 画面幅いっぱいに広がり、元の角丸40pxに戻る */
+    clip-path: inset(0 0 0 0 round 40px 40px 0 0);
+}
+
+@media (max-width: 768px) {
+    .works-section {
+        /* スマホは幅が狭いので切り取り量を控えめに */
+        clip-path: inset(0 8vw 0 8vw round 60px 60px 0 0);
+    }
+
+    .works-section.is-expanded {
+        clip-path: inset(0 0 0 0 round 40px 40px 0 0);
+    }
 }
 
 .filter-buttons {
