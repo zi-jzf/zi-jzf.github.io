@@ -427,7 +427,7 @@ header.dark-mode nav a {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% + 150vh);
+    height: calc(100% + 125vh);
     z-index: -1;
     overflow: hidden;
     /* Hero動画から自然とシームレスに切り替わるように、上部をグラデーションで透過（マスク） */
@@ -451,7 +451,7 @@ header.dark-mode nav a {
     left: 0;
     width: 100%;
     /* こちらのグラデーションも同じく40px延長して下まで色を届かせる */
-    height: calc(100% + 150vh);
+    height: calc(100% + 125vh);
     /* Hero動画が見えるように上部の色も透明から開始してブレンド */
     background: linear-gradient(180deg, rgba(7, 22, 65, 0) 0%, rgba(7, 22, 65, 0.85) 15%, rgba(61, 20, 54, 0.9) 100%);
     z-index: -1;
