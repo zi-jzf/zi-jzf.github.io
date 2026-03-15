@@ -210,15 +210,27 @@
     margin: 2rem 0;
 }
 
-.media-block video,
-.media-block img {
+.media-block video {
     width: 100%;
     height: auto;
     border-radius: 8px;
     border: 1px solid var(--img-border-color, rgba(0, 0, 0, 0.05));
     display: block;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     object-fit: cover;
+}
+
+.media-block img {
+    width: auto;
+    /* ← 自然なサイズを使う */
+    max-width: 100%;
+    /* ← コンテナより大きくはならない */
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--img-border-color, rgba(0, 0, 0, 0.05));
+    display: block;
+    margin: 0 auto;
+    /* ← 中央寄せ */
+    box-shadow: none;
 }
 
 /* media-block 内の img は標準では影なし（以前の image-block 相当）にしたい場合は別途調整が必要だが、
@@ -284,11 +296,10 @@ h2 {
 .sub-heading::before {
     content: '';
     display: inline-block;
-    width: 4px;
-    height: 4px;
+    width: 8px;
+    height: 8px;
     background-color: var(--accent-color);
     margin-right: 10px;
-    border-radius: 50%;
 }
 
 p {

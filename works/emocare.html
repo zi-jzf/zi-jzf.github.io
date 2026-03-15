@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Emocare | Works</title>
+
+    <link rel="icon" href="../assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/common/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../assets/common/css/common.css">
+    <!-- Works Page Specific CSS -->
+    <link rel="stylesheet" href="../assets/works/css/works.css">
+
+    <!-- Custom Colors for Emocare -->
+    <style>
+        :root {
+            /* ページ専用のカラー設定（必要に応じて調整） */
+            --bg-color: #fceef2;
+            --accent-color: #79CCDE;
+            --text-color: #143E55;
+            --sub-text-color: #7a8fa3;
+
+            --video-overlay-color: rgba(0, 0, 0, 0.4);
+
+            /* Light mode specific overrides if necessary */
+            --h2-border-color: rgba(0, 0, 0, 0.1);
+            --meta-border-color: rgba(0, 0, 0, 0.1);
+            --img-border-color: rgba(0, 0, 0, 0.05);
+            --tag-hover-text: #ffffff;
+            --lead-text-color: #0f2d3d;
+            --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .video-background::after {
+            background: var(--video-overlay-color);
+        }
+    </style>
+
+    <script src="../assets/common/js/loader.js"></script>
+</head>
+
+<body>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
+    <!-- 共通ヘッダー -->
+    <script src="../assets/common/js/header.js"></script>
+
+    <div class="project-container">
+
+        <!-- 左サイドバー -->
+        <aside class="project-sidebar">
+            <h1 class="project-title">Emocare</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Year</span>
+                    <span class="meta-value">2023</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Context</span> <span class="meta-value">大学の課題(個人制作)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span> <span class="meta-value">2 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tags</span>
+                    <div class="tags">
+                        <a href="../index.html?filter=design" class="tag">#Design</a>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Keywords</span>
+                    <div class="keyword-list">
+                        <span>Figma</span>
+                        <span>Blender</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <article class="project-content">
+
+            <!-- メインビジュアル -->
+            <div class="media-block">
+                <img src="../assets/works/emocare/emocare-top-image.png" alt="Emocare Main Visual" decoding="async">
+            </div>
+
+            <!-- セクション1: 概要・コンセプト -->
+            <div class="content-section">
+                <h2 class="reveal">Concept</h2>
+
+                <p class="lead-text reveal">
+                    他人と比べない自分のペースでの育児を提案する子育て支援
+                </p>
+                <p class="reveal">
+                    大学のUI/UXデザインの授業で出された<b>「教育分野の近未来社会におけるUXデザイン提案」</b>というテーマのもと、制作しました。住友理工株式会社から心拍数などの生体情報の取得が可能な生体センサ「モニライフ」を用いて赤ちゃんの感情を読み取り、親への行動の提案・子供の感情の記録を取るサービスです。
+                </p>
+            </div>
+
+            <!-- セクション2: 調査と問題点 -->
+            <div class="content-section">
+                <h2 class="reveal">Research & Problem</h2>
+                <p class="lead-text reveal">
+                    調査によって見えてきた3つの課題
+                </p>
+                <p class="reveal">
+                    少子高齢化が進む現代において、社会の活力を維持するための<b>「育児支援」</b>に焦点を当てました。<br>
+                    解決のアプローチとして、これまで医療やスポーツ分野で主に用いられていた生体センサが、10~15年後に「感情推定」まで可能になる近未来社会を想定。その未来のテクノロジーを日常的な子育てにどう馴染ませるかを考えました。<br>
+                    どのような支援が本当に求められているかを探るため、インターネット上で育児に疲弊する親の声をリサーチした結果、以下の3つの深刻な課題(ペインポイント)が浮き彫りになりました。
+                </p>
+
+                <div class="media-block reveal">
+                    <img src="../assets/works/emocare/emocare-problem.png" alt="Emocare Problem" class="zoomable">
+                    <p class="caption">3つの課題</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="reveal">System Approach</h2>
+                <p class="lead-text reveal">
+                    3つの要素が連携するシステム
+                </p>
+                <p class="reveal">
+                    夫の育休が明け、日中を一人で育児(ワンオペ)しなければならない母親をコアターゲットに設定。彼女たちの心理的・肉体的負担を総合的にサポートするため、3つの要素(ユーザー・アプリ・ロボット)が連携するシステムを設計しました。
+                </p>
+
+                <div class="media-block reveal">
+                    <img src="../assets/works/emocare/system-diagram.png" alt="System Diagram" class="zoomable">
+                    <p class="caption">システム図</p>
+                </div>
+
+                <p class="reveal">
+                    リストバンド（生体センサ）からユーザーの感情を計測・記録し、アプリで子供の感情に合わせた行動を提案。さらにロボットが物理的な育児の補助（子供の歩行補助や遊び相手など）を行うことで、<b>デジタルとフィジカルの両面</b>から親をサポートします。
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="reveal">Robot Design</h2>
+                <p class="lead-text reveal">
+                    EmoNeko
+                </p>
+                <p class="reveal">
+                    アプリの中の情報提示だけでなく、現実空間での物理的なサポートを行うハードウェアとして、自立型ロボット「EmoNeko」を考案しました。プロトタイプの視覚化のためにBlenderを用いて3Dモデリングを行いました。
+                </p>
+
+                <div class="media-block reveal">
+                    <img src="../assets/works/emocare/emoneko.png" alt="EmoNeko 3D Model" class="zoomable">
+                    <p class="caption">EmoNeko</p>
+                </div>
+
+                <div class="sub-heading reveal">
+                    機能から逆算した安全設計
+                </div>
+                <p class="reveal">
+                    子供の自立を促す歩行補助器として機能するよう、高さを45cmに設定し、猫の耳部分を掴みやすいハンドルに見立てています。子供が体重をかけても転倒しないよう、下部のボリュームを大きくして重心を低く保つなど、安全性と物理的な要件から逆算した形状設計を行いました。
+                </p>
+                <div class="sub-heading reveal">
+                    データと連動するインタラクション
+                </div>
+                <p class="reveal">
+                    顔部分のディスプレイは親しみやすい表情を映し出すだけでなく、子供向けの動画再生インターフェースとしても機能します。さらに、親が装着した生体センサから強い疲労やストレスを検知した際は、ロボット側からリラックス方法を提案するなど、データに基づいた能動的なケアを行います。
+                </p>
+                <div class="sub-heading reveal">
+                    空間になじむあたたかみのあるデザイン
+                </div>
+                <p class="reveal">
+                    高度なテクノロジーを搭載したデバイスであっても、機械的な冷たさや威圧感を与えないよう配慮しました。全体を丸みを帯びたフォルムで構成し、視覚的に優しいパステルピンクを採用することで、育児中の張りつめた生活空間に温かみをもたらす存在を目指しています。
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="reveal">UI & Experience Design</h2>
+                <p class="reveal">
+                    生体センサから取得した複雑なデータや子供の感情を、疲労している親が「一目で直感的に理解できる」ようにするためのUIを設計しました。
+                </p>
+
+                <p class="lead-text reveal">
+                    リアルタイムな状態検知からのシームレスな行動提案
+                </p>
+                <p class="reveal">
+                    ホーム画面では、リストバンドから取得した「今の気持ち」をリアルタイムに表示します。さらに、ただ状態を知らせるだけでなく、検知した状態(例：おなかがすいた)に合わせて、次に取るべきアクション（例：レシピの提案）をシステム側から能動的に提案し、親の心理的負担を即座に軽減します。
+                </p>
+                <div class="media-block reveal">
+                    <img src="../assets/works/emocare/ui-home.png" alt="App Home" class="zoomable">
+                    <p class="caption">ホーム画面</p>
+                </div>
+
+                <p class="lead-text reveal">
+                    デバイス連携による記録の自動化と日々の振り返り
+                </p>
+                <p class="reveal">
+                    ロボットとウェアラブル端末を連携させ、1日のタイムラインを自動生成する「こころ日記」を設計しました。感情が高ぶった瞬間を詳細レポートとしてピックアップすることで、余裕が無かった<b>日中の出来事を後から客観的に振り返る</b>ことが出来ます。レポートにある赤ちゃんの画像はロボットが自動で撮影したものです。
+                </p>
+                <div class="media-block reveal">
+                    <img src="../assets/works/emocare/ui-diary.png" alt="App Diary" class="zoomable">
+                    <p class="caption">こころ日記/レポート</p>
+                </div>
+
+                <p class="lead-text reveal">
+                    感情の発達と成長を実感する長期的な記録
+                </p>
+                <p class="reveal">
+                    毎日の記録の蓄積から、数カ月～一年単位の長期的な発達を可視化します。単純な快・不快が達成感や愛情へと複雑化していく過程をツリー上に示す「こころマップ」と、写真付きの「成長記録」により、育児のモチベーションとなる<b>子供の確かな成長を実感できる体験</b>を構築しました。
+                </p>
+                <div class="media-block reveal">
+                    <img src="../assets/works/emocare/ui-record.png" alt="App Record" class="zoomable">
+                    <p class="caption">こころマップ/成長記録</p>
+                </div>
+
+                <div class="lead-text reveal">
+                    心理的安全性を高めるトーン&マナー
+                </div>
+                <p class="reveal">
+                    高度なセンシング技術を裏側で動かしつつも、表出するアプリの手触りはあくまで人間に寄り添うものであるべきだと考えました。丸みのあるフォント（ZEN丸ゴシック）とソフトなパステルカラーを採用し、サービス全体で一貫した<b>優しさとあたたかみ</b>を感じられるデザインシステムを定義しています。
+                </p>
+                <div class="media-block reveal">
+                    <img src="../assets/works/emocare/ui-design-system.png" alt="App Design System" class="zoomable">
+                    <p class="caption">デザインシステム</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="reveal">Philosophy</h2>
+                <p class="lead-text reveal">
+                    現在の私とのつながり
+                </p>
+                <p class="reveal">
+                    大学でのUI/UXデザインの学びを通して、「どれほど裏側で高度なシステムが動いていても、表出する体験は常にユーザーに寄り添う温かいものであるべきだ」という視点を養いました。<br>
+                    これが現在の私のモノづくりの大きな土台となっています。体験者の視点を軸に据えながら、現在は画面の中にとどまらず、インタラクティブ表現（Unity /
+                    TouchDesigner）の実装へと領域を広げています。
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="../assets/common/js/reveal.js"></script>
+    <script src="../assets/works/js/works.js"></script>
+</body>
+
+</html>
