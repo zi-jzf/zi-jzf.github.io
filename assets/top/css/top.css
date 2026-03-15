@@ -417,7 +417,7 @@ header.dark-mode nav a {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
+    z-index: 5;
     /* overflow: hidden を削除して、40px下へ延長した背景画像が見えるようにする */
 }
 
@@ -427,8 +427,7 @@ header.dark-mode nav a {
     top: 0;
     left: 0;
     width: 100%;
-    /* 下の角丸の隙間を埋めるため、本来の100%より40pxだけ長く（下へ）伸ばす */
-    height: calc(100% + 500px);
+    height: calc(100% + 150vh);
     z-index: -1;
     overflow: hidden;
     /* Hero動画から自然とシームレスに切り替わるように、上部をグラデーションで透過（マスク） */
@@ -440,6 +439,7 @@ header.dark-mode nav a {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
     will-change: transform;
 }
 
@@ -451,7 +451,7 @@ header.dark-mode nav a {
     left: 0;
     width: 100%;
     /* こちらのグラデーションも同じく40px延長して下まで色を届かせる */
-    height: calc(100% + 40px);
+    height: calc(100% + 150vh);
     /* Hero動画が見えるように上部の色も透明から開始してブレンド */
     background: linear-gradient(180deg, rgba(7, 22, 65, 0) 0%, rgba(7, 22, 65, 0.85) 15%, rgba(61, 20, 54, 0.9) 100%);
     z-index: -1;
