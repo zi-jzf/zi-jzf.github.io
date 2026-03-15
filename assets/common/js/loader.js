@@ -90,6 +90,11 @@
                     flex-direction: column;
                     align-items: center;
                 }
+                @media (max-width: 600px) {
+                    #global-loader {
+                        font-size: 1.8rem;
+                    }
+                }
             `;
             document.head.appendChild(style);
 
