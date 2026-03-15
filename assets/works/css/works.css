@@ -261,14 +261,6 @@ h2 {
     letter-spacing: 0.05em;
 }
 
-@media (max-width: 600px) {
-    h2 {
-        font-size: 1.4rem;
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
-    }
-}
-
 .lead-text {
     font-size: 1.25rem;
     font-weight: 600;
@@ -317,6 +309,20 @@ p {
     text-decoration-thickness: 1px;
     text-decoration-color: var(--sub-text-color, #999);
     transition: all 0.3s ease;
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 1.4rem;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .lead-text {
+        font-size: 1.05rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
 }
 
 @media (hover: hover) {
