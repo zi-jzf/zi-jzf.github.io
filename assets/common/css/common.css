@@ -4,9 +4,9 @@
 
 /* --- Default Variables (from index.html and light theme works) --- */
 :root {
-    --bg-color: #cce0ee;
-    --accent-color: #fd5d5a;
-    --text-color: #071641;
+    --bg-color: #bbbac4;
+    --accent-color: #c22847;
+    --text-color: #041031;
     --font-en: 'Bricolage Grotesque', sans-serif;
     --font-jp: 'Zen Kaku Gothic New', sans-serif;
 }
