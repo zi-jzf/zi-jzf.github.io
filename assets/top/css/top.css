@@ -55,6 +55,28 @@ header.dark-mode nav a {
     object-position: center;
 }
 
+/* 低電力モード等でvideoが再生できない場合のフォールバック静止画 */
+/* 通常時は非表示（JSがplay()失敗を検知した時のみ表示） */
+.video-fallback-img {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* video非表示＋フォールバック表示の状態 */
+.video-background.video-failed video {
+    display: none;
+}
+
+.video-background.video-failed .video-fallback-img {
+    display: block;
+}
+
 
 
 .video-background::after {

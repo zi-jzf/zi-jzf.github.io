@@ -100,3 +100,34 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(worksSectionNode);
     }
 });
+
+/* --- 6. 低電力モード対策: 動画再生失敗時のフォールバック --- */
+/* iOSの低電力モードではautoplayがブロックされ、poster画像の代わりに
+   グレーの再生ボタンが表示されてしまう問題に対処する。
+   play()はPromiseを返すため、rejectされたら動画を非表示にし
+   静止画（フォールバックimg）に切り替える。 */
+document.addEventListener('DOMContentLoaded', () => {
+    const videoBg = document.querySelector('.video-background');
+    const bgVideo = videoBg ? videoBg.querySelector('video') : null;
+
+    if (bgVideo) {
+        // autoplay属性があっても明示的にplay()を呼ぶことでPromiseを取得
+        const playPromise = bgVideo.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // 再生失敗（低電力モード、ポリシー制限等）:
+                // 親要素にクラスを付与 → CSS側でvideoを隠しimgを表示
+                videoBg.classList.add('video-failed');
+
+                // ガラステキスト内の複製動画（.blurred-video）も非表示にする
+                // 再生ボタンがテキスト内に見えてしまうのを防ぐ
+                // ※アウトラインSVG(.glass-highlight-stroke)は残るのでテキストは消えない
+                document.querySelectorAll('.blurred-video').forEach(v => {
+                    v.style.display = 'none';
+                });
+            });
+        }
+    }
+});
+
