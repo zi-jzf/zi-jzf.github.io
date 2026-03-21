@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Interactive Sand Sculpture | Works</title>
+
+    <link rel="icon" href="../assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/common/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../assets/common/css/common.css">
+    <!-- Works Page Specific CSS -->
+    <link rel="stylesheet" href="../assets/works/css/works.css">
+
+    <!-- このページ固有のカラー設定（必要に応じて調整してください） -->
+    <style>
+        :root {
+            --bg-color: #e8e9e1;
+            --accent-color: #0925a3;
+            --text-color: #362910;
+            --sub-text-color: #6b6b60;
+
+            /* ライト背景向けのカラー設定 */
+            --h2-border-color: rgba(54, 41, 16, 0.15);
+            --meta-border-color: rgba(54, 41, 16, 0.12);
+            --img-border-color: rgba(0, 0, 0, 0.08);
+            --tag-hover-text: #ffffff;
+            --lead-text-color: #1f1404;
+            --scrollbar-thumb-color: rgba(0, 0, 0, 0.15);
+        }
+    </style>
+
+    <script src="../assets/common/js/loader.js"></script>
+</head>
+
+<body>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
+    <script src="../assets/common/js/header.js"></script>
+
+    <div class="project-container">
+
+        <aside class="project-sidebar">
+            <h1 class="project-title">Interactive Sand Sculpture</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Year</span>
+                    <span class="meta-value">2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Context</span> <span class="meta-value">自主制作</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span> <span class="meta-value">5 Days</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tags</span>
+                    <div class="tags">
+                        <a href="../index.html?filter=unity" class="tag">#Unity</a>
+                        <a href="../index.html?filter=interactive-art" class="tag">#Interactive Art</a>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Keywords</span>
+                    <div class="keyword-list">
+                        <span>OSC</span>
+                        <span>VFX Graph</span>
+                        <span>C#</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="project-content">
+
+            <!-- メイン動画 (Vimeo埋め込みの場合) -->
+            <div id="main-video" class="video-wrapper" style="margin-bottom: 10px; scroll-margin-top: 100px;">
+                <iframe
+                    src="https://player.vimeo.com/video/1175425761?autoplay=1&loop=1&muted=1&autopause=0&title=0&byline=0&portrait=0"
+                    width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen title="Interactive Sand Sculpture">
+                </iframe>
+            </div>
+
+            <div class="content-section">
+                <h2 class="reveal">Outline</h2>
+
+                <p class="lead-text reveal">
+                    <!-- リード文: 作品のコンセプトを一文で -->
+                    スマートフォンとUnityをOSC通信で同期させたインタラクティブアート
+                </p>
+                <p class="reveal">
+                    <!-- 本文: コンセプトの詳細な説明 -->
+                    デバイスの傾きとUnity上の物理演算をリアルタイムに連動させ、胸像彫刻が数十万の砂粒となって崩壊・修復するインタラクションを制作しました。<br>
+                    通信部分には
+                    <a href="https://zig-project.com/" target="_blank" rel="noopener noreferrer">
+                        ZIG SIM
+                    </a>
+                    と高橋啓次郎氏の
+                    <a href="https://github.com/keijiro/OscJack" target="_blank" rel="noopener noreferrer">
+                        OscJack
+                    </a>を使用しています。通信周りをゼロから構築するのではなく、既存の強力なツールを適切に組み合わせることで、素早くかつ安定した制作を実現しました。デバイスを通じた触り心地やリアルタイムレンダリングの質感表現を探求した作品です。
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="reveal">Technical Approach</h2>
+
+                <p class="lead-text reveal">
+                    <!-- リード文: 技術的なアプローチの概要 -->
+                    役割を分離したカスタムBinderの実装
+                </p>
+                <p class="reveal">
+                    <!-- 本文: 技術的な解説 -->
+                    C#スクリプト内でVFXの全パラメータを制御するのではなく、独自のカスタムBinderを実装して役割を明確に分けました。C#側では、<b>デバイスの角度から崩壊率(0.0~1.0)を算出する</b>というロジックに専念させています。その数値をVFXGraphへ渡し、Turbulenceの強さや戻る力の具体値を全てVFXGraph内で制御する設計にしました。これにより、ビジュアルや触り心地の微調整を全てノード上で完結できるようになり、<b>トライ&エラーを素早く回せる効率的な制作フロー</b>を構築しています。
+                </p>
+
+                <div class="media-block reveal">
+                    <img src="../assets/works/interactive-sand-sculpture/custom-binder-system.png"
+                        alt="custom-binder-system" class="zoomable">
+                    <p class="caption">システム概要</p>
+                </div>
+
+                <p class="lead-text reveal">
+                    <!-- リード文: 技術的なアプローチの概要 -->
+                    心地よい手触りへの追求
+                </p>
+                <p class="reveal">
+                    <!-- 本文: 技術的な解説 -->
+                    スマートフォンの動きに合わせた砂の崩れ方と元に戻るときの挙動の気持ちよさにこだわりました。Binderから受け取った崩壊率に対し、VFXGraph内でSample
+                    Curve(カーブ調整)を繋ぎ、傾きに応じて空気抵抗(Linear
+                    Drag)や修復力(Force)の強さがダイナミックに変化するように設計しています。急激なバウンドを防ぎつつ、自然な動きのバランスを何度も検証し、<b>自分の手と画面内の砂が完全にリンクしているような心地よい手触り</b>を実装しました。
+                </p>
+
+                <div class="media-block reveal">
+                    <img src="../assets/works/interactive-sand-sculpture/vfx-sample-curve.png" alt="vfx-sample-curve"
+                        class="zoomable">
+                    <p class="caption">手触りの調整を行っているVFXノード群</p>
+                </div>
+
+                <p class="lead-text reveal">
+                    50万パーティクルの砂表現とLookDev
+                </p>
+                <p class="reveal">
+                    <!-- 本文: 技術的な解説 -->
+                    50万個の大量のパーティクルを砂としてリアルに見せつつ、処理負荷を抑える工夫をしています。実際の砂粒のような複雑な3Dモデルは使わず、単純なCubeメッシュに対し、ランダムなスケール(XYZ)と回転角度を加え、色にもムラを作ることでリアルな砂表現を軽量に実現しました。さらに、パーティクル同士のCast
+                    ShadowsとHDRI、Volume設定を活用して写実的な表現を目指しています。<b>砂漠地帯のような彩度とコントラストの高い空間</b>を意識して全体のルックを仕上げました。
+                </p>
+
+                <div class="media-block reveal">
+                    <img src="../assets/works/interactive-sand-sculpture/sand-sculpture.png" alt="sand-sculpture">
+                    <p class="caption">砂の胸像</p>
+                </div>
+
+            </div>
+
+        </article>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="../assets/common/js/reveal.js"></script>
+    <script src="../assets/works/js/works.js"></script>
+</body>
+
+</html>
