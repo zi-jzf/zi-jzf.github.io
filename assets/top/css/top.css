@@ -449,7 +449,8 @@ header.dark-mode nav a {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% + 125vh);
+    /* worksセクションの角丸(40px)の背後を自然に埋める分だけ延伸 */
+    height: calc(100% + 50px);
     z-index: -1;
     overflow: hidden;
     /* Hero動画から自然とシームレスに切り替わるように、上部をグラデーションで透過（マスク） */
@@ -472,8 +473,8 @@ header.dark-mode nav a {
     top: 0;
     left: 0;
     width: 100%;
-    /* こちらのグラデーションも同じく40px延長して下まで色を届かせる */
-    height: calc(100% + 125vh);
+    /* worksセクション角丸(40px)の背後だけ覆い、それ以上は.works-wrapperに任せる */
+    height: calc(100% + 50px);
     /* Hero動画が見えるように上部の色も透明から開始してブレンド */
     background: linear-gradient(180deg, rgba(7, 22, 65, 0) 0%, rgba(7, 22, 65, 0.85) 15%, rgba(61, 20, 54, 0.9) 100%);
     z-index: -1;
@@ -826,6 +827,14 @@ header.dark-mode nav a {
 }
 
 /* --- Works Section --- */
+/* clip-pathの外側（側面・角丸の隙間）をintroと地続きの深い紫で覆うラッパー */
+.works-wrapper {
+    /* introグラデーションの最終色と同じディープパープル */
+    background-color: #3D1436;
+    position: relative;
+    z-index: 10;
+}
+
 .works-section {
     background-color: var(--bg-color);
     padding: 80px 5% 100px;
