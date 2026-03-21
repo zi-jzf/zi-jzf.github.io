@@ -830,7 +830,7 @@ header.dark-mode nav a {
 /* clip-pathの外側（側面・角丸の隙間）をintroと地続きの深い紫で覆うラッパー */
 .works-wrapper {
     /* introグラデーションの最終色と同じディープパープル */
-    background-color: #3D1436;
+    background-color: #391131;
     position: relative;
     z-index: 10;
 }
