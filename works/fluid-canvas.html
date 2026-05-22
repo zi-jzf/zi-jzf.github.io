@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Fluid Canvas | Works</title>
+
+    <link rel="icon" href="../assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/common/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../assets/common/css/common.css">
+    <!-- Works Page Specific CSS -->
+    <link rel="stylesheet" href="../assets/works/css/works.css">
+
+    <!-- このページ固有のカラー設定 -->
+    <style>
+        :root {
+            /* 流体をイメージしたカラーテーマ */
+            --bg-color: #0a0a1a;
+            --accent-color: #56C5FD;
+            --text-color: #d0dff0;
+            --sub-text-color: #7a8a9e;
+
+            /* ダーク背景向けのカラー設定 */
+            --h2-border-color: rgba(255, 255, 255, 0.2);
+            --meta-border-color: rgba(200, 211, 236, 0.1);
+            --img-border-color: rgba(255, 255, 255, 0.1);
+            --tag-hover-text: #1d2250;
+            --lead-text-color: #e8f0ff;
+            --scrollbar-thumb-color: rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:hover {
+            color: #1d2250;
+        }
+    </style>
+
+    <script src="../assets/common/js/loader.js"></script>
+</head>
+
+<body>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
+    <script src="../assets/common/js/header.js"></script>
+
+    <div class="project-container">
+
+        <!-- 背景画像: 画面幅に応じてPC用/スマホ用を切り替え -->
+        <div class="video-background">
+            <picture>
+                <!-- スマホ用 (768px以下) -->
+                <source media="(max-width: 768px)" srcset="../assets/works/fluid-canvas/bg-fluid-canvas-phone.png">
+                <!-- PC用 (769px以上) -->
+                <img src="../assets/works/fluid-canvas/bg-fluid-canvas.png" alt="Fluid Canvas Background">
+            </picture>
+        </div>
+
+        <aside class="project-sidebar">
+            <h1 class="project-title">Fluid Canvas</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Year</span>
+                    <span class="meta-value">2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Context</span> <span class="meta-value">自主制作</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span> <span class="meta-value">1 month</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tags</span>
+                    <div class="tags">
+                        <a href="../index.html?filter=unity" class="tag">#Unity</a>
+                        <a href="../index.html?filter=interactive-art" class="tag">#Interactive Art</a>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Keywords</span>
+                    <div class="keyword-list">
+                        <span>C#</span>
+                        <span>ComputeShader</span>
+                        <span>WebSocket</span>
+                        <span>SAM2</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="project-content">
+
+            <div id="main-video" class="video-wrapper" style="margin-bottom: 10px; scroll-margin-top: 100px;">
+                <iframe
+                    src="https://player.vimeo.com/video/1193861935?autoplay=1&loop=1&muted=1&autopause=0&title=0&byline=0&portrait=0"
+                    width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen title="Fluid Canvas">
+                </iframe>
+            </div>
+            <p class="caption" style="margin-bottom: 3rem;">🔊Sound ON</p>
+
+            <!-- ===== Concept セクション ===== -->
+            <div class="content-section">
+                <h2 class="reveal">Concept</h2>
+
+                <p class="lead-text reveal">
+                    静止した写真を、流体として触れる
+                </p>
+                <p class="reveal">
+                    選んだ一枚を流体へと変え、直感的にかき混ぜるインタラクティブ・キャンバス。<br>
+                    ゴッホの「星月夜」に見られるような渦の動きから着想を得て、静止した画像に流体の動きを持たせるインタラクティブアートを制作しました。
+                    アップロードした写真の被写体はそのままに、背景を流体としてApplePencilと手でリアルタイムにかき混ぜることが出来ます。
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="reveal">Experience Flow</h2>
+                <p class="lead-text reveal">
+                    体験の流れ
+                </p>
+                <div class="media-grid">
+                    <div class="media-grid-item reveal">
+                        <img src="../assets/works/fluid-canvas/upload-photo.png" alt="upload your photo"
+                            class="zoomable">
+                        <p class="caption">
+                            <span class="media-grid-label">01</span>
+                            画像をアップロード
+                        </p>
+                    </div>
+                    <div class="media-grid-item reveal" style="transition-delay: 0.1s;">
+                        <img src="../assets/works/fluid-canvas/choose-subject.png" alt="choose subject"
+                            class="zoomable">
+                        <p class="caption">
+                            <span class="media-grid-label">02</span>
+                            固定される主役を選択
+                        </p>
+                    </div>
+                    <div class="media-grid-item reveal" style="transition-delay: 0.2s;">
+                        <img src="../assets/works/fluid-canvas/disturb-fluid.png" alt="touch and disturb fluid"
+                            class="zoomable">
+                        <p class="caption">
+                            <span class="media-grid-label">03</span>
+                            流体を操作する
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Technical Approach セクション ===== -->
+            <div class="content-section">
+                <h2 class="reveal">Technical Approach</h2>
+
+                <p class="reveal">
+                    本作では、iPadとPCをリアルタイムに繋ぐ通信設計、写真の色彩を保つ流体シミュレーションのアーキテクチャ、そして実装中に発生したバグの根本解決という3つの技術的挑戦に取り組みました。
+                </p>
+
+                <p class="lead-text reveal">
+                    データに応じた通信設計
+                </p>
+                <p class="reveal">
+                    この作品では、HTTP通信とWebSocketという2つの通信手法をデータの性質に応じて使い分けています。
+                </p>
+                <div class="sub-heading reveal">HTTP通信 / PythonServer (SAM2)</div>
+                <p class="reveal">
+                    主役選択のフェーズでは、iPadのブラウザからPythonサーバーへ<b>HTTP通信</b>で画像とタップ座標を送信します。HTTPはリクエストに対してレスポンスを返す一往復の通信です。
+                    AI推論はタップのたびに「依頼→結果を受け取る」という単発の処理で完結するため、接続を維持し続ける必要が無くHTTPの設計と一致しています。
+                </p>
+
+                <div class="sub-heading reveal">WebSocket / Unity (流体シミュレーション)</div>
+                <p class="reveal">
+                    Unityとは<b>WebSocket</b>で常時接続しています。他のリアルタイム通信手法に<b>OSC</b>がありますが、OSCは軽量データ送信に特化しており、画像送信には適していません。本作品ではAI推論の結果として生成されるマスク画像と元画像をiPadからUnityに送信するため、より柔軟なデータ送受信が可能なWebSocketを採用しました。
+                    また、iPadのブラウザ上で動作するUIを構築する上でも、ブラウザ標準でサポートされるWebSocketは必然的な選択でした。
+                    <br>
+                    WebSocketはHTTPとは異なり、一度接続を確立すると双方向でリアルタイムにデータを送受信できます。
+                    この作品では2種類のデータをWebSocketで送信しています。①主役決定後に元画像とマスク画像をまとめて送信すること、②流体操作中はApplePencilの座標と筆圧をリアルタイムに送り続けることです。
+                </p>
+
+                <div class="media-block reveal">
+                    <img src="../assets/works/fluid-canvas/system-diagram.png" alt="システム構成図" class="zoomable">
+                    <p class="caption">通信システム図</p>
+                </div>
+
+                <p class="lead-text reveal">
+                    流体計算のハイブリッドアーキテクチャ
+                </p>
+                <p class="reveal">
+                    写真の色彩を保ちながら複雑な流体挙動をリアルタイムで表現するために、2つの手法を比較検討しました。<br>
+                    <b>格子法(Eulerian法)</b>はナビエストークス方程式に基づく滑らかな流れの表現を得意としていますが、色情報を一緒に計算させると隣接ピクセルと混合し続け、写真がすぐに濁った単色に収束してしまいます。
+                    一方、<b>粒子法(Lagrangian法)</b>は色は濁りませんが、数百万の粒子をリアルタイム処理することが困難です。<br>
+                    そこで、両手法の利点を組み合わせたハイブリッドアプローチを採用しました。流体の動きの計算は不可視の2Dグリッド上で行い、その結果をもとに写真の色情報を持つ数百万のパーティクルをCompute
+                    Shaderで移流させます。
+                    またSAM2が生成したマスク画像をグリッド上の障害物（境界条件）として反映することで、主役のシルエットを保ちながら背景だけが流体として振る舞う表現を実現しました。
+                </p>
+
+                <div class="media-block reveal">
+                    <video src="../assets/works/fluid-canvas/fluid-short.mp4" autoplay loop muted playsinline
+                        preload="metadata" style="width: 100%; border-radius: 8px;">
+                    </video>
+                    <p class="caption">色が濁らない美しい流体</p>
+                </div>
+
+                <p class="lead-text reveal">
+                    復元力の設計が招いたバグと、連続的なブレンドによる根本解決
+                </p>
+                <p class="reveal">
+                    パーティクルが元の位置に戻る時に、主役のシルエットに引っかかり輪郭沿いに不自然な塊や隙間が残る問題が発生しました。
+                </p>
+
+                <div class="media-block reveal">
+                    <video src="../assets/works/fluid-canvas/before-ghost-return.mp4" autoplay loop muted playsinline
+                        preload="metadata" style="width: clamp(280px, 45%, 400px); max-width: 100%; border-radius: 8px;">
+                    </video>
+                    <p class="caption">フラミンゴに引っかかって不自然な隙間が出来ている様子</p>
+                </div>
+
+                <p class="reveal">
+                    解決策として、帰還時のみ障害物の衝突判定をスキップしパーティクルを幽霊のようにすり抜けさせる<b>「Ghost Return」</b>を実装しました。
+                    流速とパーティクルの速度が一定値を下回ったかどうかで「風が止んだ状態」を<b>二値で判定</b>し、止んでいる時は強いバネで元の位置へ引き戻す設計です。<br>
+                    しかしこれが新たな問題を引き起こします。弱い力でドラッグした際、カーソル付近はギリギリ「動いている」と判定されて流体として動き出しますが、少し離れるだけで閾値を下回り「止まっている」と判定されて強力なバネでその場に固定されます。
+                    「動く水」と「動かない岩」が隣り合う断層が生まれ、空間が引き裂かれるような地割れが発生しました。
+                </p>
+
+                <div class="media-block reveal">
+                    <video src="../assets/works/fluid-canvas/bool-crack.mp4" autoplay loop muted playsinline
+                        preload="metadata" style="width: clamp(280px, 45%, 400px); max-width: 100%; border-radius: 8px;">
+                    </video>
+                    <p class="caption">単純な二値化によって裂け目が発生した様子</p>
+                </div>
+
+                <p class="reveal">
+                    根本原因は二値による状態の切り換えそのものでした。そこでこの判定を廃止し、流速とパーティクル速度から<b>0~1の連続値</b>を算出する設計に書き直しました。
+                    流体の力・復元力・粘性の全てをこの連続値から滑らかにブレンドすることで、カーソル(加えた力の中心地)から離れるにつれて状態が連続的に遷移し、断層が消えました。
+                    Ghost Returnの思想はこの連続値に対する条件として引き継いでいますが、その手前で全パラメータが既に連続的にブレンドされているため地割れは発生しません。
+                </p>
+
+            </div>
+
+        </article>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="../assets/common/js/reveal.js"></script>
+    <script src="../assets/works/js/works.js"></script>
+</body>
+
+</html>

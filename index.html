@@ -150,112 +150,126 @@
 
     <!-- clip-pathの外側を深い紫色で覆うためのラッパー -->
     <div class="works-wrapper">
-    <section id="works" class="works-section">
+        <section id="works" class="works-section">
 
-        <div class="filter-section reveal reveal-repeat">
-            <div class="filter-group">
-                <span class="group-label">Category</span>
-                <div class="group-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="interactive-art">Interactive Art</button>
-                    <button class="filter-btn" data-filter="generative-art">Generative Art</button>
-                    <button class="filter-btn" data-filter="audio-reactive">Audio Reactive</button>
-                    <button class="filter-btn" data-filter="design">Design</button>
-                    <button class="filter-btn" data-filter="category-other">Other</button>
+            <div class="filter-section reveal reveal-repeat">
+                <div class="filter-group">
+                    <span class="group-label">Category</span>
+                    <div class="group-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="interactive-art">Interactive Art</button>
+                        <button class="filter-btn" data-filter="generative-art">Generative Art</button>
+                        <button class="filter-btn" data-filter="audio-reactive">Audio Reactive</button>
+                        <button class="filter-btn" data-filter="design">Design</button>
+                        <button class="filter-btn" data-filter="category-other">Other</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <span class="group-label">Tech</span>
+                    <div class="group-buttons">
+                        <button class="filter-btn" data-filter="unity">Unity</button>
+                        <button class="filter-btn" data-filter="td">TouchDesigner</button>
+                        <button class="filter-btn" data-filter="illustrator-n-photoshop">Illustrator/Photoshop</button>
+                        <button class="filter-btn" data-filter="tech-other">Other</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="filter-group">
-                <span class="group-label">Tech</span>
-                <div class="group-buttons">
-                    <button class="filter-btn" data-filter="unity">Unity</button>
-                    <button class="filter-btn" data-filter="td">TouchDesigner</button>
-                    <button class="filter-btn" data-filter="illustrator-n-photoshop">Illustrator/Photoshop</button>
-                    <button class="filter-btn" data-filter="tech-other">Other</button>
-                </div>
+            <div class="works-grid">
+
+                <a href="works/fluid-canvas.html" class="work-item reveal reveal-repeat"
+                    data-category="unity interactive-art">
+                    <div class="work-thumb">
+                        <img src="assets/top/works-thumb/fluid-canvas-thumb.webp" alt="Fluid Canvas" loading="lazy">
+                    </div>
+                    <h3 class="work-title">Fluid Canvas</h3>
+                    <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
+                    </div>
+                    <div class="work-sub-tags">
+                        <span>C#</span><span>Compute
+                            Shader</span><span>WebSocket</span><span>SAM2</span><span>Python</span>
+                    </div>
+                </a>
+
+                <a href="works/constellate.html" class="work-item reveal reveal-repeat"
+                    data-category="unity interactive-art">
+                    <div class="work-thumb">
+                        <img src="assets/top/works-thumb/constellate-thumb.webp" alt="Constellate" loading="lazy">
+                    </div>
+                    <h3 class="work-title">Constellate</h3>
+                    <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
+                    </div>
+                    <div class="work-sub-tags">
+                        <span>C#</span><span>VFX Graph</span><span>BodyPix</span>
+                    </div>
+                </a>
+
+                <a href="works/interactive-sand-sculpture.html" class="work-item reveal reveal-repeat"
+                    data-category="unity interactive-art" style="transition-delay: 0.1s;">
+                    <div class="work-thumb">
+                        <img src="assets/top/works-thumb/sand-sculpture-thumb.webp" alt="interactive-sand-sculpture"
+                            loading="lazy">
+                    </div>
+                    <h3 class="work-title">Interactive Sand Sculpture</h3>
+                    <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
+                    </div>
+                    <div class="work-sub-tags">
+                        <span>OSC</span><span>VFX Graph</span><span>C#</span>
+                    </div>
+                </a>
+
+                <a href="works/pf-main-visual.html" class="work-item reveal reveal-repeat"
+                    data-category="td generative-art" style="transition-delay: 0.2s;">
+                    <div class="work-thumb">
+                        <img src="assets/top/hero/main-bg-thumb.webp" alt="Portfolio Site Main Visual">
+                    </div>
+                    <h3 class="work-title">Portfolio Site Main Visual</h3>
+                    <div class="work-tags"><span>#TouchDesigner</span><span>#Generative Art</span></div>
+                </a>
+
+                <a href="works/sound-sync-research.html" class="work-item reveal reveal-repeat"
+                    data-category="td audio-reactive" style="transition-delay: 0.3s;">
+                    <div class="work-thumb">
+                        <img src="assets/top/works-thumb/sound-sync-research-thumb.webp" alt="sound-sync-research"
+                            loading="lazy">
+                    </div>
+                    <h3 class="work-title title-jp">音楽と映像のリアルタイム同期が視聴者にもたらす影響</h3>
+                    <div class="work-tags"><span>#TouchDesigner</span><span>#Audio Reactive</span>
+                    </div>
+                    <div class="work-sub-tags">
+                        <span>卒業研究</span>
+                    </div>
+                </a>
+
+                <a href="works/emocare.html" class="work-item reveal reveal-repeat" data-category="design tech-other"
+                    style="transition-delay: 0.4s;">
+                    <div class="work-thumb">
+                        <img src="assets/top/works-thumb/emocare-thumb.webp" alt="emocare" loading="lazy">
+                    </div>
+                    <h3 class="work-title title-jp">Emocare</h3>
+                    <div class="work-tags"><span>#Design</span>
+                    </div>
+                    <div class="work-sub-tags">
+                        <span>figma</span><span>Blender</span>
+                    </div>
+                </a>
+
+                <a href="works/festival-pr.html" class="work-item reveal reveal-repeat"
+                    data-category="design illustrator-n-photoshop" style="transition-delay: 0.5s;">
+                    <div class="work-thumb">
+                        <img src="assets/top/works-thumb/festival-pr-thumb.webp" alt="festival-pr" loading="lazy">
+                    </div>
+                    <h3 class="work-title title-jp">大学祭での広報活動</h3>
+                    <div class="work-tags"><span>#Illustrator/Photoshop</span><span>#Design</span>
+                    </div>
+                    <div class="work-sub-tags">
+                        <span>委員会活動</span>
+                    </div>
+                </a>
+
             </div>
-        </div>
-
-        <div class="works-grid">
-
-            <a href="works/constellate.html" class="work-item reveal reveal-repeat"
-                data-category="unity interactive-art">
-                <div class="work-thumb">
-                    <img src="assets/top/works-thumb/constellate-thumb.webp" alt="Constellate" loading="lazy">
-                </div>
-                <h3 class="work-title">Constellate</h3>
-                <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
-                </div>
-                <div class="work-sub-tags">
-                    <span>C#</span><span>VFX Graph</span><span>BodyPix</span>
-                </div>
-            </a>
-
-            <a href="works/interactive-sand-sculpture.html" class="work-item reveal reveal-repeat"
-                data-category="unity interactive-art" style="transition-delay: 0.1s;">
-                <div class="work-thumb">
-                    <img src="assets/top/works-thumb/sand-sculpture-thumb.webp" alt="interactive-sand-sculpture"
-                        loading="lazy">
-                </div>
-                <h3 class="work-title">Interactive Sand Sculpture</h3>
-                <div class="work-tags"><span>#Unity</span><span>#Interactive Art</span>
-                </div>
-                <div class="work-sub-tags">
-                    <span>OSC</span><span>VFX Graph</span><span>C#</span>
-                </div>
-            </a>
-
-            <a href="works/pf-main-visual.html" class="work-item reveal reveal-repeat" data-category="td generative-art"
-                style="transition-delay: 0.2s;">
-                <div class="work-thumb">
-                    <img src="assets/top/hero/main-bg-thumb.webp" alt="Portfolio Site Main Visual">
-                </div>
-                <h3 class="work-title">Portfolio Site Main Visual</h3>
-                <div class="work-tags"><span>#TouchDesigner</span><span>#Generative Art</span></div>
-            </a>
-
-            <a href="works/sound-sync-research.html" class="work-item reveal reveal-repeat"
-                data-category="td audio-reactive" style="transition-delay: 0.3s;">
-                <div class="work-thumb">
-                    <img src="assets/top/works-thumb/sound-sync-research-thumb.webp" alt="sound-sync-research"
-                        loading="lazy">
-                </div>
-                <h3 class="work-title title-jp">音楽と映像のリアルタイム同期が視聴者にもたらす影響</h3>
-                <div class="work-tags"><span>#TouchDesigner</span><span>#Audio Reactive</span>
-                </div>
-                <div class="work-sub-tags">
-                    <span>卒業研究</span>
-                </div>
-            </a>
-
-            <a href="works/emocare.html" class="work-item reveal reveal-repeat" data-category="design tech-other"
-                style="transition-delay: 0.4s;">
-                <div class="work-thumb">
-                    <img src="assets/top/works-thumb/emocare-thumb.webp" alt="emocare" loading="lazy">
-                </div>
-                <h3 class="work-title title-jp">Emocare</h3>
-                <div class="work-tags"><span>#Design</span>
-                </div>
-                <div class="work-sub-tags">
-                    <span>figma</span><span>Blender</span>
-                </div>
-            </a>
-
-            <a href="works/festival-pr.html" class="work-item reveal reveal-repeat"
-                data-category="design illustrator-n-photoshop" style="transition-delay: 0.5s;">
-                <div class="work-thumb">
-                    <img src="assets/top/works-thumb/festival-pr-thumb.webp" alt="festival-pr" loading="lazy">
-                </div>
-                <h3 class="work-title title-jp">大学祭での広報活動</h3>
-                <div class="work-tags"><span>#Illustrator/Photoshop</span><span>#Design</span>
-                </div>
-                <div class="work-sub-tags">
-                    <span>委員会活動</span>
-                </div>
-            </a>
-
-        </div>
-    </section>
+        </section>
     </div>
 
     <script src="assets/common/js/reveal.js"></script>

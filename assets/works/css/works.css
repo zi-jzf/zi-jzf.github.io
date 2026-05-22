@@ -216,6 +216,8 @@
     border-radius: 8px;
     border: 1px solid var(--img-border-color, rgba(0, 0, 0, 0.05));
     display: block;
+    margin: 0 auto;
+    /* ← 中央寄せ（widthを縮小した場合に効く） */
     object-fit: cover;
 }
 
