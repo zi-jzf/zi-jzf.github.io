@@ -464,6 +464,7 @@ header.dark-mode nav a {
     object-fit: cover;
     object-position: top;
     will-change: transform;
+    opacity: 0.35;
 }
 
 /* 擬似要素で背景グラデーションを合成 */
