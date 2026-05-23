@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const workItems = document.querySelectorAll('.work-item');
 
+    // 各アイテムの元の transition-delay をデータ属性に保存しておく
+    workItems.forEach(item => {
+        const originalDelay = item.style.transitionDelay || '0s';
+        item.dataset.originalDelay = originalDelay;
+    });
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             // ボタンの色を切り替え
@@ -14,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
 
             const filterValue = btn.getAttribute('data-filter');
+            const isAll = filterValue === 'all';
 
             // アイテムの表示・非表示
             workItems.forEach(item => {
@@ -21,6 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (filterValue === 'all' || (itemCategories && itemCategories.includes(filterValue))) {
                     item.classList.remove('hidden');
+
+                    if (isAll) {
+                        // "All"に戻した場合:
+                        // transitionを一瞬無効化して opacity:0 の初期状態をブラウザに確定させる。
+                        // こうしないと「active除去→reveal()でactive即再付与」の間に
+                        // 再描画が入らずアニメーションが省略される。
+                        item.style.transition = 'none';
+                        item.style.transitionDelay = '0s';
+                        item.classList.remove('active');
+
+                        // getBoundingClientRect() で強制リフロー → ブラウザが opacity:0 を確定する
+                        void item.getBoundingClientRect();
+
+                        // transition と delay を本来の値に戻す
+                        item.style.transition = '';
+                        item.style.transitionDelay = item.dataset.originalDelay;
+
+                        // reveal() に委ねる（画面内ならアニメーションで表示、画面外は後でスクロールで表示）
+                        requestAnimationFrame(() => reveal());
+                    } else {
+                        // フィルター時: アニメーション遅延を0にして即時表示
+                        item.style.transitionDelay = '0s';
+                        item.classList.add('active');
+                    }
                 } else {
                     item.classList.add('hidden');
                 }
