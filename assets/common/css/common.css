@@ -28,7 +28,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100vh;       /* フォールバック: dvh非対応ブラウザ向け */
+    height: 100dvh;      /* iOS Safari 15.4+: 動的ビューポート高さ（アドレスバーの出入りに追従） */
     z-index: -1;
     overflow: hidden;
     background-color: #000;

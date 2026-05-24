@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>mf's Portfolio</title>
+    <!-- Safari/Chrome のブラウザUIカラーをヒーロー動画の暗い色に合わせる（アドレスバー背景対策） -->
+    <meta name="theme-color" content="#000000">
 
     <link rel="shortcut icon" href="assets/common/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/common/favicon.png" type="image/png">
@@ -21,6 +23,14 @@
     <link rel="stylesheet" href="assets/common/css/common.css">
     <!-- Top Page Specific CSS -->
     <link rel="stylesheet" href="assets/top/css/top.css">
+    <style>
+        /* iOS のスクロール境界やアドレスバー裏に --bg-color（明るいグレー）が
+           透けて見えるのを防ぐため、body 背景をヒーロー動画に馴染む黒に変更。
+           Works セクションは background-color: var(--bg-color) で独自に塗るため影響なし。 */
+        body {
+            background-color: #000;
+        }
+    </style>
     <script src="assets/common/js/loader.js"></script>
 </head>
 

@@ -43,7 +43,8 @@ header.dark-mode nav a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100vh;   /* フォールバック */
+    height: 100dvh;  /* iOS Safari 15.4+: アドレスバーの出入りに追従 */
     z-index: -1;
     overflow: hidden;
 }
@@ -96,7 +97,8 @@ header.dark-mode nav a {
 
 /* --- Hero Section --- */
 .hero {
-    height: 100vh;
+    height: 100vh;   /* フォールバック */
+    height: 100dvh;  /* iOS Safari 15.4+: アドレスバーの出入りに追従 */
     position: relative;
     padding: 0;
     overflow: hidden;
@@ -172,7 +174,8 @@ header.dark-mode nav a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100vh;   /* フォールバック */
+    height: 100dvh;  /* iOS Safari 15.4+: アドレスバーの出入りに追従 */
     object-fit: cover;
     object-position: center;
 
@@ -371,8 +374,8 @@ header.dark-mode nav a {
     .video-background,
     .hero,
     .frosted-glass-layer .blurred-video {
-        height: 100svh;
-        /* スマホのUI（アドレスバー等）を正確に考慮した高さ */
+        height: 100dvh;
+        /* スマホのUI（アドレスバー等）を正確に考慮した動的ビューポート高さ */
     }
 
     .hero {
