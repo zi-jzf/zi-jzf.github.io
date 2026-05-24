@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>mf's Portfolio</title>
-    <!-- Safari/Chrome のブラウザUIカラーをヒーロー動画の暗い色に合わせる（アドレスバー背景対策） -->
     <meta name="theme-color" content="#000000">
 
     <link rel="shortcut icon" href="assets/common/favicon.ico" type="image/x-icon">
@@ -24,9 +23,6 @@
     <!-- Top Page Specific CSS -->
     <link rel="stylesheet" href="assets/top/css/top.css">
     <style>
-        /* iOS のスクロール境界やアドレスバー裏に --bg-color（明るいグレー）が
-           透けて見えるのを防ぐため、body 背景をヒーロー動画に馴染む黒に変更。
-           Works セクションは background-color: var(--bg-color) で独自に塗るため影響なし。 */
         body {
             background-color: #000;
         }
@@ -51,34 +47,25 @@
                 <!-- SVG Filter for 3D Glass Lighting (Bevel / Specular) -->
                 <svg class="glass-filter-defs" xmlns="http://www.w3.org/2000/svg">
                     <filter id="glassLighting" x="-10%" y="-10%" width="120%" height="120%">
-                        <!-- Extract the alpha channel (shape) of the SVG -->
                         <feColorMatrix in="SourceAlpha" type="matrix"
                             values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="alpha" />
 
-                        <!-- Create a blur to simulate thickness/bevel -->
                         <feGaussianBlur in="alpha" stdDeviation="2.5" result="blur" />
 
-                        <!-- Add specular lighting (shiny reflection) -->
                         <feSpecularLighting in="blur" surfaceScale="2" specularConstant="1.2" specularExponent="40"
                             lighting-color="#ffffff" result="specularOut">
-                            <!-- Distant light from top-left -->
                             <feDistantLight azimuth="135" elevation="45" />
                         </feSpecularLighting>
 
-                        <!-- Mask the specular light so it only appears ON the white text/stroke -->
                         <feComposite in="specularOut" in2="alpha" operator="in" result="specularMasked" />
 
-                        <!-- Combine original shape with the new shiny lighting -->
                         <feComposite in="specularMasked" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="1"
                             k4="0" />
                     </filter>
 
-                    <!-- Glass Refraction Filter -->
                     <filter id="glassRefraction" x="0%" y="0%" width="100%" height="100%">
-                        <!-- Very low frequency noise for static smooth surface imperfections of cast glass -->
                         <feTurbulence type="fractalNoise" baseFrequency="0.035 0.08" numOctaves="1" seed="4"
                             result="noise" />
-                        <!-- Stronger displacement for noticeable refraction -->
                         <feDisplacementMap in="SourceGraphic" in2="noise" scale="30" xChannelSelector="R"
                             yChannelSelector="G" />
                     </filter>
@@ -91,7 +78,6 @@
                             class="blurred-video"></video>
                         <div class="glass-tint"></div>
                     </div>
-                    <!-- 外側の線（光の反射効果） -->
                     <img src="assets/top/hero/intuitive-art-outline.svg" alt="Intuitive Art,"
                         class="glass-highlight-stroke">
                 </div>
@@ -102,7 +88,6 @@
                             class="blurred-video"></video>
                         <div class="glass-tint"></div>
                     </div>
-                    <!-- 外側の線（光の反射効果） -->
                     <img src="assets/top/hero/accessible-magic-outline.svg" alt="Accessible Magic."
                         class="glass-highlight-stroke">
                 </div>
@@ -123,7 +108,6 @@
     </section>
 
     <section class="intro-section" id="statement">
-        <!-- 背景画像 -->
         <div class="intro-bg">
             <img src="./assets/top/statement/statement-bg.webp" alt="Background Noise Gradient" loading="lazy">
         </div>
@@ -153,7 +137,6 @@
                         Graphic Design</span>
                 </div>
 
-                <!-- 次のアクションへの導線 -->
                 <a href="./info.html" class="more-about-btn">More About Me <span class="arrow">&rarr;</span></a>
             </div>
         </div>
