@@ -1,18 +1,23 @@
 (function () {
     // 1. 現在のパスの階層を判定してリンクを調整する
     const path = window.location.pathname;
-    // 簡易チェック: パスに "/works/" が含まれていれば、1階層深いとみなす
+    // パスに"/works/"が含まれていれば作品詳細ページ
     const isWorkPage = path.includes('/works/');
+    // パスが"/about.html"または"/about"で終わればAboutページ
+    const isAboutPage = path.endsWith('/about.html') || path.endsWith('/about');
+    // 上記どちらでもなければトップページ（index.html）とみなす
+    const isTopPage = !isWorkPage && !isAboutPage;
 
-    // ルートパスの設定（詳細ページなら "../"、トップなら "./"）
+    // ルートパスの設定（works/配下なら "../"、ルート直下なら "./"）
     const rootPath = isWorkPage ? '../' : './';
 
     // リンクのスマートな制御
-    // トップページにいる場合は、スムーズスクロールのために単純なアンカーリンク(#)を使用する
-    // 詳細ページにいる場合は、トップページに戻るために index.html を付与する
-    const worksHref = isWorkPage ? '../index.html#works' : '#works';
-    const aboutHref = isWorkPage ? '../index.html#about' : '#about';
-    const logoHref = isWorkPage ? '../index.html' : '#';
+    // トップページのみ、スムーズスクロールのために単純なアンカーリンク(#)を使用する
+    // Aboutページ・作品ページはトップに戻るために index.html を付与する
+    const worksHref = isTopPage ? '#works' : (isWorkPage ? '../index.html#works' : './index.html#works');
+    const aboutHref = isWorkPage ? '../about.html' : './about.html';
+    // ロゴも同様: トップページ以外はindex.htmlへ戻る
+    const logoHref = isTopPage ? '#' : (isWorkPage ? '../index.html' : './index.html');
 
     // 2. ヘッダーのHTMLを構築
     const headerHTML = `
@@ -23,7 +28,7 @@
         <nav>
             <div id="nav-indicator"></div>
             <a href="${worksHref}">Works</a>
-            <a href="${aboutHref}">Info</a>
+            <a href="${aboutHref}">About</a>
         </nav>
     </header>
     `;

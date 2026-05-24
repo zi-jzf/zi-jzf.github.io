@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>About | mf's Portfolio</title>
+    <meta name="theme-color" content="#bbbac4">
+
+    <link rel="shortcut icon" href="assets/common/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/common/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/common/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;300;400;500;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="assets/common/css/common.css">
+    <!-- About Page Specific CSS -->
+    <link rel="stylesheet" href="assets/about/css/about.css">
+
+    <!-- ページ固有のカラー設定 -->
+    <style>
+        :root {
+            --bg-color: #bbbac4;
+            --accent-color: #c22847;
+            --text-color: #18062e;
+            --sub-text-color: #4b3469;
+        }
+    </style>
+
+    <script src="assets/common/js/loader.js"></script>
+</head>
+
+<body>
+
+    <script src="assets/common/js/header.js"></script>
+
+    <div class="about-layout">
+
+        <!-- ===== 左サイドバー: プロフィール（固定） ===== -->
+        <aside class="about-sidebar">
+            <div class="profile-photo-wrapper reveal">
+                <img src="assets/about/profile-icon.png" alt="プロフィール写真" class="profile-photo">
+            </div>
+            <div class="profile-intro">
+                <p class="profile-label reveal">Interactive Arts & Design</p>
+                <h1 class="profile-name reveal">藤田 みずき</h1>
+                <p class="profile-name-en reveal">Mizuki Fujita</p>
+            </div>
+        </aside>
+
+        <!-- ===== 右コンテンツ ===== -->
+        <main class="about-main">
+
+            <!-- ===== ③ 経歴 ===== -->
+            <section class="about-section">
+                <h2 class="section-title reveal">Biography</h2>
+                <div class="timeline">
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">2021.04</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-heading">芝浦工業大学 デザイン工学部 入学</h3>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">2025.03</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-heading">芝浦工業大学 デザイン工学部 卒業</h3>
+                            <p class="timeline-desc">
+                                卒業研究：音楽と映像のリアルタイム同期が視聴者にもたらす影響
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">2025 -</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-heading">Unity・TouchDesignerによる作品制作・独学</h3>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker active"></div>
+                        <div class="timeline-date">2026.05</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-heading">就職活動開始</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 経歴の詳細説明 -->
+                <div class="biography-detail reveal">
+                    <p>
+                        高校生の頃からテクノロジーを使ったアート表現に興味を持ち、大学ではその基盤となるデザイン工学を専攻。
+                        システムデザインやUI/UXを学びながら、インタラクティブアートという領域を意識するようになった。
+                    </p>
+                    <p>
+                        卒業研究では、オーディオリアクティブ映像が視聴者の感情に与える研究を自ら立案・研究。「感覚的な表現の裏側にある法則を、データで解き明かしたい」という動機から生まれたテーマだった。
+                    </p>
+                    <p>
+                        卒業後は、大学院進学も視野に入れながら、Unity・TouchDesignerによる制作に集中する道を選んだ。アカデミックな研究より、実際に人が体験できる作品を作り続けたいというと思いが、その選択の軸にある。
+                        今後は実際の展示空間で、人の記憶や感情に残るインタラクティブアートの制作に携わっていきたい。
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- ===== ④ スキル・ツール ===== -->
+            <section class="about-section">
+                <h2 class="section-title reveal">Skills & Tools</h2>
+
+                <div class="skills-grid">
+
+                    <!-- グループ: インタラクティブ開発 -->
+                    <div class="skill-group reveal">
+                        <h3 class="skill-group-title">Interactive Development</h3>
+                        <div class="skill-items">
+                            <div class="skill-card">
+                                <span class="skill-name">Unity / C#</span>
+                                <span class="skill-note">Compute Shader / VFX Graph / OSC / ShaderLab / WebSocket</span>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-name">TouchDesigner</span>
+                                <span class="skill-note">Generative Art / Audio Reactive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- グループ: デザイン -->
+                    <div class="skill-group reveal">
+                        <h3 class="skill-group-title">Design</h3>
+                        <div class="skill-items">
+                            <div class="skill-card">
+                                <span class="skill-name">Figma</span>
+                                <span class="skill-note">UI/UX / Prototyping</span>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-name">Illustrator / Photoshop</span>
+                                <span class="skill-note">Graphic Design / Print</span>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-name">Blender</span>
+                                <span class="skill-note">3D Modeling / Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- グループ: Web -->
+                    <div class="skill-group reveal">
+                        <h3 class="skill-group-title">Other</h3>
+                        <div class="skill-items">
+                            <div class="skill-card">
+                                <span class="skill-name">HTML / CSS / JavaScript</span>
+                                <span class="skill-note">Portfolio Site</span>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-note">SAM2 / Server</span>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-name">GitHub</span>
+                                <span class="skill-note">Version Control</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ===== ⑤ 連絡先 ===== -->
+            <section class="about-section about-contact">
+                <h2 class="section-title reveal">Contact</h2>
+
+                <div class="contact-grid">
+                    <a href="mailto:21.zijzf@gmail.com" class="contact-card reveal">
+                        <span class="contact-icon">✉</span>
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">21.zijzf@gmail.com</span>
+                    </a>
+                    <a href="https://github.com/zi-jzf" target="_blank" rel="noopener noreferrer"
+                        class="contact-card reveal">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </span>
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">@zi-jzf</span>
+                    </a>
+                    <a href="https://www.instagram.com/zi_jzf/" target="_blank" rel="noopener noreferrer"
+                        class="contact-card reveal">
+                        <span class="contact-icon contact-icon-text">IG</span>
+                        <span class="contact-label">Instagram</span>
+                        <span class="contact-value">@zi_jzf</span>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="assets/common/js/reveal.js"></script>
+</body>
+
+</html>
