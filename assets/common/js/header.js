@@ -16,8 +16,9 @@
     // Aboutページ・作品ページはトップに戻るために index.html を付与する
     const worksHref = isTopPage ? '#works' : (isWorkPage ? '../index.html#works' : './index.html#works');
     const aboutHref = isWorkPage ? '../about.html' : './about.html';
-    // ロゴも同様: トップページ以外はindex.htmlへ戻る
-    const logoHref = isTopPage ? '#' : (isWorkPage ? '../index.html' : './index.html');
+    // ロゴ: 全ページ共通でルート（"/"）へ戻る（index.htmlをURLに露出させない）
+    // GitHub Pages では "/" がルートの index.html に解決される
+    const logoHref = '/';
 
     // 2. ヘッダーのHTMLを構築
     const headerHTML = `
